@@ -44,6 +44,7 @@ for im in image:
 
 
     img = open_picture(im)
+    show_picture("orignal", img, 0, "")
 
     #make copy
     copy = img.copy()
@@ -82,3 +83,4 @@ for im in image:
 
 
     show_picture("img", img, 0, "")
+
