@@ -7,54 +7,117 @@ from operation import *
 
 
 
+#cv2.rectangle(copy, (x, y), (x+w, y+h), (0, 0, 255), 3)
+
+
+def extremity(img):
+    try:
+        copy = img.copy()
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    except:
+        pass
+
+
+    liste = []
+
+    for i in range(img.shape[0]):
+        for j in range(img.shape[1]):
+            if img[i, j] == 255:
+                liste.append([i, j])
+
+    a = liste[0][0]
+    b = liste[0][1]
+
+    c = liste[-1][0]
+    d = liste[-1][1]
+
+    borat = []
+
+    pts = 0
+    for i in liste:
+        if i[1] == b and\
+           i[0] == pts + 1:
+            borat.append(i)
+            pts = i[0]
+    print(borat)
+
+
+
+    aa = 0
+    bb = 0
+    cc = 0
+    for i in borat:
+        aa += i[0]
+        bb += i[1]
+        cc += 1
+
+
+
+
+
+    aa = int(aa/cc)
+    bb = int(bb/cc)
+
+    cv2.circle(copy, (aa, bb), 2, (255, 0, 0), 2)
+    cv2.circle(copy, (c, d), 3, (255, 0, 0), 3)
+
+
+
+    
+    show_picture("copy", copy, 0, "")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 R = cv2.RETR_TREE
 P = cv2.CHAIN_APPROX_NONE
 
+image = ["images/ess.jpg", 'images/ligne.jpg', 'images/ligne_to.jpg']
 
-image = 'images/ligne.jpg'
-img = open_picture(image)
-#img = cv2.resize(img, (50,50))
-
-edges = cv2.Canny(img, 255,200)
-blanck = blanck_picture(img)
-
-contours, _ = cv2.findContours(edges, R, P)
-for cnts in contours:
-    cv2.fillPoly(blanck, pts =[cnts], color=(255, 255, 255))
+for im in image:
+    img = open_picture(im)
 
 
-liste_horizontaleX = []
-liste_horizontaleY = []
-
-liste_verticaleX = []
-liste_verticaleY = []
-
-blanck = cv2.cvtColor(blanck, cv2.COLOR_BGR2GRAY)
-kernel = np.ones((3,3),np.uint8)
-blanck = cv2.erode(blanck, kernel, iterations = 1)
+    edges = cv2.Canny(img, 255,200)
+    blanck = blanck_picture(img)
+    copy = img.copy()
 
 
 
-liste_x = []
-liste_y = []
-
-for x in range(blanck.shape[0]):
-    for y in range(blanck.shape[1]):
-
- 
-        if blanck[x, y] == 255:
-            liste_y.append(y)
-
-
-    liste_horizontaleX.append(liste_y)
-    liste_y = []
+    contours, _ = cv2.findContours(edges, R, P)
 
 
 
-for nb, i in enumerate(liste_horizontaleX):
-    if i != []:
-        print(nb, i)
-        print("")
+    for cnts in contours:
+
+
+
+        cv2.drawContours(blanck,[cnts], -1, (255,255,255), 1)
+        cv2.fillPoly(blanck, pts =[cnts], color=(255, 255, 255))
+
+        (x, y, w, h) = cv2.boundingRect(cnts)
+
+
+        crop = blanck[y:y+h, x:x+w]
+        extremity(crop)
+
+
+        show_picture("img", img, 0, "")
+        show_picture("blanck", blanck, 0, "")
+        show_picture("crop", crop, 0, "")
 
 
 
@@ -67,7 +130,7 @@ for nb, i in enumerate(liste_horizontaleX):
 
 
 
-show_picture("blanck", blanck, 0, "")
+
 
 
 
