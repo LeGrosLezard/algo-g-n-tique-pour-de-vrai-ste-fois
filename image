@@ -35,24 +35,26 @@ blanck = cv2.erode(blanck, kernel, iterations = 1)
 
 
 
-liste_w = []
+liste_x = []
+liste_y = []
 
 for x in range(blanck.shape[0]):
     for y in range(blanck.shape[1]):
 
+ 
         if blanck[x, y] == 255:
-            liste_horizontaleX.append(x)
-
-        if blanck[y, x] == 255:
-            liste_w.append(y)
-
-    liste_verticaleY.append(liste_w)
-    liste_w = []
+            liste_y.append(y)
 
 
-for i in liste_verticaleY:
-    if i != []:print(i)
+    liste_horizontaleX.append(liste_y)
+    liste_y = []
 
+
+
+for nb, i in enumerate(liste_horizontaleX):
+    if i != []:
+        print(nb, i)
+        print("")
 
 
 
@@ -66,7 +68,6 @@ for i in liste_verticaleY:
 
 
 show_picture("blanck", blanck, 0, "")
-
 
 
 
