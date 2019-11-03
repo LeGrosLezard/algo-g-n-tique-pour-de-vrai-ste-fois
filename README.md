@@ -1,4 +1,6 @@
 
+ c dla merde encore une fois jvai passé 2 jours comme background remove 
+
 - fermture des contours
 
   - haut en bas
