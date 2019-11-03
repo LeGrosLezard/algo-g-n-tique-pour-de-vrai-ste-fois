@@ -1,155 +1,84 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from PIL import Image
 import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
 
-from operation import *
-
-
-
-#cv2.rectangle(copy, (x, y), (x+w, y+h), (0, 0, 255), 3)
-
-
-def extremity(img):
-    try:
-        copy = img.copy()
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    except:
-        pass
-
-
-    liste = []
-
-    for i in range(img.shape[0]):
-        for j in range(img.shape[1]):
-            if img[i, j] == 255:
-                liste.append([i, j])
-
-    a = liste[0][0]
-    b = liste[0][1]
-
-    c = liste[-1][0]
-    d = liste[-1][1]
-
-    borat = []
-
-    pts = 0
-    for i in liste:
-        if i[1] == b and\
-           i[0] == pts + 1:
-            borat.append(i)
-            pts = i[0]
-    print(borat)
-
-
-
-    aa = 0
-    bb = 0
-    cc = 0
-    for i in borat:
-        aa += i[0]
-        bb += i[1]
-        cc += 1
-
-
-
-
-
-    aa = int(aa/cc)
-    bb = int(bb/cc)
-
-    cv2.circle(copy, (aa, bb), 2, (255, 0, 0), 2)
-    cv2.circle(copy, (c, d), 3, (255, 0, 0), 3)
-
-
-
-    
-    show_picture("copy", copy, 0, "")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+from operation import open_picture
+from operation import show_picture
+from operation import blanck_picture
 
 
 
 R = cv2.RETR_TREE
 P = cv2.CHAIN_APPROX_NONE
 
-image = ["images/ess.jpg", 'images/ligne.jpg', 'images/ligne_to.jpg']
+image = ['images/ligne.jpg', 'images/ligne_to.jpg']
 
-for im in image:
-    img = open_picture(im)
 
+def recup_contours(img):
 
     edges = cv2.Canny(img, 255,200)
-    blanck = blanck_picture(img)
-    copy = img.copy()
-
-
-
     contours, _ = cv2.findContours(edges, R, P)
 
-
-
     for cnts in contours:
-
-
-
-        cv2.drawContours(blanck,[cnts], -1, (255,255,255), 1)
+        
         cv2.fillPoly(blanck, pts =[cnts], color=(255, 255, 255))
-
         (x, y, w, h) = cv2.boundingRect(cnts)
+        #show_picture("blanck", blanck, 0, "")
+
+    return blanck
 
 
-        crop = blanck[y:y+h, x:x+w]
-        extremity(crop)
+def display(copy):
+
+    copy[x-1, y] = 0, 0, 255
+    copy[x+1, y] = 0, 0, 255
+
+    copy[x, y:y+10] = 255, 0, 0
+    copy[x, y-10:y] = 255, 0, 0
+
+    #show_picture("copy", copy, 0, "")
 
 
-        show_picture("img", img, 0, "")
-        show_picture("blanck", blanck, 0, "")
-        show_picture("crop", crop, 0, "")
+for im in image:
 
 
+    img = open_picture(im)
+
+    #make copy
+    copy = img.copy()
+    blanck = blanck_picture(img)
+    blanck_no = blanck_picture(img)
+
+    #make contours
+    blanck = recup_contours(img)
 
 
+    for x in range(blanck.shape[0]):
+        for y in range(blanck.shape[1]):
+
+            #For diplay
+            copy = blanck.copy()
+
+            if blanck[x, y][0] == 0 and\
+               blanck[x, y][1] == 0 and\
+               blanck[x, y][2] == 0:
+                pass
+
+            else:
+                counter = 0
+                for i in copy[x, y:y+10].tolist():
+                    if str(i) == "[0, 0, 0]":
+                        counter += 1
+
+                if counter < 10 and counter > 0 and\
+                   copy[x, y+10][0] == 255 and\
+                   copy[x, y+10][1] == 255 and\
+                   copy[x, y+10][2] == 255:
+                    #print(img[x, y])
+                    img[x, y:y+10] = img[x, y]
+
+                display(copy)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    show_picture("img", img, 0, "")
