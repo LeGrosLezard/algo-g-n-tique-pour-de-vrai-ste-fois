@@ -1,5 +1,5 @@
 
- c dla merde encore une fois jvai passé 2 jours comme background remove 
+ c dla merde encore une fois jvai passé 2 jours comme background remove jtai persuadé de nettoyé l'image ^^
 
 - fermture des contours
 
