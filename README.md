@@ -1,5 +1,10 @@
 
-(eclaireur -> avant poste -> constructeur de route -> eclaireur) <- geek
+eclaireur -> avant poste -> constructeur de route -> eclaireur
+
+escalier (rond) ligne et coin
+
+ensuite on fait un snake et on choisit les contours
+
 
 - fermture des contours
 
