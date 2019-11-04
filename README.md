@@ -1,9 +1,5 @@
 
-eclaireur -> avant poste -> constructeur de route -> eclaireur
-
-escalier (rond) ligne et coin
-
-ensuite on fait un snake et on choisit les contours
+faut que ca suivent le contour (dessin mal fait pcque ca fait des trucks bizzares)
 
 
 - fermture des contours
