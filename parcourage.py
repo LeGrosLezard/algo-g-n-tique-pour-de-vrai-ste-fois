@@ -75,7 +75,14 @@ y = pointsx[0][1]
 
 
 i = 1
+
+poste = []
 while True:
+    copy1 = copy.copy()
+
+
+    print(poste)
+    poste = []
 
     eclaireurs = [blanck[x + i, y], blanck[x - i, y], 
                   blanck[x, y + i], blanck[x, y - i],
@@ -83,30 +90,39 @@ while True:
                   blanck[x + i, y - i], blanck[x - i, y + i]]
 
 
-##    #et a leur tour d'envoyer des éclaireurs
-##    copy[x + i, y] = 0, 0, 255
-##    copy[x - i, y] = 0, 0, 255
-##    copy[x, y + i] = 0, 0, 255
-##    copy[x, y - i] = 0, 0, 255
-##    copy[x + i, y + i] = 0, 0, 255
-##    copy[x - i, y - i] = 0, 0, 255
-##    copy[x + i, y - i] = 0, 0, 255
-##    copy[x - i, y + i] = 0, 0, 255
+    #et a leur tour d'envoyer des éclaireurs
+    copy1[x + i, y] = 0, 0, 255
+    copy1[x - i, y] = 0, 0, 255
+    copy1[x, y + i] = 0, 0, 255
+    copy1[x, y - i] = 0, 0, 255
+    copy1[x + i, y + i] = 0, 0, 255
+    copy1[x - i, y - i] = 0, 0, 255
+    copy1[x + i, y - i] = 0, 0, 255
+    copy1[x - i, y + i] = 0, 0, 255
 
 
-
+    #Routes
     for nb, eclaireur in enumerate(eclaireurs):
         if eclaireur == 255:
             print(eclaireur, nb)
+
+            if nb == 0:poste.append(0)
+            elif nb == 1:poste.append(1)
+            elif nb == 2:poste.append(2)
+            elif nb == 3:poste.append(3)
+            elif nb == 4:poste.append(4)
+            elif nb == 5:poste.append(5)
+            elif nb == 6:poste.append(6)
+            elif nb == 7:
+                blanck[x+1,y] = 255
+                poste.append(7)
+
         else:
             print(eclaireur)
 
-
-
-
-
-
     i += 1
+
+
 
 
 
@@ -129,7 +145,7 @@ while True:
 
 
     show_picture("copy", copy, 0, "")
-
+    show_picture("copy1", copy1, 0, "")
 
 
 
