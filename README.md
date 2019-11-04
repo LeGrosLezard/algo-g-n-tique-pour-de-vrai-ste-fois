@@ -1,5 +1,9 @@
 
-faut que tout se fasse en mm tmeps pcque c classe par contre je sais plus pourquoi je le fais et comment reunir les deux traits^^
+ok faut factorisé
+
+faut pass des conditions (a cause des coins ou escaliers)
+
+
 
 
 - fermture des contours
