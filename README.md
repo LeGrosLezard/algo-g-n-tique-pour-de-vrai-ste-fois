@@ -1,5 +1,5 @@
 
- c dla merde encore une fois jvai passé 2 jours comme background remove jtai persuadé de nettoyé l'image ^^
+(eclaireur -> avant poste -> constructeur de route -> eclaireur) <- geek
 
 - fermture des contours
 
