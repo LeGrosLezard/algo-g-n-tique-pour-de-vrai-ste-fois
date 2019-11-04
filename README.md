@@ -1,5 +1,5 @@
 
-faut que ca suivent le contour (dessin mal fait pcque ca fait des trucks bizzares)
+faut que tout se fasse en mm tmeps pcque c classe par contre je sais plus pourquoi je le fais et comment reunir les deux traits^^
 
 
 - fermture des contours
