@@ -40,11 +40,7 @@ def lign_contour():
 
 
 
-
-
-
-
-
+#Filter
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 blanck = recup_contours(img)
 blanck = cv2.cvtColor(blanck, cv2.COLOR_BGR2GRAY)
@@ -74,21 +70,108 @@ y = pointsx[0][1]
 #copy[x, y+1] = 255, 0, 0
 
 
+#on increment le points
 i = 1
 
 poste = []
+
 while True:
     copy1 = copy.copy()
+    
+
+    print(poste, x, y, i)
+
+    if poste != []:
+        for post in poste:
+            print(post)
+            #x + i, y
+            #x - i, y + i
+            if post == 0:
+
+                copy_un = copy.copy()
+                x = x+i
+                
+                eclaireurs = [blanck[x + i, y], blanck[x - i, y], 
+                              blanck[x, y + i], blanck[x, y - i],
+                              blanck[x + i, y + i], blanck[x - i, y - i],
+                              blanck[x + i, y - i], blanck[x - i, y + i]]
+
+                poste = []
+
+                #et a leur tour d'envoyer des éclaireurs
+                copy_un[x + i, y] = 0, 0, 255
+                copy_un[x - i, y] = 0, 0, 255
+                copy_un[x, y + i] = 0, 0, 255
+                copy_un[x, y - i] = 0, 0, 255
+                copy_un[x + i, y + i] = 0, 0, 255
+                copy_un[x - i, y - i] = 0, 0, 255
+                copy_un[x + i, y - i] = 0, 0, 255
+                copy_un[x - i, y + i] = 0, 0, 255
 
 
-    print(poste)
-    poste = []
+                show_picture("copy_un", copy_un, 0, "")
+
+            if post == 7:
+
+
+                copy_zero = copy.copy()
+                x = x - i
+                y = y + i
+                
+                eclaireurs = [blanck[x + i, y], blanck[x - i, y], 
+                              blanck[x, y + i], blanck[x, y - i],
+                              blanck[x + i, y + i], blanck[x - i, y - i],
+                              blanck[x + i, y - i], blanck[x - i, y + i]]
+
+                poste = []
+
+                #et a leur tour d'envoyer des éclaireurs
+                copy_zero[x + i, y] = 0, 0, 255
+                copy_zero[x - i, y] = 0, 0, 255
+                copy_zero[x, y + i] = 0, 0, 255
+                copy_zero[x, y - i] = 0, 0, 255
+                copy_zero[x + i, y + i] = 0, 0, 255
+                copy_zero[x - i, y - i] = 0, 0, 255
+                copy_zero[x + i, y - i] = 0, 0, 255
+                copy_zero[x - i, y + i] = 0, 0, 255
+
+
+                show_picture("copy_zero", copy_zero, 0, "")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     eclaireurs = [blanck[x + i, y], blanck[x - i, y], 
                   blanck[x, y + i], blanck[x, y - i],
                   blanck[x + i, y + i], blanck[x - i, y - i],
                   blanck[x + i, y - i], blanck[x - i, y + i]]
 
+    poste = []
 
     #et a leur tour d'envoyer des éclaireurs
     copy1[x + i, y] = 0, 0, 255
@@ -104,7 +187,7 @@ while True:
     #Routes
     for nb, eclaireur in enumerate(eclaireurs):
         if eclaireur == 255:
-            print(eclaireur, nb)
+            #print(eclaireur, nb)
 
             if nb == 0:poste.append(0)
             elif nb == 1:poste.append(1)
@@ -128,9 +211,39 @@ while True:
 
 
     copy[x, y] = 0, 0, 255
-##
-##    
-##
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##    #Lign
 ##    lign = 0
 ##    while True:
