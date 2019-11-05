@@ -38,12 +38,12 @@ def recup_contours(img):
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 blanck = recup_contours(img)
 blanck = cv2.cvtColor(blanck, cv2.COLOR_BGR2GRAY)
-#show_picture("blanck", blanck, 0, "")
 
 
+
+#PREMIERE DETECTION DU PREMIER POINTS NOIR
 pts1 = 0; pts2 = 0;
 pointsx = []; pointsy = [];
-
 
 for y in range(blanck.shape[1]):
     for x in range(blanck.shape[0]):
@@ -69,6 +69,7 @@ lasty = y
 
 copy[x, y]= 0, 0, 255
 
+
 for nb, eclaireur in enumerate(eclaireurs):
     if eclaireur == 255:
         if nb == 0:poste.append(0)
@@ -81,50 +82,64 @@ for nb, eclaireur in enumerate(eclaireurs):
         elif nb == 7:poste.append(7)
 
 
-        
 print(poste)
-
-
 show_picture("blanck", blanck, 0, "")
-#show_picture("copy", copy, 0, "")
 
 
 
 
+#POUR LES POINTS APRES LA DETECTION DU PTS NOIR [0, 7]
 for i in poste:
 
+
+    #ON A DES PTS [0 et 7]
     if i == 0:
 
-
-
         a = x + 1; b = y;
+        copy[a, b] = 255, 0, 0
 
+        #ON DEFINIT NOS PTS
         listex = [a + 1, a-1, a, a, a+1, a-1, a+1, a-1]
         listey = [b, b, b+1, b-1, b+1, b-1, b-1, b+1]
+        avant_poste = []
+
 
         t = 0
         while True:
 
+            #ON DOIS RAFRAICHIR LA LISTE
             if t > 0:
                 listex = [a + 1, a-1, a, a, a+1, a-1, a+1, a-1]
                 listey = [b, b, b+1, b-1, b+1, b-1, b-1, b+1]
 
-
+            #ON ESSAIS DE VOIR DES DETECTIONS
             for nb in range(len(listex)):
                 if blanck[listex[nb], listey[nb]] == 255:
-                    if nb == 0:a += 1;
+                    if nb == 0:avant_poste.append(0)
                     if nb == 1:pass
+                    if nb == 2:pass
+                    if nb == 3:pass             
+                    if nb == 4:pass
+                    if nb == 5:pass
+                    if nb == 6:pass
+                    if nb == 7:pass
 
-            copy[a, b] = 255, 0, 0
+            #POUR LES PTS DANS LES DETECTIONS
+            print(avant_poste)
+            for avnt in avant_poste:
 
+                if avnt == 0:
+                    a+=1
 
-            copy1 = copy.copy()
-            copy1 = cv2.resize(copy1, (800, 800))
-            show_picture("copy1", copy1, 0, "")
+                    copy[a, b] = 255, 0, 0
 
-            t += 1
+                    copy1 = copy.copy()
+                    copy1 = cv2.resize(copy1, (800, 800))
+                    show_picture("copy1", copy1, 0, "")
 
+                    t += 1
 
+            avant_poste = []
 
 
 
