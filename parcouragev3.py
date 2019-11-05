@@ -61,24 +61,79 @@ y = pointsx[0][1]
 copy[x, y]= 0, 0, 255
 
 
+def follow(liste):
 
+    if len(liste) >= 1:
+        if liste[-1] == 0:
+            print("bas")
+
+        elif liste[-1] == 1:
+            print("droite")
+
+        elif liste[-1] == 2:
+            print("haut")
+
+        print("")
+
+
+def opposition(liste):
+
+    if len(liste) >= 6:
+        liste = liste[-6:]
+
+        nb1=liste[0]; nb2=liste[1];
+        c1=0; c2=0;
+
+        for i in liste:
+            if i == nb1:c1+=1
+            elif i == nb2:c2+=1
+
+
+        if c1 == c2:
+            print("opposition")
+
+def choice(liste):
+    pass
+
+
+deplacement = []
 while True:
-    listex = [x + 1, x]
-    listey = [y,     y+1]
+    listex = [x + 1, x,   x - 1]
+    listey = [y,     y+1, y]
 
     for i in range(len(listex)):
-        #print(blanck[listex[i], listey[i]])
         if blanck[listex[i], listey[i]] == 255:
             if i == 0:
+                print("zero", deplacement)
+                follow(deplacement)
+                opposition(deplacement)
+                deplacement.append(0)
                 copy[x, y] = 0, 255, 0
                 x += 1
+                break
+ 
             elif i == 1:
+                print("un", deplacement)
+                follow(deplacement)
+                opposition(deplacement)
+                deplacement.append(1)
                 copy[x, y] = 0, 0, 255
                 y += 1
-    
+                break
+
+            elif i == 2:
+                print("deux", deplacement)
+                follow(deplacement)
+                opposition(deplacement)
+                deplacement.append(2)
+                copy[x, y] = 255, 0, 0
+                x -= 1
+                break
+
 
 
     copy1 = copy.copy()
+    cv2.imwrite("ici.png", copy1)
     copy1 = cv2.resize(copy1, (800, 800))
     show_picture("copy1", copy1, 0, "")
 
