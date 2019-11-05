@@ -1,7 +1,5 @@
 
-spas facile tout ca
-
-fais tes if else pour suivre le contour deja ^^
+jvoulais un truk du genre expansion grrrrr
 
 - fermture des contours
 
