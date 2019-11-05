@@ -1,4 +1,4 @@
-(tentacule)
+oups c pas bon signe les tentacules^^
 
 1) on fait le parcourage
 
