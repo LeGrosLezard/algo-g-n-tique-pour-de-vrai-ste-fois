@@ -81,31 +81,69 @@ def escalier(parcourage):
 
 
 def coin(parcourage):
+
     if parcourage[-3] == parcourage[-2] and\
         parcourage[-1] == 0 and\
         parcourage[-2] != 0:
-        print("coin gauche")
+        print("coin gauche bas")
         print(parcourage)
         print("")
 
     if parcourage[-3] == parcourage[-2] and\
         parcourage[-1] == 1 and\
         parcourage[-2] != 1:
-        print("coin droit")
+        print("coin droit bas")
+        print(parcourage)
+        print("")
+
+
+    if parcourage[-3] == parcourage[-2] and\
+        parcourage[-1] == 2 and\
+        parcourage[-2] != 2:
+        print("coin gauche haut")
+        print(parcourage)
+        print("")
+
+    if parcourage[-3] == 7 and\
+       parcourage[-2]  == 1 and\
+        parcourage[-1] == 3:
+        print("coin gauche haut")
+        print(parcourage)
+        print("")
+
+
+    if parcourage[-3] == parcourage[-2] and\
+        parcourage[-1] == 3 and\
+        parcourage[-2] != 3:
+        print("coin droit haut")
         print(parcourage)
         print("")
 
 
 
 
+
+
+
+
+##    eclaireurs = [blanck[x + 1, y], blanck[x - 1, y], 
+##                  blanck[x, y + 1], blanck[x, y - 1],
+##                  blanck[x + 1, y + 1], blanck[x - 1, y - 1],
+##                  blanck[x + 1, y - 1], blanck[x - 1, y + 1]]
+
+
+
+
 def road(copy, blanck, a, b, lastx, lasty, delete, parcourage):
+
+    print(parcourage)
 
     try:
         lign_contour(parcourage)
         escalier(parcourage)
         coin(parcourage)
-    except:
-        pass
+    except IndexError:
+        print(IndexError)
 
 
     copy1[lastx + a, lasty + b] = 0, 0, 255
@@ -143,8 +181,9 @@ def road(copy, blanck, a, b, lastx, lasty, delete, parcourage):
     lastx = x
     lasty = y
 
+    cv2.imwrite("coco.png", copy1)
     show_picture("copy1", copy1, 0, "")
-
+    
     return lastx, lasty, poste
 
 
@@ -174,40 +213,64 @@ while True:
             if post == 0:
                 print("")
                 print("poste 0")
-                lastx, lasty, poste = road(copy, blanck, 1, 0, lastx, lasty, 1, parcourage)
                 parcourage.append(0)
+                lastx, lasty, poste = road(copy, blanck, 1, 0, lastx, lasty, 1, parcourage)
+
 
 
             if post == 1:
                 print("")
                 print("poste 1")
-                lastx, lasty, poste = road(copy, blanck, -1, 0, lastx, lasty, 0, parcourage)
                 parcourage.append(1)
+                lastx, lasty, poste = road(copy, blanck, -1, 0, lastx, lasty, 0, parcourage)
+
 
 
             if post == 2:
                 print("")
                 print("poste 2")
-
-                lastx, lasty, poste = road(copy, blanck, 0, 1, lastx, lasty, 3, parcourage)
                 parcourage.append(2)
+                lastx, lasty, poste = road(copy, blanck, 0, 1, lastx, lasty, 3, parcourage)
+
 
 
             if post == 3:
                 print("")
                 print("poste 3")
-                lastx, lasty, poste = road(copy, blanck, 0, -1, lastx, lasty, 2, parcourage)
                 parcourage.append(3)
+                lastx, lasty, poste = road(copy, blanck, 0, -1, lastx, lasty, 2, parcourage)
+
+
+
+##            if post == 4:
+##                print("")
+##                print("poste 4")
+##                parcourage.append(4)
+##                lastx, lasty, poste = road(copy, blanck, +1, +1, lastx, lasty, 5, parcourage)
+##                parcourage.append(4)
+##
+##
+##            if post == 5:
+##                print("")
+##                print("poste 5")
+##                parcourage.append(5)
+##                lastx, lasty, poste = road(copy, blanck, -1, -1, lastx, lasty, 4, parcourage)
+##                parcourage.append(5)
 
 
             if post == 6:
                 print("")
                 print("poste 6")
-
-                lastx, lasty, poste = road(copy, blanck, -1, -1, lastx, lasty, "", parcourage)
                 parcourage.append(6)
+                lastx, lasty, poste = road(copy, blanck, 1, -1, lastx, lasty, "", parcourage)
 
- 
+
+            if post == 7:
+                print("")
+                print("poste 7")
+                parcourage.append(7)
+                lastx, lasty, poste = road(copy, blanck, -1, +1, lastx, lasty, "", parcourage)
+
 
 
 
@@ -219,16 +282,10 @@ while True:
 
         poste = []
 
-        #et a leur tour d'envoyer des éclaireurs
-
-
-        
-
         lastx = x
         lasty = y
 
 
-        #Routes
         for nb, eclaireur in enumerate(eclaireurs):
             if eclaireur == 255:
                 print(eclaireur, nb)
