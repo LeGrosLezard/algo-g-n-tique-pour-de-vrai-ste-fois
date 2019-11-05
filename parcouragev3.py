@@ -8,18 +8,6 @@ from operation import show_picture
 from operation import blanck_picture
 
 
-
-#Variables
-R = cv2.RETR_TREE
-P = cv2.CHAIN_APPROX_NONE
-
-#Image
-img = open_picture('images/lign_v1.jpg')
-#New Images
-copy = img.copy()
-blanck = blanck_picture(img)
-
-
 def recup_contours(img):
 
     edges = cv2.Canny(img, 255,200)
@@ -34,18 +22,22 @@ def recup_contours(img):
 
 
 
+R = cv2.RETR_TREE
+P = cv2.CHAIN_APPROX_NONE
 
 
-#Filter
+img = open_picture('images/lign_v1.jpg')
+copy = img.copy()
+blanck = blanck_picture(img)
+
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 blanck = recup_contours(img)
 blanck = cv2.cvtColor(blanck, cv2.COLOR_BGR2GRAY)
 
 
 
-#PREMIERE DETECTION DU PREMIER POINTS NOIR
-pts1 = 0; pts2 = 0;
-pointsx = []; pointsy = [];
+pointsx = []
+pointsy = []
 
 for y in range(blanck.shape[1]):
     for x in range(blanck.shape[0]):
@@ -58,93 +50,59 @@ x = pointsx[0][0]
 y = pointsx[0][1]
 
 
-copy[x, y]= 0, 0, 255
+copy[x, y] = 0, 0, 255
 
 
-def follow(liste):
 
-    if len(liste) >= 1:
-        if liste[-1] == 0:
-            print("bas")
+def deja(liste, x, y):
 
-        elif liste[-1] == 1:
-            print("droite")
+    for i in liste:
+        if i[0] == x and i[1] == y:
+            return True
 
-        elif liste[-1] == 2:
-            print("haut")
-
-        print("")
+    return False
 
 
-def opposition(liste):
+historique = []
 
-    if len(liste) >= 6:
-        liste = liste[-6:]
-
-        nb1=liste[0]; nb2=liste[1];
-        c1=0; c2=0;
-
-        for i in liste:
-            if i == nb1:c1+=1
-            elif i == nb2:c2+=1
-
-
-        if c1 == c2:
-            print("opposition")
-
-def choice(liste):
-    pass
-
-
-deplacement = []
+t = 0
 while True:
-    listex = [x + 1, x,   x - 1]
-    listey = [y,     y+1, y]
 
+
+    listex = [x + 1, x - 1, x,    x]
+    listey = [y,     y,     y+1,  y - 1]
+
+    histo = []
+    bas = False; droite = False;
     for i in range(len(listex)):
         if blanck[listex[i], listey[i]] == 255:
+
+            print(i)
             if i == 0:
-                print("zero", deplacement)
-                follow(deplacement)
-                opposition(deplacement)
-                deplacement.append(0)
-                copy[x, y] = 0, 255, 0
                 x += 1
-                break
- 
-            elif i == 1:
-                print("un", deplacement)
-                follow(deplacement)
-                opposition(deplacement)
-                deplacement.append(1)
-                copy[x, y] = 0, 0, 255
+                copy[x, y] = 0, 255, 0
+                histo.append(0)
+
+            if i == 2:
                 y += 1
-                break
-
-            elif i == 2:
-                print("deux", deplacement)
-                follow(deplacement)
-                opposition(deplacement)
-                deplacement.append(2)
                 copy[x, y] = 255, 0, 0
-                x -= 1
-                break
+                histo.append(2)
 
+            if i == 1:
+                pass
+                #x-=1                
+
+
+    print("")
+
+    
 
 
     copy1 = copy.copy()
     cv2.imwrite("ici.png", copy1)
+    cv2.imwrite("iciblanck.png", blanck)
     copy1 = cv2.resize(copy1, (800, 800))
     show_picture("copy1", copy1, 0, "")
-
-
-
-
-
-
-
-
-
 
 
 
