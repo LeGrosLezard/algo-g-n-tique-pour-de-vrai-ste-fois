@@ -33,6 +33,8 @@ def recup_contours(img):
 
 
 
+
+
 #Filter
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 blanck = recup_contours(img)
@@ -74,8 +76,6 @@ lasty = y
 
 for nb, eclaireur in enumerate(eclaireurs):
     if eclaireur == 255:
-        print(eclaireur, nb)
-
         if nb == 0:poste.append(0)
         elif nb == 1:poste.append(1)
         elif nb == 2:poste.append(2)
@@ -89,53 +89,100 @@ for nb, eclaireur in enumerate(eclaireurs):
 show_picture("blanck", blanck, 0, "")
 
 
-print(poste)
-for i in poste:
-    print(i)
+print(poste, x, y)
+for post in poste:
 
     if post == 0:
-        a = x + 1
-        b = y
+
+        avant_poste = []
+
+        
+        print(" \nPOSTE  0")
+
+        x = x + 1
+        y = y
+
+
+        copy[x, y] = 255, 0, 0
+        cv2.imwrite("oki.png", copy)
+
+
         while True:
-            pass
+            print(x, y, "\n")
+
+            listex = [x + 1, x-1, x, x, x+1, x-1, x+1, x-1]
+            listey = [y, y, y+1, y-1, y+1, y-1, y-1, y+1]
+
+            for i in range(len(listex)):
+                if blanck[listex[i], listey[i]] == 255:
+                    if i == 0:avant_poste.append(0)
+                    elif i == 1:avant_poste.append(1)
+                    elif i == 2:avant_poste.append(2)
+                    elif i == 3:avant_poste.append(3)
+                    elif i == 4:avant_poste.append(4)
+                    elif i == 5:avant_poste.append(5)
+                    elif i == 6:avant_poste.append(6)
+                    elif i == 7:avant_poste.append(7)
+
+            print(avant_poste, x, y)
+            show_picture("blanck", blanck, 0, "")
+
+
+
+
+##eclaireurs = [blanck[x + 1, y], blanck[x - 1, y], 
+##              blanck[x, y + 1], blanck[x, y - 1],
+##              blanck[x + 1, y + 1], blanck[x - 1, y - 1],
+##              blanck[x + 1, y - 1], blanck[x - 1, y + 1]]
+
+
+
+
+
+
+
+
+
+
+
 
     if post == 1:
-        a = x - 1
-        b = y
+        x = x - 1
+        y = y
         while True:
             pass
 
     if post == 2:
-        a = x
-        b = y + 1
+        x = x
+        y = y + 1
         while True:
             pass
 
     if post == 3:
-        a = x
-        b = y - 1
+        x = x
+        y = y - 1
         while True:
             pass
 
     if post == 4:
-        a = x + 1
-        b = y + 1
+        x = x + 1
+        y = y + 1
 
     if post == 5:
-        a = x - 1
-        b = y - 1
+        x = x - 1
+        y = y - 1
         while True:
             pass
 
     if post == 6:
-        a = x + 1
-        b = y - 1
+        x = x + 1
+        y = y - 1
         while True:
             pass
 
     if post == 7:
-        a = x - 1
-        b = y + 1
+        x = x - 1
+        y = y + 1
         while True:
             pass
 
