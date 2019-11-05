@@ -3,3 +3,9 @@ ok non enfete faut que ca cherche de partout et que ca se connecte au plus proch
 
 - fermture des contours
 
+(tentacule)
+
+
+- dessin de contour
+
+(parcouragev3)
