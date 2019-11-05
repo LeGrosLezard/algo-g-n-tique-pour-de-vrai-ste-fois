@@ -1,5 +1,5 @@
 
-jvoulais un truk du genre expansion grrrrr puis merde ca revient au meme
+ok non enfete faut que ca cherche de partout et que ca se connecte au plus proche et on verra ensuite pour dire si oui ou non faut connecter
 
 - fermture des contours
 
