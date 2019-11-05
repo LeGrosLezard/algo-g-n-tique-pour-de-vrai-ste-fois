@@ -88,17 +88,16 @@ show_picture("blanck", blanck, 0, "")
 
 
 
-#POUR LES POINTS APRES LA DETECTION DU PTS NOIR [0, 7]
+
 for i in poste:
 
 
-    #ON A DES PTS [0 et 7]
     if i == 0:
 
         a = x + 1; b = y;
         copy[a, b] = 255, 0, 0
 
-        #ON DEFINIT NOS PTS
+
         listex = [a + 1, a-1, a, a, a+1, a-1, a+1, a-1]
         listey = [b, b, b+1, b-1, b+1, b-1, b-1, b+1]
         avant_poste = []
@@ -107,38 +106,71 @@ for i in poste:
         t = 0
         while True:
 
-            #ON DOIS RAFRAICHIR LA LISTE
+
             if t > 0:
                 listex = [a + 1, a-1, a, a, a+1, a-1, a+1, a-1]
                 listey = [b, b, b+1, b-1, b+1, b-1, b-1, b+1]
 
-            #ON ESSAIS DE VOIR DES DETECTIONS
+
             for nb in range(len(listex)):
                 if blanck[listex[nb], listey[nb]] == 255:
                     if nb == 0:avant_poste.append(0)
-                    if nb == 1:pass
-                    if nb == 2:pass
+                    if nb == 1:avant_poste.append(1)
+                    if nb == 2:avant_poste.append(2)
                     if nb == 3:pass             
                     if nb == 4:pass
                     if nb == 5:pass
                     if nb == 6:pass
                     if nb == 7:pass
 
-            #POUR LES PTS DANS LES DETECTIONS
+
+##
+##eclaireurs = [blanck[x + 1, y], blanck[x - 1, y], 
+##              blanck[x, y + 1], blanck[x, y - 1],
+##              blanck[x + 1, y + 1], blanck[x - 1, y - 1],
+##              blanck[x + 1, y - 1], blanck[x - 1, y + 1]]
+
+
             print(avant_poste)
             for avnt in avant_poste:
 
                 if avnt == 0:
                     a+=1
-
+                    blanck[a, b] = 255
                     copy[a, b] = 255, 0, 0
 
-                    copy1 = copy.copy()
-                    copy1 = cv2.resize(copy1, (800, 800))
-                    show_picture("copy1", copy1, 0, "")
+                if avnt == 1:
+                    a -= 1
+                    blanck[a, b] = 255
+                    copy[a, b] = 0, 0, 0
 
-                    t += 1
+                if avnt == 2:
+                    b += 1
+                    blanck[a, b] = 255
+                    copy[a, b] = 255, 0, 0
 
+                if avnt == 3:
+                    pass
+
+                if avnt == 4:
+                    pass
+
+                if avnt == 5:
+                    pass
+
+                if avnt == 6:
+                    pass
+
+                if avnt == 7:
+                    pass
+
+                copy1 = copy.copy()
+                copy1 = cv2.resize(copy1, (800, 800))
+                show_picture("copy1", copy1, 0, "")
+
+
+
+            t += 1
             avant_poste = []
 
 
