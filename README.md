@@ -2,7 +2,7 @@
 
 1) on fait le parcourage
 
-  pcque ca fait du sur place ok, si on dit pas 0 pas 1 si pas 2 pas 3 mais ca trouve le moyen d'aller vers un putin de coté
+  bon pause série javais pas vu quy'en avait des nouvelles mais ouais 
 
 2) on enferme chaque contours dans des detectections
 
