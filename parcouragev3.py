@@ -74,11 +74,14 @@ def corner(current, copy, blanck):
     for i in current:
         if i == 7:
             sept += 1
-
+        if i == deux:
+            deux += 1
 
     if deux == 0 and sept == 1:
         copy[x , y + 1] = 0, 0, 255
         blanck[x, y + 1] = 255
+        print("cooorner")
+        
 
 
 def no_bloc(last, current):
@@ -133,10 +136,10 @@ def diagonale(current):
 
     if zero == 1 and quattre == 1 :
         current.remove(4)
-
+        print("diagolane removed")
     if deux == 1 and quattre == 1:
         current.remove(4)
-
+        print("diagolane removed")
 
 
 
@@ -153,8 +156,6 @@ def arrierre_avant(historic, current, x, y):
             if i == 6:six += 1
             if i == 7: sept += 1
 
-
-
         if x + 1 == historic[-2][0] and\
            y - 1 == historic[-2][1]:
             current.remove(6)
@@ -166,6 +167,29 @@ def arrierre_avant(historic, current, x, y):
     return current
 
 
+def corner_to_lign(current, last):
+    
+    zero=0;un=0;deux=0;trois=0;quattre=0;
+    six=0;sept=0;
+    
+    if len(last) > 0:
+        for i in current:
+            if i == 0:zero += 1
+            if i == 1: un += 1
+            if i == 0:trois += 1
+            if i == 1: quattre += 1
+
+
+        if last[0] == 7 and\
+           zero == 1 and un == 1:
+            current.remove(0)
+
+        if last[0] == 6 and\
+           zero == 1 and un == 1:
+            current.remove(1) 
+
+
+    return current
 
 
 last = []
@@ -196,6 +220,7 @@ while True:
     current = no_bloc(last, current)
     current = diagonale(current)
     current = arrierre_avant(historic, current, x, y)
+    current = corner_to_lign(current, last)
     print(current)
     
     historic.append([x, y])
