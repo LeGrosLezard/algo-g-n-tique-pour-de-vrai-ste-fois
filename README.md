@@ -2,7 +2,7 @@
 
   - réécrire
     
-    - verifier que corner est pas caduc
+    - verifier que corner est pas caduc avec l'animation automatique ca va etre trop classe
     
   
   
