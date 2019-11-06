@@ -33,7 +33,7 @@ liste_treat = os.listdir(PIT)
 #Now we course the folder.
 for pict in liste_treat:
 
-    img = open_picture(PIT + "contour5.png")
+    img = open_picture(PIT + "contour10.png")
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     copy = img.copy()
 
@@ -92,10 +92,20 @@ for pict in liste_treat:
 
         #===========================================
         #We treat points for decide where keep moving.
+
+        #Move x + 1 delete x - 1 detection
         current = no_bloc(last, current)
+
+        #Delete x - 1 if we have moved to (x + 1; y + 1)
         current = diagonale(current)
+
+        #Delete from historic
         current = arrierre_avant(historic, current, x, y, last)
+
+        #Delete a corner by a lign
         current = corner_to_lign(current, last)
+
+        #Add pixel if we moving by diagonal
         speciale_corner_after_selection(current, copy, gray, x, y)
         #print(current)
 
@@ -180,10 +190,4 @@ for pict in liste_treat:
 
 
 show_picture("copy1", copy1, 0, "")
-
-
-
-
-
-
 
