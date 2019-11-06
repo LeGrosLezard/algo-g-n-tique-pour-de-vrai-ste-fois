@@ -1,13 +1,3 @@
-2) on fait le parcourage
-
-  - bon j'essaie un nouveau style de doc j'aime bien
-
-  - pour copy faire selon les couleur (pas la meme couleur pcque ca donne du flou du genre améliorer la qualité de l'image fin non mais comme )
-
-
-1) on enferme chaque contours dans des detectections
-
-
 
 3) on forme les schéma ligne, escalier qui deviennent des zones de chaque detections (les mettre selon une couleur)
 
