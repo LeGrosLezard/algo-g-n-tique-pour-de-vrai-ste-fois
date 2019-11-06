@@ -1,10 +1,7 @@
 
+1) on enferme chaque contours dans des detectections
 
-1) on fait le parcourage
-
-  bon pause série javais pas vu quy'en avait des nouvelles mais ouais 
-
-2) on enferme chaque contours dans des detectections
+2) on fait le parcourage
 
 3) on forme les schéma ligne, escalier qui deviennent des zones de chaque detections (les mettre selon une couleur)
 
