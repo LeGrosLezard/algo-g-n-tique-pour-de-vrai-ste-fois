@@ -1,6 +1,8 @@
 
 3) on forme les schéma ligne, escalier qui deviennent des zones de chaque detections (les mettre selon une couleur)
 
+  - verifier les blancks
+
   - escalier l'emporte sur coin
 
 4) de chaque schéma du contour on envoie dans toutes les directions
