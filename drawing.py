@@ -58,10 +58,18 @@ def corner(current, copy, blanck, x,  y):
         
 
     if quattre == 1 and zero == 0 and\
-       len(current) == 2:
+       len(current) == 2 and cinq == 0:
         copy[x + 1, y] = 0, 0, 255
         blanck[x + 1, y] = 255
         print("cooorner")
+
+    if cinq == 1 and un == 0 and\
+        len(current) <= 2 and quattre == 0:
+        copy[x - 1, y] = 0, 0, 255
+        blanck[x - 1, y] = 255
+        print("cooorner")
+
+
 
 
 
@@ -181,15 +189,17 @@ def arrierre_avant(historic, current, x, y, last):
             current.remove(0)
             current.remove(6)
 
+        if last[0] == 5 and\
+           deux == 1:
+            current.remove(2)
 
+        if last[0] == 2 and\
+           six == 1:
+            current.remove(6)
 
-
-
-
-
-
-
-
+        if last[0] == 1 and\
+           quattre == 1:
+            current.remove(4)
 
 
 
@@ -229,12 +239,27 @@ def speciale_corner_after_selection(current, copy, blanck, x, y):
     if current[0] == 4:
         copy[x + 1, y]  = 0, 0, 255
         blanck[x + 1, y]  = 255
-        print("special corner")
+        print("special corner 4")
 
-##    if current[0] == 7:
-##        copy[x , y + 1]  = 0, 0, 255
-##        blanck[x , y + 1]  = 255
-##        print("special corner")
+    if current[0] == 5:
+        copy[x - 1, y]  = 0, 0, 255
+        blanck[x - 1, y]  = 255
+        print("special corner 5")
+
+
+    if current[0] == 7:
+        copy[x , y + 1]  = 0, 0, 255
+        blanck[x, y + 1]  = 255
+        print("special corner 7")
+
+
+
+
+
+
+
+
+
 
 
 def thcheck_gray(gray):
