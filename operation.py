@@ -18,13 +18,11 @@ def show_picture(name, image, mode, destroy):
         -destroy y is for remove picture.
     """
 
-    if mode == 0:
-        cv2.imshow(name, image)
-        cv2.waitKey(mode)
 
-    if mode == 1:
-        time.sleep(1)
-        cv2.destroyAllWindows()
+    cv2.imshow(name, image)
+    cv2.waitKey(mode)
+
+
 
     if destroy == "y":
         cv2.destroyAllWindows()
