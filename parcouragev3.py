@@ -280,18 +280,30 @@ while True:
 
         elif i == 3:
             print("trois")
+            x, y = incrementation(x, y, 0, -1, copy)
+            last = []
+            last.append(3)
             break
 
         elif i == 4:
             print("quattre")
+            x, y = incrementation(x, y, 1, 1, copy)
+            last = []
+            last.append(4)
             break
 
         elif i == 5:
             print("cinq")
+            x, y = incrementation(x, y, -1, -1, copy)
+            last = []
+            last.append(5)
             break
 
         elif i == 6:
             print("six")
+            x, y = incrementation(x, y, 1, -1, copy)
+            last = []
+            last.append(6)
             break
 
 
