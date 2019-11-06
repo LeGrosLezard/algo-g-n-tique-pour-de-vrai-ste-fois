@@ -169,8 +169,11 @@ for pict in liste_treat:
         #print("")
 
         #===========================================
-
-
+        #End condition
+      
+        if len(historic) > 10:
+            if historic[0] == historic[-1]:
+                ocontinuer = False
 
         #===========================================
         #Display help part
