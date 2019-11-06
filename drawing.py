@@ -102,6 +102,16 @@ def no_bloc(last, current):
             if i == 2:
                 current.remove(i)
 
+    if quattre == 1:
+        for i in current:
+            if i == 3:
+                current.remove(i)
+
+            if i == 5:
+                current.remove(i)
+
+
+
     return current
 
 
@@ -163,11 +173,25 @@ def arrierre_avant(historic, current, x, y, last):
             current.remove(7)
 
 
+
+
     if len(last) > 0:
         if last[0] == 7 and\
             zero == 1 and six == 1:
             current.remove(0)
             current.remove(6)
+
+
+
+
+
+
+
+
+
+
+
+
 
     return current
 
@@ -196,12 +220,46 @@ def corner_to_lign(current, last):
 
     return current
 
+##
+##                  #0     #1     #2    #3      #4     #5     #6    #7
+##        listex = [x+1,   x-1,   x,    x,      x+1,   x-1,   x+1,  x-1]
+##        listey = [y,       y,   y+1,  y-1,    y+1,   y-1,   y-1,  y+1]
 
 def speciale_corner_after_selection(current, copy, blanck, x, y):
     if current[0] == 4:
         copy[x + 1, y]  = 0, 0, 255
         blanck[x + 1, y]  = 255
         print("special corner")
+
+##    if current[0] == 7:
+##        copy[x , y + 1]  = 0, 0, 255
+##        blanck[x , y + 1]  = 255
+##        print("special corner")
+
+
+def thcheck_gray(gray):
+    c = 0
+    for x in range(gray.shape[0]):
+        for y in range(gray.shape[1]):
+            if gray[x, y] == 255:
+                c += 1
+    
+    return c
+
+def thcheck_copy(copy):
+    c1 = 0
+    for x in range(copy.shape[0]):
+        for y in range(copy.shape[1]):
+            if copy[x, y][0] == 0 and\
+               copy[x, y][1] == 0 and\
+               copy[x, y][2] == 255:
+                c1 += 1
+ 
+        
+
+    return c1
+
+
 
 
 
