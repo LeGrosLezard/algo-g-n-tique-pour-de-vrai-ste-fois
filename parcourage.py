@@ -23,9 +23,9 @@ liste_treat = os.listdir(PIT)
 
 for pict in liste_treat:
 
-    img = open_picture(PIT + str(pict))
+    img = open_picture(PIT + "contour0.png")
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
+    c_grray = thcheck_gray(gray)
     copy = img.copy()
 
 
@@ -52,11 +52,12 @@ for pict in liste_treat:
 
 
 
-
+    ok_ok = 0
     last = []
     historic = []
     t = 0
-    while True:
+    ocontinuer = True
+    while ocontinuer:
 
         current = []
 
@@ -73,7 +74,7 @@ for pict in liste_treat:
 
         if t == 0 and len(current) > 1:
             current = [current[0]]
-            t += 1
+        t += 1
 
         print(last)
         print(current)
@@ -101,8 +102,8 @@ for pict in liste_treat:
                 last = []
                 last.append(0)
                 break
-            if i == 1:
 
+            if i == 1:
                 print("un")
                 x, y = incrementation(x, y, -1, 0, copy)
                 last = []
@@ -163,31 +164,33 @@ for pict in liste_treat:
 
 
         copy1 = copy.copy()
-        cv2.imwrite("ici.png", copy1)
-        cv2.imwrite("iciblanck.png", gray)
+        #cv2.imwrite("ici.png", copy1)
+        #cv2.imwrite("iciblanck.png", gray)
         copy1 = cv2.resize(copy1, (800, 800))
 
-        show_picture("copy1", copy1, 0, "")
+        #show_picture("copy1", copy1, 0, "")
 
         blanck_resize = cv2.resize(gray, (800, 800))
-        show_picture("copy1", copy1, 0, "")
+        #show_picture("copy1", copy1, 0, "")
         #show_picture("blanck_resize", blanck_resize, 0, "")
 
 
+        print(t)
+        if t == 50:
+            c_copy = thcheck_copy(copy)
+            t = 1
+
+            if c_copy > c_grray:
+                ok_ok += 1
+            print("COMPARAISON", c_grray, c_copy)
+
+        if ok_ok > 10:
+            ocontinuer = False
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+show_picture("copy1", copy1, 0, "")
 
 
 
