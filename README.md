@@ -1,6 +1,6 @@
 2) on fait le parcourage
 
-  - réécrire
+  - bon j'essaie un nouveau style de doc j'aime bien
     
     - verifier que corner est pas caduc avec l'animation automatique ca va etre trop classe
     
