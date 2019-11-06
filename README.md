@@ -5,7 +5,7 @@
 
   - réécrire
   
-  - réfléchir pour une autre fois comme le blob l'animal
+  - réfléchir pour une autre fois un truk comme le blob l'animal
 
 
 3) on forme les schéma ligne, escalier qui deviennent des zones de chaque detections (les mettre selon une couleur)
