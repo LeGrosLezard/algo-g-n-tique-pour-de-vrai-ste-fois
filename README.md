@@ -1,3 +1,5 @@
+merde les escaliers du bas sont pas redessinés
+
 3) on forme les schéma ligne, escalier qui deviennent des zones de chaque detections (les mettre selon une couleur)
 
   - verifier les blancks
