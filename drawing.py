@@ -29,6 +29,30 @@ def incrementation(x, y, number1, number2, copy):
     return x, y
 
 
+def neightboors_points(liste):
+
+    name = {"0":"zero", "1":"un", "2": "deux",
+            "3":"trois", "4":"quattre",
+            "5":"cinq", "6":"six",
+            "7":"sept"}
+
+    neightboors = {"zero":0, "un":0, "deux":0,
+                    "trois":0, "quattre":0,
+                    "cinq":0, "six":0,
+                    "sept":0}
+
+    for i in liste:
+
+        for key, value in name.items():
+            if str(i) == key:
+                for key_name, value_name in neightboors.items():
+                    if value == key_name:
+                        print("oui")
+                        neightboors[key_name] += 1
+
+    return neightboors
+
+
 
 def corner(current, copy, blanck, x,  y):
 
@@ -36,6 +60,8 @@ def corner(current, copy, blanck, x,  y):
     #   . .
     #     0
     #     0
+
+
 
     
     zero=0;un=0;deux=0;trois=0;quattre=0;
@@ -77,46 +103,40 @@ def corner(current, copy, blanck, x,  y):
 
 def no_bloc(last, current):
 
-    zero=0;un=0;deux=0;trois=0;quattre=0;
-    six=0;sept=0;cinq=0;
-    for i in last:
-        if i == 0:zero += 1
-        if i == 1:un += 1
-        if i == 2:deux += 1
-        if i == 3:trois += 1
-        if i == 4:quattre += 1
-        if i == 5:cinq += 1
-        if i == 6:six += 1
-        if i == 7:sept += 1
+
+    neightboor = neightboors_points(last)
 
 
-
-    if zero == 1:
+    if neightboor["zero"] == 1:
         for i in current:
             if i == 1:
                 current.remove(i)
-    if un == 1:
+    if neightboor["un"] == 1:
         for i in current:
             if i == 0:
                 current.remove(i)
 
-    if deux == 1:
+    if neightboor["deux"] == 1:
         for i in current:
             if i == 3:
                 current.remove(i)
 
-    if trois == 1:
+    if neightboor["trois"] == 1:
         for i in current:
             if i == 2:
                 current.remove(i)
 
-    if quattre == 1:
+    if neightboor["quattre"] == 1:
         for i in current:
             if i == 3:
                 current.remove(i)
 
             if i == 5:
                 current.remove(i)
+
+
+
+    return current
 
 
 
