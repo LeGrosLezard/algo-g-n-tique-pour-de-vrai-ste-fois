@@ -5,7 +5,7 @@
 
   - réécrire
   
-  - réfléchir pour une autre fois un truk comme le blob l'animal
+  - pour copy faire selon les couleur (pas la meme couleur pcque ca donne du flou du genre améliorer la qualité de l'image fin non mais comme )
 
 
 3) on forme les schéma ligne, escalier qui deviennent des zones de chaque detections (les mettre selon une couleur)
