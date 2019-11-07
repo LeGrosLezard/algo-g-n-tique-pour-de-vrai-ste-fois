@@ -7,6 +7,12 @@
   - si le schéma change (mettre une couleur type) stocké dans une liste
 
 
+
+
+le refaire avec les coordonées
+
+
+
   - vérifier nombre mini escalier
   
   _ <br>
