@@ -4,6 +4,17 @@ chemin le plus court
 
   - mtn faut récupérer le schéma de la partie et de l'autre image
 
+  <br>  <br>
+ 
+  
+  mettre en gris
+
+  récuéprer le premier pts blanck
+  
+  récupérer le pts le plus a droite (1er image), gauche droite pour la seconde ect
+  
+  récupérer son schéma apres parcours
+  
   
 
   <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
