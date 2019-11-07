@@ -7,14 +7,15 @@
   - si le schéma change (mettre une couleur type) stocké dans une liste
 
 
-  - escalier ou ligne ? y reflechir ah non en gros 
+  - escalier 1/1..... ?
   
   _ <br>
   | <br>
   | <br>
   | <br>
   _ <br>
-c un arrondis
+  
+c un arrondis + les 2/1 ..... jcrois
 
 
 4) redessiner la copy avec la couleur adéquate
