@@ -7,7 +7,7 @@
   - si le schéma change (mettre une couleur type) stocké dans une liste
 
 
-  - escalier 1/1..... ?
+  - vérifier nombre mini escalier
   
   _ <br>
   | <br>
