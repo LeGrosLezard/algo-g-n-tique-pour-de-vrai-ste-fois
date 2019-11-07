@@ -4,6 +4,8 @@
 
   - récupérer leur schéma
   
+    (en gros ca va faire escalier palier ect... mais on rempli le contour donc c bon)
+  
   - récupérer leur couleur
   
   
