@@ -1,5 +1,6 @@
-0) redessiner les images sur l'image d'origine
+chemin le plus court 
 
+0) redessiner les images sur l'image d'origine
 
 
   - vérifier leur position
@@ -17,9 +18,8 @@
 2) récupérer le chemin le plus court entre les pts
 
   - récupérer leur schéma
-  
-    (en gros ca va faire escalier palier ect... mais on rempli le contour donc c bon)
-  
+
+
   - récupérer leur couleur
   
   
@@ -30,11 +30,6 @@
 
 
 
-<br><br>
-
-mais si y'a un truk en haut et l'autre truk en bas ? et si la liaison n'est pas le chemin le plus court ? merde
-
-sinon tous les pts et assemblage via couleur et schéma c pour ca les schéma !!!!
 
 
 
