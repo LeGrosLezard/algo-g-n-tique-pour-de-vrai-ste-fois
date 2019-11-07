@@ -15,6 +15,8 @@ import numpy as np
 from operation import open_picture
 from operation import show_picture
 from operation import blanck_picture
+from operation import find_first_points
+from operation import incrementation
 
 #Our conditions for moving to the next point
 from drawing import *
@@ -41,8 +43,6 @@ for pict in liste_treat:
     #===========================================
 
     #Variables
-    pointsx = []  #x pos
-    pointsy = []  #y pos
     last = []     #last point
     historic = [] #All last points
     t = 0         #We decide to move to the top (x+1)
@@ -52,14 +52,7 @@ for pict in liste_treat:
 
 
     #We search the first left top white point.
-    for y in range(gray.shape[1]):
-        for x in range(gray.shape[0]):
-            if gray[x ,y] == 255:
-                pointsx.append([x, y])
-
-    #First left top white point.
-    x = pointsx[0][0]
-    y = pointsx[0][1]
+    x, y = find_first_points(gray)
 
     #===========================================
 
@@ -126,43 +119,43 @@ for pict in liste_treat:
 
             if i == 0:
                 #print("zero")
-                x, y = incrementation(x, y, 1, 0, copy)
+                x, y = incrementation(x, y, 1, 0, copy, "color_copy")
                 last = []; last.append(0); break;
 
             if i == 1:
                 #print("un")
-                x, y = incrementation(x, y, -1, 0, copy)
+                x, y = incrementation(x, y, -1, 0, copy, "color_copy")
                 last = []; last.append(1); break;
 
             elif i == 2:
                 #print("deux")
-                x, y = incrementation(x, y, 0, 1, copy)
+                x, y = incrementation(x, y, 0, 1, copy, "color_copy")
                 last = []; last.append(2); break;
 
             elif i == 3:
                 #print("trois")
-                x, y = incrementation(x, y, 0, -1, copy)
+                x, y = incrementation(x, y, 0, -1, copy, "color_copy")
                 last = []; last.append(3); break;
 
             elif i == 4:
                 #print("quattre")
-                x, y = incrementation(x, y, 1, 1, copy)
+                x, y = incrementation(x, y, 1, 1, copy, "color_copy")
                 last = []; last.append(4); break;
 
             elif i == 5:
                 #print("cinq")
-                x, y = incrementation(x, y, -1, -1, copy)
+                x, y = incrementation(x, y, -1, -1, copy, "color_copy")
                 last = []; last.append(5); break;
 
             elif i == 6:
                 #print("six")
-                x, y = incrementation(x, y, 1, -1, copy)
+                x, y = incrementation(x, y, 1, -1, copy, "color_copy")
                 last = []; last.append(6); break;
 
 
             elif i == 7:
                 #print("sept")
-                x, y = incrementation(x, y, -1, 1, copy)
+                x, y = incrementation(x, y, -1, 1, copy, "color_copy")
                 last = []; last.append(7); break;
 
         #print(x, y)
@@ -194,7 +187,7 @@ for pict in liste_treat:
     #Saving blanck contour draw
     path = "images/blanck/"
     cv2.imwrite(path + str(pict[:-4]) + "blanck" + ".jpg", gray)
-    show_picture("blanck_resize", blanck_resize, 0, "y")
+    #show_picture("blanck_resize", blanck_resize, 0, "y")
 
     #===========================================
 
