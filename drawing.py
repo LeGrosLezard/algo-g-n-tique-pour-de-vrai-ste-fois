@@ -19,19 +19,6 @@ def recup_contours(img, blanck):
     return blanck
 
 
-
-def incrementation(x, y, number1, number2, copy):
-    """We increment our position if we take descision
-to move on this point"""
-
-    x = x + number1
-    y = y + number2
-
-    copy[x, y]  = 0, 0, 255
-
-    return x, y
-
-
 def neightboors_points(liste):
     """Here we ask all points  if they're white
 around our position."""
@@ -70,7 +57,7 @@ def no_bloc(last, current):
 
     #   1)                 2)
 
-    
+
     neightboor = neightboors_points(last)
 
     if neightboor["zero"] == 1:current.remove(1)
@@ -204,7 +191,6 @@ the corner like"""
 
 
 
-
     if current[0] == 4:
         copy[x + 1, y]  = 0, 0, 255
         blanck[x + 1, y]  = 255
@@ -218,7 +204,7 @@ the corner like"""
     if current[0] == 6:
         copy[x, y - 1]  = 0, 0, 255
         blanck[x, y - 1]  = 255
-
+        #print("special corner 6")
 
     if current[0] == 7:
         copy[x , y + 1]  = 0, 0, 255
