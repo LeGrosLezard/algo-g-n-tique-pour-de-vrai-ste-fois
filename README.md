@@ -1,4 +1,4 @@
-0) redessiner les images sur l'image d'origine merde
+0) redessiner les images sur l'image d'origine
 
   - vérifier leur position
   
@@ -7,6 +7,9 @@
     - pts le plus a droite, pts le plus a gauche
 
     - chemin ect
+
+- si truk en haut et l'autre en bas
+
 
 
 1) de chaque schéma du contour on envoie dans toutes les directions
