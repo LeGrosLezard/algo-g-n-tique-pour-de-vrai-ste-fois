@@ -5,6 +5,8 @@ import os
 import cv2
 from PIL import Image
 
+import matplotlib.pyplot as plt
+
 #Here numpy generate matrix
 import numpy as np
 
@@ -17,292 +19,50 @@ from operation import incrementation
 
 from drawing import *
 
+from display import displaying
 
+def display(dico):
+    for cle, valeur in dico.items():
+        print(cle, valeur)
+        print("")
+        
+#======================================================================================
+picture = ['images/blanck/contour0blanck.jpg', 'images/blanck/contour1blanck.jpg',
+           'images/blanck/contour2blanck.jpg', 'images/blanck/contour3blanck.jpg',
+           'images/blanck/contour4blanck.jpg', 'images/blanck/contour5blanck.jpg',
+           'images/blanck/contour6blanck.jpg', 'images/blanck/contour7blanck.jpg',
+           'images/blanck/contour8blanck.jpg', 'images/blanck/contour9blanck.jpg',
+           'images/blanck/contour10blanck.jpg', 'images/blanck/contour11blanck.jpg']
 
+liste = [[160, 117, 22, 14], [160, 117, 22, 14],
+         [35, 69, 26, 53], [35, 69, 26, 53],
+         [56, 60, 28, 57], [56, 60, 28, 57],
+         [14, 60, 20, 19], [14, 60, 20, 19],
+         [89, 58, 52, 67], [89, 58, 52, 67],
+         [134, 57, 32, 51], [134, 57, 32, 51]]
 
+area = [137.5, 125.0, 424.5, 411.5, 603.0, 585.0, 154.0,
+        140.0, 997.0, 957.5, 531.5, 509.5]
 
+original = open_picture("images/" + "lign_v1.jpg")
 
 
+#displaying(picture, liste)
 
+#======================================================================================
 
+dico = {}
 
+liste_placement = sorted([i[0] + i[2] for i in liste])
 
 
+for nb, name in enumerate(picture):
+    for i in liste_placement:
+        if liste[nb][0] + liste[nb][2] == i:
+            dico[name] = [liste_placement.index(i), liste[nb]]
 
 
-
-
-path = "images/blanck/"
-
-#We make the treated picture into a list.
-liste_treat = os.listdir(path)
-
-for pict in liste_treat:
-    img = open_picture(path + "contour3blanck.jpg")
-    copy = img.copy()
-
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    x, y = find_first_points(gray)
-
-
-    last = []
-    suivis = []
-    historic = []
-    pointsy = []
-    
-    t = 0
-
-
-    ocontinuer = True
-    while ocontinuer:
-
-
-                  #0     #1     #2    #3
-        listex = [x+1,   x-1,   x,    x]
-        listey = [y,       y,   y+1,  y-1]
-
-        region = []
-
-        for i in range(len(listex)):
-            if gray[listex[i], listey[i]] > 200:
-                region.append(i)
-
-        if t == 0:
-            region = [region[0]]
-            t += 1
-
-
-        region = no_bloc(last, region)
-
-        for i in region:
-
-            if i == 0:
-                x, y = incrementation(x, y, 1, 0, copy, "")
-                last = []
-                last.append(i)
-                suivis.append(i)
-                copy[x, y] = 0, 0, 255
-                break
-   
-            if i == 1:
-                x, y = incrementation(x, y, -1, 0, copy, "")
-                last = []
-                last.append(i)
-                suivis.append(i)
-                copy[x, y] = 0, 0, 255
-                break
-
-            if i == 2:
-                x, y = incrementation(x, y, 0, 1, copy, "")
-                last = []
-                last.append(i)
-                suivis.append(i)
-                copy[x, y] = 0, 0, 255
-                break
-
-            if i == 3:
-                x, y = incrementation(x, y, 0, -1, copy, "")
-                last = []
-                last.append(i)
-                suivis.append(i)
-                copy[x, y] = 0, 0, 255
-                break
-
-
-
-        historic.append([x, y])
-
-        if len(historic) > 10:
-            if historic[0] == historic[-1]:
-                ocontinuer = False
-
-
-
-    print(historic)
-
-    print("")
-    print(suivis)
-
-
-
-    last = 0
-    counter_last = 0
-    schema_lign = []
-    suivis.append(10)
-
-    for nb, i in enumerate(suivis):
-
-        if i == last:
-            counter_last += 1
-
-        else:
-            if counter_last >= 6:
-
-                for histo in historic[nb - counter_last: nb]:
-                    copy[histo[0], histo[1]] = 0, 255, 0
-
-            counter_last = 0
- 
-        last = i
-
-
-
-
-
-
-
-    last = 0
-    counter_last = 0
-    schema_lign = []
-    suivis.append(10)
-
-    for nb, i in enumerate(suivis):
-
-        if i == last:
-            counter_last += 1
-
-        else:
-            if counter_last >= 6:
-
-                if suivis[nb - counter_last: nb][0] == 0 or\
-                   suivis[nb - counter_last: nb][0] == 1:
-                    color = 0, 255, 0
-                else:
-                    color = 100, 255, 100
-
-                for histo in historic[nb - counter_last: nb]:
-                    copy[histo[0], histo[1]] = color
-
-            counter_last = 0
- 
-        last = i
-
-
-
-
-
-
-
-
-
-
-
-
-    counter = 0
-
-    for nb, i in enumerate(suivis):
-
-        if i == 0 and suivis[nb + 1] == 2 or\
-           i == 2 and suivis[nb + 1] == 0:
-            counter += 1
-
-        else:
-            if counter >= 4:
-
-                for histo in historic[nb - counter: nb]:
-                    copy[histo[0], histo[1]] = 255, 0, 0
-
-
-            counter = 0
-
-
-    counter = 0
-
-    for nb, i in enumerate(suivis):
-
-        if i == 2 and suivis[nb + 1] == 1 or\
-           i == 1 and suivis[nb + 1] == 2:
-            counter += 1
-
-        else:
-            if counter >= 4:
-
-                for histo in historic[nb - counter: nb]:
-                    copy[histo[0], histo[1]] = 255, 100, 100
-
-
-            counter = 0
-
-
-
-
-
-    for nb, i in enumerate(suivis):
-
-        if i == 0 and suivis[nb + 1] == 3 or\
-           i == 3 and suivis[nb + 1] == 0:
-            counter += 1
-
-        else:
-            if counter >= 4:
-
-                for histo in historic[nb - counter: nb]:
-                    copy[histo[0], histo[1]] = 255, 100, 255
-
-
-            counter = 0
-
-
-
-
-
-    for nb, i in enumerate(suivis):
-
-        if i == 1 and suivis[nb + 1] == 3 or\
-           i == 3 and suivis[nb + 1] == 1:
-            counter += 1
-
-        else:
-            if counter >= 4:
-
-                for histo in historic[nb - counter: nb]:
-                    copy[histo[0], histo[1]] = 0, 100, 255
-
-
-            counter = 0
-
-
-
-
-#arrondi transition (entre 2 arrondis)
-
-
-
-
-
-
-
-#corner
-##    counter = 0
-##
-##    for nb, i in enumerate(suivis):
-##
-##        if i == 0 and suivis[nb + 1] == 2 or\
-##           i == 2 and suivis[nb + 1] == 0:
-##            counter += 1
-##
-##        else:
-##            if counter >= 1:
-##                print(historic[nb-counter:nb])
-##
-##                for histo in historic[nb - counter_last: nb]:
-##                    print(histo)
-##
-##                    copy[histo[0], histo[1]] = 255, 0, 0
-##
-##
-##            counter = 0
-
-
-
-
-
-    cv2.imwrite("ici.png", copy)
-    copy1 = cv2.resize(copy, (800, 800))
-    show_picture("copy1", copy1, 0, "")
-
-
+display(dico)
 
 
 
