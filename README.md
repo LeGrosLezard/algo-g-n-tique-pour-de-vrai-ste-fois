@@ -9,8 +9,8 @@
   
  3) les assemblées
  
- 
- 4) image complexe, choisir les contours.
+
+
 
 
 
