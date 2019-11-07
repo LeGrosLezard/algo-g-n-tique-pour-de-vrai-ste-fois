@@ -1,3 +1,14 @@
+0) redessiner les images sur l'image d'origine merde
+
+  - vérifier leur position
+  
+  - si un truk a gauche et l'autre a droite 
+  
+    - pts le plus a droite, pts le plus a gauche
+
+    - chemin ect
+
+
 1) de chaque schéma du contour on envoie dans toutes les directions
 
 2) récupérer les pts les plus pres
