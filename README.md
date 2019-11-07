@@ -2,14 +2,13 @@ chemin le plus court
 
 0) redessiner les images sur l'image d'origine
 
+  - mtn faut récupérer le schéma de la partie et de l'autre image
 
-  - vérifier leur position
   
-  - si un truk a gauche et l'autre a droite 
-  
-    - pts le plus a droite, pts le plus a gauche
 
-  - si truk en haut et l'autre en bas
+  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
+
+
 
 
 1) déssier sur une image noir les pts
