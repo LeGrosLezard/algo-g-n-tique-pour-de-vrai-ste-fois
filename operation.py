@@ -82,7 +82,7 @@ to move on this point"""
     y = y + number2
 
     
-    if mode = "color_copy":
+    if mode == "color_copy":
         copy[x, y]  = 0, 0, 255
 
     return x, y
