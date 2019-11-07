@@ -22,8 +22,6 @@ def show_picture(name, image, mode, destroy):
     cv2.imshow(name, image)
     cv2.waitKey(mode)
 
-
-
     if destroy == "y":
         cv2.destroyAllWindows()
 
@@ -53,3 +51,36 @@ def blanck_picture(img):
     blank_image[0:, 0:] = 0, 0, 0
 
     return blank_image
+
+
+
+def find_first_points(gray):
+
+
+    pointsx = []  #x pos
+    pointsy = []  #y pos
+
+    #We search the first left top white point.
+    for y in range(gray.shape[1]):
+        for x in range(gray.shape[0]):
+            if gray[x ,y] == 255:
+                pointsx.append([x, y])
+
+    #First left top white point.
+    x = pointsx[0][0]
+    y = pointsx[0][1]
+
+    return x, y
+
+
+
+def incrementation(x, y, number1, number2, copy):
+    """We increment our position if we take descision
+to move on this point"""
+
+    x = x + number1
+    y = y + number2
+
+    copy[x, y]  = 0, 0, 255
+
+    return x, y
