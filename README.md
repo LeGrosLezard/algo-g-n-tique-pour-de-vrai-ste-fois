@@ -1,14 +1,19 @@
 0) redessiner les images sur l'image d'origine
 
+
+
   - vérifier leur position
   
   - si un truk a gauche et l'autre a droite 
   
     - pts le plus a droite, pts le plus a gauche
 
-    - chemin ect
+  - si truk en haut et l'autre en bas
 
-- si truk en haut et l'autre en bas
+
+1) déssier sur une image noir les pts
+
+et faire le cheùmin
 
 
 
