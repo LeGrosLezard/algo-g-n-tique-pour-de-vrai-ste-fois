@@ -15,7 +15,7 @@ chemin le plus court
   
   récupérer son schéma apres parcours
   
-  finir les séries
+  finir les séries, en vrai trello ca fait gagné plein de temps ! mais.. c'est moins aventure
   
 
   <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
