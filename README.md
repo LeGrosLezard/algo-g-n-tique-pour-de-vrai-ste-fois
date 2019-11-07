@@ -13,13 +13,8 @@
 
 1) déssier sur une image noir les pts
 
-et faire le cheùmin
 
-
-
-1) de chaque schéma du contour on envoie dans toutes les directions
-
-2) récupérer les pts les plus pres
+2) récupérer le chemin le plus court entre les pts
 
   - récupérer leur schéma
   
@@ -35,7 +30,11 @@ et faire le cheùmin
 
 
 
+<br><br>
 
+mais si y'a un truk en haut et l'autre truk en bas ? et si la liaison n'est pas le chemin le plus court ? merde
+
+sinon tous les pts et assemblage via couleur et schéma c pour ca les schéma !!!!
 
 
 
