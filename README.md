@@ -9,11 +9,11 @@
 
   - escalier ou ligne ? y reflechir ah non en gros 
   
-  - <br>
+  _ <br>
   | <br>
   | <br>
   | <br>
-  - <br>
+  _ <br>
 c un arrondis
 
 
