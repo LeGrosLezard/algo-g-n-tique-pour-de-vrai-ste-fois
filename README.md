@@ -15,6 +15,7 @@ chemin le plus court
   
   récupérer son schéma apres parcours
   
+  finir les séries
   
 
   <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
