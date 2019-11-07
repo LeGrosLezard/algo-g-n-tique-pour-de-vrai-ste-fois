@@ -74,13 +74,15 @@ def find_first_points(gray):
 
 
 
-def incrementation(x, y, number1, number2, copy):
+def incrementation(x, y, number1, number2, copy, mode):
     """We increment our position if we take descision
 to move on this point"""
 
     x = x + number1
     y = y + number2
 
-    copy[x, y]  = 0, 0, 255
+    
+    if mode = "color_copy":
+        copy[x, y]  = 0, 0, 255
 
     return x, y
