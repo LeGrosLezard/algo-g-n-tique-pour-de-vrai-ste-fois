@@ -1,38 +1,20 @@
-3) on forme les schéma ligne, escalier qui deviennent des zones de chaque detections (les mettre selon une couleur)
+1) de chaque schéma du contour on envoie dans toutes les directions
 
-  - faire les schéma types
+2) récupérer les pts les plus pres
 
-  - récupérer chaque point les comparer avec schéma
-
-  - si le schéma change (mettre une couleur type) stocké dans une liste
-
-
-
-
-
-
-
-  - vérifier nombre mini escalier
+  - récupérer leur schéma
   
-  _ <br>
-  | <br>
-  | <br>
-  | <br>
-  _ <br>
+  - récupérer leur couleur
   
-c un arrondis + les 2/1 ..... jcrois
+  
+ 3) les assemblées
+ 
+ 
+ 4) image complexe, choisir les contours.
 
 
-4) redessiner la copy avec la couleur adéquate
 
 
-5) de chaque schéma du contour on envoie dans toutes les directions
-
-6) on récupère chaque distance entre zone de detection + la couleur
-
-7) on redessine via le schéma adéquat 
-
-  - plus petite distance escalier haut et ligne -> escalier bas
 
 
 
