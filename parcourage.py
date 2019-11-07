@@ -190,7 +190,11 @@ for pict in liste_treat:
 
         #===========================================
 
+    #===========================================
+    #Saving blanck contour draw
+    path = "images/blanck/"
+    cv2.imwrite(path + str(pict[:-4]) + "blanck" + ".jpg", gray)
+    show_picture("blanck_resize", blanck_resize, 0, "y")
 
-
-
+    #===========================================
 
