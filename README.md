@@ -9,16 +9,6 @@ chemin le plus court
   <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
 
 
-
-
-1) déssier sur une image noir les pts
-
-
-2) récupérer le chemin le plus court entre les pts
-
-  - récupérer leur schéma
-
-
   - récupérer leur couleur
   
   
