@@ -33,7 +33,7 @@ liste_treat = os.listdir(PIT)
 #Now we course the folder.
 for pict in liste_treat:
 
-    img = open_picture(PIT + "contour10.png")
+    img = open_picture(PIT + pict)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     copy = img.copy()
 
@@ -192,5 +192,5 @@ for pict in liste_treat:
 
 
 
-show_picture("copy1", copy1, 0, "")
+
 
