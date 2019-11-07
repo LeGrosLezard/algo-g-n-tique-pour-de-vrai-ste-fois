@@ -110,7 +110,7 @@ We want to go x -> 2 then 4"""
 def arrierre_avant(historic, current, x, y, last):
     """We ask historic and last list if we gone on this
 position.
-Historic recup all points for  the begening, last recup the last
+Historic recup all points from the begening, last recup the last
 point."""
 
     six_removed = False
@@ -147,6 +147,10 @@ point."""
         if last[0] == 1 and\
            neightboor["quattre"] == 1:
             current.remove(4)
+
+        if last[0] == 6 and\
+           neightboor["un"] == 1:
+            current.remove(1)
 
     return current
 
@@ -210,6 +214,10 @@ the corner like"""
         copy[x - 1, y]  = 0, 0, 255
         blanck[x - 1, y]  = 255
         #print("special corner 5")
+
+    if current[0] == 6:
+        copy[x, y - 1]  = 0, 0, 255
+        blanck[x, y - 1]  = 255
 
 
     if current[0] == 7:
