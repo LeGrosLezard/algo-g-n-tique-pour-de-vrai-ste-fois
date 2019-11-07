@@ -45,24 +45,66 @@ area = [137.5, 125.0, 424.5, 411.5, 603.0, 585.0, 154.0,
         140.0, 997.0, 957.5, 531.5, 509.5]
 
 original = open_picture("images/" + "lign_v1.jpg")
-
+show_picture("original", original, 0, "")
 
 #displaying(picture, liste)
 
 #======================================================================================
 
+#positionement des contours
+
 dico = {}
 
 liste_placement = sorted([i[0] + i[2] for i in liste])
 
-
 for nb, name in enumerate(picture):
     for i in liste_placement:
         if liste[nb][0] + liste[nb][2] == i:
-            dico[name] = [liste_placement.index(i), liste[nb]]
+            dico[name] = [liste_placement.index(i), liste[nb], ""]
+                #name            #position          #coordinates
 
 
-display(dico)
+
+#triage, position l'un par apport a l'autre
+liste_positionnage = []
+for i in range(len(liste)):
+    for key, value in dico.items():
+        if value[0] == i:
+            liste_positionnage.append([key, value[1]])
+
+
+#on cherche le schema selon la position
+for i in range(0, len(liste_positionnage), 2):
+    print(liste_positionnage[i])
+
+    img = open_picture(liste_positionnage[i][0])
+    show_picture("img", img, 0, "")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#display(dico)
 
 
 
