@@ -148,7 +148,46 @@ for pict in liste_treat:
 
 
 
-    
+
+
+
+
+    last = 0
+    counter_last = 0
+    schema_lign = []
+    suivis.append(10)
+
+    for nb, i in enumerate(suivis):
+
+        if i == last:
+            counter_last += 1
+
+        else:
+            if counter_last >= 6:
+
+                if suivis[nb - counter_last: nb][0] == 0 or\
+                   suivis[nb - counter_last: nb][0] == 1:
+                    color = 0, 255, 0
+                else:
+                    color = 100, 255, 100
+
+                for histo in historic[nb - counter_last: nb]:
+                    copy[histo[0], histo[1]] = color
+
+            counter_last = 0
+ 
+        last = i
+
+
+
+
+
+
+
+
+
+
+
 
     counter = 0
 
@@ -189,6 +228,44 @@ for pict in liste_treat:
 
 
 
+    for nb, i in enumerate(suivis):
+
+        if i == 0 and suivis[nb + 1] == 3 or\
+           i == 3 and suivis[nb + 1] == 0:
+            counter += 1
+
+        else:
+            if counter >= 4:
+
+                for histo in historic[nb - counter: nb]:
+                    copy[histo[0], histo[1]] = 255, 100, 255
+
+
+            counter = 0
+
+
+
+
+
+    for nb, i in enumerate(suivis):
+
+        if i == 1 and suivis[nb + 1] == 3 or\
+           i == 3 and suivis[nb + 1] == 1:
+            counter += 1
+
+        else:
+            if counter >= 4:
+
+                for histo in historic[nb - counter: nb]:
+                    copy[histo[0], histo[1]] = 0, 100, 255
+
+
+            counter = 0
+
+
+
+
+#arrondi transition (entre 2 arrondis)
 
 
 
@@ -196,7 +273,7 @@ for pict in liste_treat:
 
 
 
-##corner
+#corner
 ##    counter = 0
 ##
 ##    for nb, i in enumerate(suivis):
