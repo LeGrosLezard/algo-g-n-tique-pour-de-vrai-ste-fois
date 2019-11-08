@@ -1,16 +1,10 @@
 chemin le plus court 
 
-faut récupérer les schéma et les inversé
+faut récupérer les schéma
+
+via le pts rouge et le pts vert (pour la longueur)
 
 
-  
-
-  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
-
-
-  - récupérer leur couleur
-  
-  
  3) les assemblées
  
 
