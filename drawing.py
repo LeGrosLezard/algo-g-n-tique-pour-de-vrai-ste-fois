@@ -204,26 +204,30 @@ the corner like"""
     #        current
     #      to complete   next position
 
-
+    out = ""
     if current[0] == 4:
         copy[x + 1, y]  = 0, 0, 255
         blanck[x + 1, y]  = 255
         #print("special corner 4")
+        out = x + 1, y
 
     if current[0] == 5:
         copy[x - 1, y]  = 0, 0, 255
         blanck[x - 1, y]  = 255
         #print("special corner 5")
+        out = x - 1, y
 
     if current[0] == 6:
         copy[x, y - 1]  = 0, 0, 255
         blanck[x, y - 1]  = 255
         #print("special corner 6")
+        out = x, y - 1
 
     if current[0] == 7:
         copy[x , y + 1]  = 0, 0, 255
         blanck[x, y + 1]  = 255
         #print("special corner 7")
+        out = x, y + 1
 
-
+    return [out]
 
