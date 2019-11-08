@@ -60,7 +60,7 @@ liste_placement = sorted([i[0] + i[2] for i in liste])
 for nb, name in enumerate(picture):
     for i in liste_placement:
         if liste[nb][0] + liste[nb][2] == i:
-            dico[name] = [liste_placement.index(i), liste[nb], ""]
+            dico[name] = [liste_placement.index(i), liste[nb]]
                 #name            #position          #coordinates
 
 
@@ -75,10 +75,45 @@ for i in range(len(liste)):
 
 #on cherche le schema selon la position
 for i in range(0, len(liste_positionnage), 2):
+
     print(liste_positionnage[i])
+    print(liste_positionnage[i + 2])
 
     img = open_picture(liste_positionnage[i][0])
+    img2 = open_picture(liste_positionnage[i + 2][0])
+
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    (x, y, w, h) = (liste_positionnage[i][1][0],\
+                    liste_positionnage[i][1][1],\
+                    liste_positionnage[i][1][2],\
+                    liste_positionnage[i][1][3])
+
+    (x1, y1, w1, h1) = (liste_positionnage[i + 2][1][0],\
+                        liste_positionnage[i + 2][1][1],\
+                        liste_positionnage[i + 2][1][2],\
+                        liste_positionnage[i + 2][1][3])
+
+
+    if y + h < y1 + h1:
+        print("celle d'apres est plus basse et a droite")
+    else:
+        print("plus haut et a droite")
+
+
+
+
+
+
+
+
+
+
+
+
+
     show_picture("img", img, 0, "")
+    show_picture("img2", img2, 0, "")
 
 
 
