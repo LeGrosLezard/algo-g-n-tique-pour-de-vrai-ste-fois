@@ -1,21 +1,6 @@
 chemin le plus court 
 
-  - jvai pas jusqu'a mesure avec les timer mais... ca prend la blinde detemps les listes compréhensions
-
-  - mtn faut récupérer le schéma de la partie et de l'autre image
-
-  <br><br>
- 
-  
-  mettre en gris
-
-  récuéprer le premier pts blanck
-  
-  récupérer le pts le plus a droite (1er image), gauche droite pour la seconde ect
-  
-  récupérer son schéma apres parcours
-  
-  finir les séries, en vrai trello ca fait gagné plein de temps ! mais.. c'est moins aventure
+  recupérer les schéma a partir de la position (ex: bas droite haut gauche)
   
 
   <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
