@@ -83,56 +83,43 @@ points_road = [(33, 60, 37, 69), (60, 109, 56, 95),
               (159, 107, 160, 117)]
 
     
-
+liste_points_shems = []
 
 #on cherche le schema selon la position
-for i in range(len(ok_liste)):
+for ii in range(len(ok_liste)):
 
-    print(ok_liste[i])
-    print(ok_liste[i + 1])
+    print(ok_liste[ii])
+    print(ok_liste[ii + 1])
 
-    img = open_picture(ok_liste[i][0])
-    copy = img.copy()
-    img2 = open_picture(ok_liste[i + 1][0])
+    img = open_picture(ok_liste[ii][0])
+    img2 = open_picture(ok_liste[ii + 1][0])
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
-    (x, y, w, h) = (ok_liste[i][1][0], ok_liste[i][1][1],\
-                    ok_liste[i][1][2], ok_liste[i][1][3])
-
-    (x1, y1, w1, h1) = (ok_liste[i + 1][1][0], ok_liste[i + 1][1][1],\
-                        ok_liste[i + 1][1][2], ok_liste[i + 1][1][3])
 
 
-    if y + h < y1 + h1:
-        print("celle d'apres est plus basse et a droite")
-    else:
-        print("plus haut et a droite")
+    copy = img.copy()
+
+    copy2 = img2.copy()
 
 
-
-
-    y, x = points_road[i][0], points_road[i][1]
-
-    print(x, y)
-    
-    y1, x1 = points_road[i][2], points_road[i][3]
-
-    img[x, y] = 0, 0, 255
-    img[x1, y1] = 255, 0, 0
-
-
+    #1er pts
     pbx, pby = find_first_points(gray)
+    
+
+
+
 
     historic = []
     last = []
     t = 0
 
+
     ocontinuer = True
     while ocontinuer:
 
-        #List for decide next move.
+
         current = []
         
 
@@ -141,37 +128,22 @@ for i in range(len(ok_liste)):
         listex = [pbx+1,   pbx-1,   pbx,    pbx,      pbx+1,   pbx-1,   pbx+1,  pbx-1]
         listey = [pby,       pby,   pby+1,  pby-1,    pby+1,   pby-1,   pby-1,  pby+1]
 
-        #We ask white neighboors points.
+
         for i in range(len(listex)):
-            if gray[listex[i], listey[i]] >= 250:
+            if gray[listex[i], listey[i]] >= 100:
                 current.append(i)
 
-
+        #print(current)
 
         current = no_bloc(last, current)
-
-        #Delete x - 1 if we have moved to (x + 1; y + 1)
         current = diagonale(current)
-
-        #Delete from historic
         current = arrierre_avant(historic, current, pbx, pby, last)
-
-        #Delete a corner by a lign
         current = corner_to_lign(current, last)
-
-        #Add pixel if we moving by diagonal
         speciale_corner_after_selection(current, copy, gray, pbx, pby)
-
-
-
-        
         historic.append([pbx, pby])
 
+        #print(current)
 
-
-
-
-        #We decide to begening to move to the bot.
         if t == 0 and len(current) > 1:
             current = [current[0]]
             t += 1
@@ -183,76 +155,218 @@ for i in range(len(ok_liste)):
             if i == 0:
                 #print("zero")
                 pbx, pby = incrementation(pbx, pby, 1, 0, copy, "color_copy")
-                last = []; last.append(0);
-                copy[pbx, pby]  = 0, 0, 255; break;
-        
+                last = []; last.append(0);break;
             if i == 1:
                 #print("un")
                 pbx, pby = incrementation(pbx, pby, -1, 0, copy, "color_copy")
-                last = []; last.append(1);
-                copy[pbx, pby]  = 0, 0, 255; break;
-
+                last = []; last.append(1);break;
             elif i == 2:
                 #print("deux")
                 pbx, pby = incrementation(pbx, pby, 0, 1, copy, "color_copy")
-                last = []; last.append(2);
-                copy[pbx, pby]  = 0, 0, 255; break;
-
+                last = []; last.append(2);break;
             elif i == 3:
                 #print("trois")
                 pbx, pby = incrementation(pbx, pby, 0, -1, copy, "color_copy")
-                last = []; last.append(3);
-                copy[pbx, pby]  = 0, 0, 255; break;
-
-
+                last = []; last.append(3);break;
             elif i == 4:
                 #print("quattre")
                 pbx, pby = incrementation(pbx, pby, 1, 1, copy, "color_copy")
                 last = []; last.append(4); break;
-
             elif i == 5:
                 #print("cinq")
                 pbx, pby = incrementation(pbx, pby, -1, -1, copy, "color_copy")
                 last = []; last.append(5); break;
-
             elif i == 6:
                 #print("six")
                 pbx, pby = incrementation(pbx, pby, 1, -1, copy, "color_copy")
                 last = []; last.append(6); break;
-
-
             elif i == 7:
                 #print("sept")
                 pbx, pby = incrementation(pbx, pby, -1, 1, copy, "color_copy")
                 last = []; last.append(7); break;
 
 
-
-
-
-
-        #copy1 = cv2.resize(copy, (200, 200))
+        copy1 = cv2.resize(copy, (800, 800))
         #show_picture("img", copy1, 0, "")
+
 
 
         if len(historic) > 10:
             if historic[0] == historic[-1]:
                 ocontinuer = False
 
+
+
+
+
+
+
+
+
+
+    #1er pts
+    pbx, pby = find_first_points(gray2)
+    
+
+    historic2 = []
+    last = []
+    t = 0
+
+
+    ocontinuer = True
+    while ocontinuer:
+
+
+        current = []
+        
+
+
+                  #0     #1     #2    #3      #4     #5     #6    #7
+        listex = [pbx+1,   pbx-1,   pbx,    pbx,      pbx+1,   pbx-1,   pbx+1,  pbx-1]
+        listey = [pby,       pby,   pby+1,  pby-1,    pby+1,   pby-1,   pby-1,  pby+1]
+
+
+        for i in range(len(listex)):
+            if gray2[listex[i], listey[i]] >= 100:
+                current.append(i)
+
+        #print(current)
+
+        current = no_bloc(last, current)
+        current = diagonale(current)
+        current = arrierre_avant(historic2, current, pbx, pby, last)
+        current = corner_to_lign(current, last)
+        speciale_corner_after_selection(current, copy, gray2, pbx, pby)
+        historic2.append([pbx, pby])
+
+        #print(current)
+
+        if t == 0 and len(current) > 1:
+            current = [current[0]]
+            t += 1
+
+
+
+        for i in current:
+
+            if i == 0:
+                #print("zero")
+                pbx, pby = incrementation(pbx, pby, 1, 0, copy, "color_copy")
+                last = []; last.append(0);break;
+            if i == 1:
+                #print("un")
+                pbx, pby = incrementation(pbx, pby, -1, 0, copy, "color_copy")
+                last = []; last.append(1);break;
+            elif i == 2:
+                #print("deux")
+                pbx, pby = incrementation(pbx, pby, 0, 1, copy, "color_copy")
+                last = []; last.append(2);break;
+            elif i == 3:
+                #print("trois")
+                pbx, pby = incrementation(pbx, pby, 0, -1, copy, "color_copy")
+                last = []; last.append(3);break;
+            elif i == 4:
+                #print("quattre")
+                pbx, pby = incrementation(pbx, pby, 1, 1, copy, "color_copy")
+                last = []; last.append(4); break;
+            elif i == 5:
+                #print("cinq")
+                pbx, pby = incrementation(pbx, pby, -1, -1, copy, "color_copy")
+                last = []; last.append(5); break;
+            elif i == 6:
+                #print("six")
+                pbx, pby = incrementation(pbx, pby, 1, -1, copy, "color_copy")
+                last = []; last.append(6); break;
+            elif i == 7:
+                #print("sept")
+                pbx, pby = incrementation(pbx, pby, -1, 1, copy, "color_copy")
+                last = []; last.append(7); break;
+
+
+        copy1 = cv2.resize(copy, (800, 800))
+        #show_picture("img", copy1, 0, "")
+
+
+
+
+
+
+
+
+
+
+        if len(historic2) > 10:
+            if historic2[0] == historic2[-1]:
+                ocontinuer = False
+
+
+
+                points_road = [(33, 60, 37, 69), (60, 109, 56, 95),
+                              (83, 109, 89, 108), (140, 95, 134, 84),
+                              (159, 107, 160, 117)]
+                #pts histor
+                y, x = points_road[ii][0], points_road[ii][1]
+                y1, x1 = points_road[ii][2], points_road[ii][3]
+
+
+
+
                 for i in historic:
                     if i[0] == x and i[1] == y:
                         index = historic.index(i)
 
                 print(len(historic))
-                print("ici", index-10, index+10)
 
-                schema = historic[index-20:index]
-                for i in schema:
+
+                avant = [i for i in historic[index-20:index]]
+                apres = [i for i in historic[index:index+20]]
+
+
+                for i in avant:
                     copy[i[0], i[1]] = 255, 0, 0
 
-                schema = historic[index:index + 20]
-                for i in schema:
+                for i in apres:
                     copy[i[0], i[1]] = 0, 255, 0
+
+
+
+
+
+
+
+
+                for i in historic2:
+                    if i[0] == x1 and i[1] == y1:
+                        index2 = historic2.index(i)
+
+
+                avant2 = [i for i in historic2[index2-20:index2]]
+                apres2 = [i for i in historic2[index2:index2+20]]
+
+
+                for i in avant2:
+                    copy[i[0], i[1]] = 255, 0, 0
+
+                for i in apres2:
+                    copy[i[0], i[1]] = 0, 255, 0
+
+
+
+
+
+                print(avant)
+                print("")
+                print(apres)
+
+                print("")
+                print("")
+                
+                print(avant2)
+                print("")
+                print(apres2)
+
+
+
 
 
 
@@ -267,16 +381,11 @@ for i in range(len(ok_liste)):
 
 
     
-    copy = cv2.resize(img, (800, 800))
-    copy2 = cv2.resize(img2, (800, 800))
-    cv2.imwrite("ici.png", img)
-    cv2.imwrite("ici2.png", img2)
-    #show_picture("img", copy, 0, "")
-    #show_picture("img2", img2, 0, "")
+print(liste_points_shems)
 
 
 
-    print("")
+
 
 
 
