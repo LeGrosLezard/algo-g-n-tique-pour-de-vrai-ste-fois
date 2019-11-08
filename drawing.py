@@ -68,6 +68,7 @@ def no_bloc(last, current):
         current.remove(3)
         current.remove(5)
 
+
     return current
 
 
@@ -90,6 +91,14 @@ We want to go x -> 2 then 4"""
         current.remove(4)
         #print("diagonale removed")
 
+
+    #square
+    if neightboor["un"] == 1 and\
+       neightboor["cinq"] == 1:
+        current.remove(1)
+        #print("square")
+
+
     return current
 
 
@@ -111,6 +120,9 @@ point."""
         if x - 1 == historic[-2][0] and\
            y + 1 == historic[-2][1]:
             current.remove(7)
+
+
+    
 
 
     neightboor = neightboors_points(current)
@@ -138,6 +150,9 @@ point."""
         if last[0] == 6 and\
            neightboor["un"] == 1:
             current.remove(1)
+
+
+
 
     return current
 
@@ -188,7 +203,6 @@ the corner like"""
     # last
     #        current
     #      to complete   next position
-
 
 
     if current[0] == 4:
