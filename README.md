@@ -1,6 +1,5 @@
 chemin le plus court 
 
-faut récupérer les schéma
 
 faut récupérer la largeur des deux extrémités 
 
