@@ -1,8 +1,6 @@
 chemin le plus court 
 
-parcourage pour le 4eme truk marche pas ca fait un carré et donc ca tourne en rond jcrois
-
-puis continuer le schéma jusqu'a
+ok faut juste connecter les points, j'ai tout test humé du parfum, se demandé si sté possible, reflexion sur jojo v2, mais faut trouver
 
 tout réécrire
 
