@@ -10,7 +10,7 @@ puis continuer le schéma jusqu'a
 
 et faire un active contour dessus
 
-et ca sert a que dal mias bon
+et ca sert a que dal mias bon, gros y'a un mec qui a fait un truk quantoum, moi jredessine une tentacule ^^
 
 
  
