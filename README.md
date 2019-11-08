@@ -1,6 +1,6 @@
 chemin le plus court 
 
-  - par contre les dessin sur l'image ca sert a rien
+  - jvai pas jusqu'a mesure avec les timer mais... ca prend la blinde detemps les listes compréhensions
 
   - mtn faut récupérer le schéma de la partie et de l'autre image
 
