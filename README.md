@@ -1,6 +1,6 @@
 chemin le plus court 
 
-
+  - par contre les dessin sur l'image ca sert a rien
 
   - mtn faut récupérer le schéma de la partie et de l'autre image
 
