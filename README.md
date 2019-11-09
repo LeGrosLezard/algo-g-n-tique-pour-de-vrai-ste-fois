@@ -1,9 +1,6 @@
 chemin le plus court 
 
-faire des schéma de l'avant et apres, si c ligne et ligne = ligne
-
-si c escalier escalier = escalier si c escalier ligne escalier inversé ligne
-
+ne rien écrire si fatigué ^^
 
 tout réécrire
 
