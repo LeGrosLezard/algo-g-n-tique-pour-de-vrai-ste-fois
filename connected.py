@@ -20,7 +20,7 @@ img = open_picture("ici.png")
 copy = img.copy()
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 blanck = blanck_picture(img)
-
+blanck1 = blanck_picture(img)
 
 
 minini = [[[[65, 33], [69, 40]]], [[[113, 60], [103, 56]]], [[[116, 83], [117, 89]]], [[[109, 140], [107, 165]]]]
@@ -75,8 +75,8 @@ for i in b:
 
 
 
-for nb in range(len(minini)):
-
+for nb in range(len(minini)* 2):
+    print("iciiiiiiiiiiiiiiiiiiii", nb)
 
     img1 = open_picture(picture[nb])
     img2 = open_picture(picture[nb+1])
@@ -84,13 +84,13 @@ for nb in range(len(minini)):
     gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
+    if nb % 2 == 0:
 
 
-
-    for y in range(gray2.shape[1]):
-        for x in range(gray2.shape[0]):
-            if gray2[x, y] > 100:
-                blanck[x, y] = 255, 255, 255
+        for y in range(gray2.shape[1]):
+            for x in range(gray2.shape[0]):
+                if gray2[x, y] > 100:
+                    blanck[x, y] = 255, 255, 255
     
 
 
@@ -145,7 +145,7 @@ for nb in range(len(minini)):
                             if key == "corner4":
 
 
-                                listex = [x+1,      x,         x+1,     x+1,  x-1]
+                                listex = [x+1,        x,       x+1,     x+1,  x-1]
                                 listey = [y,          y+1,     y+1,      y-1,  y+1]
                                 
                                 for i in range(len(listex)):
@@ -164,9 +164,19 @@ for nb in range(len(minini)):
                                                     blanck[x, y] = 255, 255, 255
 
 
+                                        for y in range(blanck.shape[1]):
+                                            for x in range(blanck.shape[0]):
+                                                if blanck[x, y][0] > 100 and\
+                                                   blanck[x, y][1] > 100 and\
+                                                   blanck[x, y][2] > 100:
+                                                    blanck[x, y] = 0, 0, 255
+
+
+
+
+
+
                                         ocontinuer = False
-
-
 
 
                                 print(x, y)
