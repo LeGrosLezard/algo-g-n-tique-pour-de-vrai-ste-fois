@@ -2,7 +2,7 @@ chemin le plus court
 
 lis ca !
 
-(ok parcourage 3 fois 1 fois pour les pts, la deuxieme pour récupérer les pts des chemins, récurent une fois pour récupérer les plus petits chemin, parcourage3 pour récuéprer le point final et recurent2 pour avoir le schema final)
+(ok parcourage 3 fois 1 fois pour les pts, la deuxieme pour récupérer les pts des chemins, récurent une fois pour récupérer les plus petits chemin, parcourage3 pour récuéprer le point final et recurent2 pour avoir le schema final c a cause du carré.... ca m'a changé tous les pts et jme voilé la face + les pts ne se mettaient plus en 255)
 
 faut dessiner le truk mtn 
 
