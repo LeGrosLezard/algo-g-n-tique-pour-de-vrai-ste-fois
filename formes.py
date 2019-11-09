@@ -99,37 +99,12 @@ d = [[109, 89], [110, 89], [111, 89], [112, 89], [113, 89], [114, 89], [115, 89]
 e = [[84, 134], [85, 134], [86, 134], [87, 134], [88, 134], [88, 135], [88, 136], [88, 137], [88, 138], [88, 139], [88, 140], [87, 141], [87, 140], [86, 141], [85, 141], [84, 141], [83, 141], [82, 141], [81, 141], [80, 141], [79, 142], [79, 141], [78, 142], [77, 142], [76, 142], [75, 142], [74, 142], [73, 143], [73, 142], [72, 143], [71, 143], [70, 143], [69, 144], [69, 143], [68, 145], [68, 144], [67, 145], [66, 146], [66, 145], [65, 147], [65, 146], [64, 148], [64, 147], [63, 148], [64, 149], [63, 149], [64, 150], [65, 151], [64, 151], [66, 152], [65, 152], [67, 153], [66, 153], [68, 154], [67, 154], [68, 155], [70, 155], [69, 155], [71, 156], [70, 156], [71, 157], [72, 157], [74, 157], [73, 157], [74, 158], [75, 158], [76, 158], [78, 158], [77, 158], [78, 159], [79, 159], [80, 159], [81, 159], [82, 159], [83, 159], [84, 159], [85, 159], [86, 159], [87, 159], [88, 159], [89, 159], [90, 159], [91, 159], [92, 159], [93, 159], [94, 159], [95, 159], [96, 159], [97, 159], [98, 159], [99, 159], [100, 159], [101, 159], [102, 159], [103, 159], [104, 159], [105, 159], [106, 159], [107, 159], [107, 160], [107, 161], [107, 162], [107, 163], [107, 164], [107, 165], [106, 165], [105, 165], [104, 165], [103, 165], [102, 165], [101, 165], [100, 165], [99, 165], [98, 165], [97, 165], [96, 165], [95, 165], [94, 165], [93, 165], [92, 165], [91, 165], [90, 165], [89, 165], [88, 165], [87, 165], [86, 165], [85, 165], [84, 165], [83, 165], [82, 165], [81, 165], [80, 165], [79, 165], [78, 165], [76, 165], [77, 165], [76, 164], [75, 164], [74, 164], [73, 164], [71, 164], [72, 164], [71, 163], [70, 163], [68, 163], [69, 163], [68, 162], [66, 162], [67, 162], [66, 161], [64, 161], [65, 161], [64, 160], [62, 160], [63, 160], [61, 159], [62, 159], [60, 158], [61, 158], [59, 157], [60, 157], [59, 156], [58, 155], [59, 155], [58, 154], [58, 153], [57, 152], [58, 152], [57, 151], [57, 150], [57, 149], [57, 148], [57, 146], [57, 147], [58, 146], [58, 145], [58, 143], [58, 144], [59, 142], [59, 143], [60, 141], [60, 142], [61, 140], [61, 141], [62, 139], [62, 140], [63, 139], [64, 139], [65, 138], [65, 139], [66, 138], [67, 137], [67, 138], [68, 137], [69, 137], [70, 137], [71, 136], [71, 137], [72, 136], [73, 136], [74, 136], [75, 136], [76, 135], [76, 136], [77, 135], [78, 135], [79, 135], [80, 135], [81, 135], [82, 135], [83, 134], [83, 135], [84, 134]]
 f = [[117, 160], [119, 160], [118, 160], [119, 161], [120, 161], [122, 161], [121, 161], [122, 162], [124, 162], [123, 162], [125, 163], [124, 163], [126, 164], [125, 164], [127, 165], [126, 165], [127, 166], [128, 167], [127, 167], [128, 168], [128, 169], [128, 170], [129, 171], [128, 171], [129, 172], [129, 173], [129, 174], [130, 175], [129, 175], [130, 176], [130, 177], [130, 178], [130, 180], [130, 179], [129, 180], [129, 181], [128, 181], [127, 181], [125, 181], [126, 181], [124, 180], [125, 180], [124, 179], [124, 178], [123, 177], [124, 177], [123, 176], [123, 175], [123, 174], [122, 173], [123, 173], [122, 172], [121, 171], [122, 171], [120, 170], [121, 170], [119, 169], [120, 169], [118, 168], [119, 168], [117, 167], [118, 167], [117, 166], [117, 165], [117, 164], [117, 163], [117, 162], [117, 161], [117, 160]]
 
-def lign(liste):
-    last = 0
-    counter = 0
-    for i in liste:
-        if i == last:
-            counter += 1
-        else:
-            print(counter)
-            counter = 0
-        last = i
 
 def escalator(liste):
     pass
 
 def corner(liste):
     pass
-
-
-def recup_points(liste, points_road, blanck):
-    liste_pos = []
-
-    for nb, i in enumerate(liste):
-        for j in points_road:
-            if i[0] == j[1] and\
-               i[1] == j[0] or\
-               i[0] == j[0] and\
-               i[1] == j[1]:
-                liste_pos.append(liste[nb-10:nb+10])
-
-    for i in liste_pos[0]:
-        blanck[i[0], i[1]] = 255, 0, 0
 
 
 #on cherche le schema selon la position
@@ -152,49 +127,110 @@ for number in range(len(ok_liste)):
                 blanck[x, y] = 255, 255, 255
                 liste.append([x, y])
 
-    dico = {}
-    for  i in liste:
-        dico[i[0]] = 0
+
+                
+    counter = 0
+    for i in range(len(liste)):
+        try:
+            if counter >= 5:
+                for el in liste[abs(i-counter):i]:
+                    blanck[el[0], el[1]] = 0, 0, 255
+
+            if liste[i][0] == liste[i + 1][0] and\
+               liste[i][1] == liste[i + 1][1] - 1:
+                counter += 1
+            else:
+                counter = 0
+        except IndexError:
+            pass
 
 
 
-    print(dico)
-    lignx = []
-    for i in liste:
-        for key, value in dico.items():
-            if key == i[0]:
-                dico[key] += 1
-                if value >= 5:
-                    lignx.append(key)
-    print(lignx)
 
-    for i in liste:
-        for j in lignx:
-            if i[0] == j:
-                blanck[i[0], i[1]] = 0, 0, 255
-            
+ 
 
-    dicoy = {}
-    for  i in liste:
-        dicoy[i[1]] = 0
-
-    ligny = []
-    for i in liste:
-        for key, value in dicoy.items():
-            if key == i[1]:
-                dicoy[key] += 1
-                if value >= 5:
-                    ligny.append(key)
-    print(dicoy)
-    print(ligny)
-
-    for i in liste:
-        for j in ligny:
-            if i[1] == j:
-                blanck[i[0], i[1]] = 255, 0, 0
+    liste1 = []
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    for x in range(gray.shape[1]):
+        for y in range(gray.shape[0]):
+            if gray[y, x] >= 200:
+                liste1.append([y, x])
 
 
 
+
+    print(liste1)
+
+    counter = 0
+    for i in range(len(liste1)):
+        try:
+            if counter >= 5:
+                for el in liste1[abs(i-counter):i]:
+                    blanck[el[0], el[1]] = 0, 0, 255
+
+            if liste1[i][0] == liste1[i + 1][0] - 1 and\
+               liste1[i][1] == liste1[i + 1][1]:
+                counter += 1
+            else:
+                counter = 0
+        except IndexError:
+            pass
+
+
+
+
+
+
+
+
+
+
+    #escalator
+    escalatorx = []
+    escalatory = []
+    escalator_all = []
+
+
+    gray = cv2.cvtColor(blanck, cv2.COLOR_BGR2GRAY)
+    for x in range(gray.shape[1]):
+        for y in range(gray.shape[0]):
+            if gray[x, y] == 255:
+                escalatorx.append(x)
+                escalatory.append(y)
+                escalator_all.append([x, y])
+
+    print(escalatorx)
+
+    counter = 0
+    lastx = escalatorx[0]
+    lasty = escalatory[0] - 1
+    for i in range(len(escalatorx)):
+
+
+
+
+
+        if counter == 2 or counter == 1 or counter == 3:
+            for el in escalator_all[abs(i-counter-1):i]:
+                blanck[el[0], el[1]] = 0, 255, 0
+
+
+
+        if lastx == escalatorx[i] and lasty + 1 == escalatory[i]:
+            counter += 1
+        else:
+            counter = 0
+
+
+        lastx = escalatorx[i]
+        lasty = escalatory[i]
+
+
+
+
+
+
+    cv2.imwrite("ici.png", blanck)
     blanck_copy = cv2.resize(blanck, (800, 800))
     show_picture("blanckblanck", blanck_copy, 0, "")
 
@@ -206,7 +242,7 @@ for number in range(len(ok_liste)):
 for i in points_road:
      blanck[i[1], i[0]] = 0, 255, 0
 
-        
+
 blanck_copy = cv2.resize(blanck, (200, 200))
 show_picture("blanckblanck", blanck_copy, 0, "")
 cv2.imwrite("ici.png", blanck)
