@@ -1,6 +1,6 @@
 chemin le plus court 
 
-ne rien écrire si fatigué ^^
+ok mtn chai pas
 
 tout réécrire
 
