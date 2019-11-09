@@ -1,10 +1,10 @@
 chemin le plus court 
 
-lis ca !
+faure additionné image 1 avec image2
 
-(ok parcourage 3 fois 1 fois pour les pts, la deuxieme pour récupérer les pts des chemins, récurent une fois pour récupérer les plus petits chemin, parcourage3 pour récuéprer le point final et recurent2 pour avoir le schema final c a cause du carré.... ca m'a changé tous les pts et jme voilé la face + les pts ne se mettaient plus en 255)
+puis les enregistrer et les superposés a la toute fin que ce soit moche nique au moins c relié (les relié via les 2 pts pas qu'un)
 
-faut dessiner le truk mtn 
+
 
 
 tout réécrire
