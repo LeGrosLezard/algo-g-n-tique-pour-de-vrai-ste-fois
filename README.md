@@ -1,16 +1,14 @@
 chemin le plus court 
 
-faut trouvé les pts d'avant et apres
+on a:
+les pts de la figure
 
-trouvé dans toute la figure ex:
+les schémas
 
-escalier corner puis escalier
+les points des plus petits chemins (que des 4premieres figures et lavant derniere se connecte au dernier mais bon men fou)
 
-si on a la forme a ce pts avant et apres
+mtn faut shema jusqu'au point puis tout relié 
 
-on refait le schéma
-
-on pourrait faire un truk prédictif mais putin fait chié faut trouver les pts et j'y arrive pas et apres les pts faut faire un truk genre prédictif mais sans etre un truk prédictif genre dico
 
 tout réécrire
 
