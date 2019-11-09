@@ -145,72 +145,43 @@ for number in range(len(ok_liste)):
         print("")
 
         coord = 0
-        if posx[0] == "d":
-            b = max(listey)
-            for i in liste:
-                if i[1] == b:
-                    coord = i
 
-        elif posx[0] == "g":
-            b = min(listey)
-            for i in liste:
-                if i[1] == b:
-                    coord = i
+        b = max(listey)
+        for i in liste:
+            if i[1] == b:
+                coord = i
+        blanck[coord[0], coord[1]] = 0, 0, 255
 
+        b = min(listey)
+        for i in liste:
+            if i[1] == b:
+                coord = i
 
-        print(coord)
-        print("")
-
-        print(last)
-
+        blanck[coord[0], coord[1]] = 0, 0, 255
 
         other_coord = 0
-        if last != [] and last[0][0][0] == "d" and last[0][1][0] == "b":
 
-            
-            b = min(listex)
-            liste_w = []
-            for i in liste:
-                if i[0] == b:
-                    liste_w.append(i)
-            print(liste_w)
-            liste_w1 = []
-            for i in liste_w:
-                liste_w1.append(i[1])
+        b = max(listex)
+        for i in liste:
+            if i[0] == b:
+                other_coord = i
+        blanck[other_coord[0], other_coord[1]] = 255, 0, 0
 
-            for i in liste_w:
-                if i[1]== min(liste_w1):
-                    other_coord = i
+        b = min(listex)
+        for i in liste:
+            if i[0] == b:
+                other_coord = i
+
+        blanck[other_coord[0], other_coord[1]] = 255, 0, 0
 
 
 
-        if last != [] and last[0][0][0] == "d"  and last[0][1][0] == "h":
-            b = max(listex)
-            liste_w = []
-            for i in liste:
-                if i[0] == b:
-                    liste_w.append(i)
-
-            liste_w1 = []
-            for i in liste_w:
-                liste_w1.append(i[1])
-
-            for i in liste_w:
-                if i[1]== max(liste_w1):
-                    other_coord = i
 
 
-
-        print("iciiiiiiiii", other_coord)
-        print("")
 
         
 
 
-
-        blanck[coord[0], coord[1]] = 0, 0, 255
-
-        blanck[other_coord[0], other_coord[1]] = 255, 0, 0
 
         cv2.imwrite("ici.png", blanck)
         blanck_copy = cv2.resize(blanck, (800, 800))
@@ -223,15 +194,7 @@ for number in range(len(ok_liste)):
 
 ##for i in points_road:
 ##     blanck[i[1], i[0]] = 255, 0, 0
-##     
-##
-##
-##
-##
-##
-##
-##
-##
+
 blanck_copy = cv2.resize(blanck, (800, 800))
 show_picture("blanckblanck", blanck_copy, 0, "")
 ##cv2.imwrite("ici.png", blanck)
