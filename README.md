@@ -10,7 +10,7 @@ si on a la forme a ce pts avant et apres
 
 on refait le schéma
 
-
+on pourrait faire un truk prédictif mais putin fait chié faut trouver les pts et j'y arrive pas et apres les pts faut faire un truk genre prédictif mais sans etre un truk prédictif genre dico
 
 tout réécrire
 
