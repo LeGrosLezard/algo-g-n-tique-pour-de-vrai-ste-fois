@@ -1,6 +1,9 @@
 chemin le plus court 
 
-ok faut juste connecter les points, j'ai tout test humé du parfum, se demandé si sté possible, reflexion sur jojo v2, mais faut trouver
+faire des schéma de l'avant et apres, si c ligne et ligne = ligne
+
+si c escalier escalier = escalier si c escalier ligne escalier inversé ligne
+
 
 tout réécrire
 
