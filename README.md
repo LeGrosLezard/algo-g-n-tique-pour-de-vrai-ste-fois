@@ -1,13 +1,10 @@
 chemin le plus court 
 
-on a:
-les pts de la figure
+lis ca !
 
-les schémas
+(ok parcourage 3 fois 1 fois pour les pts, la deuxieme pour récupérer les pts des chemins, récurent une fois pour récupérer les plus petits chemin, parcourage3 pour récuéprer le point final)
 
-les points des plus petits chemins (que des 4premieres figures pcque ben chai pas enfete c a cause du pas de 2 jcrois et lavant derniere se connecte au dernier mais bon men fou)
 
-mtn faut shema jusqu'au point puis tout relié 
 
 
 tout réécrire
