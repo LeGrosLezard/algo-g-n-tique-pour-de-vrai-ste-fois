@@ -2,7 +2,7 @@ chemin le plus court
 
 ok mtn chai pas
 
-on peut avoir la forme du haut et du bas a droite et a gauche, on peut avoir les schémas de toute la forme ou que d'un certaine région en cas jtrouve ca jolie
+faut connecter les formes entre elles
 
 tout réécrire
 
