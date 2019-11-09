@@ -1,8 +1,16 @@
 chemin le plus court 
 
-ok mtn chai pas
+faut trouvé les pts d'avant et apres
 
-faut connecter les formes entre elles
+trouvé dans toute la figure ex:
+
+escalier corner puis escalier
+
+si on a la forme a ce pts avant et apres
+
+on refait le schéma
+
+
 
 tout réécrire
 
