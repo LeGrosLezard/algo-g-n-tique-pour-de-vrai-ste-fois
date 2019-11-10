@@ -57,8 +57,6 @@ def search_neightboors(current, gray, x, y, t):
 
 def choice_next_points(current, last, historic, x, y, copy, gray):
 
-
-
     #Move x + 1 delete x - 1 detection
     current = no_bloc(last, current)
 
@@ -77,7 +75,6 @@ def choice_next_points(current, last, historic, x, y, copy, gray):
     out = speciale_corner_after_selection(current, copy, gray, x, y)
     if out != [""]:
         historic.append([out[0][0], out[0][1]])
-
 
     return current
 
@@ -112,7 +109,36 @@ def displaying(gray, copy):
     #show_picture("blanck_resize", blanck_resize, 0, "")
 
 
+def movement(last, current, x, y, copy):
 
+    for i in current:
+
+        if i == 0:
+            x, y = incrementation(x, y, 1, 0, copy, "color_copy")
+            last.append(0); break;
+        elif i == 1:
+            x, y = incrementation(x, y, -1, 0, copy, "color_copy")
+            last.append(1); break;
+        elif i == 2:
+            x, y = incrementation(x, y, 0, 1, copy, "color_copy")
+            last.append(2); break;
+        elif i == 3:
+            x, y = incrementation(x, y, 0, -1, copy, "color_copy")
+            last.append(3); break;
+        elif i == 4:
+            x, y = incrementation(x, y, 1, 1, copy, "color_copy")
+            last.append(4); break;
+        elif i == 5:
+            x, y = incrementation(x, y, -1, -1, copy, "color_copy")
+            last.append(5); break;
+        elif i == 6:
+            x, y = incrementation(x, y, 1, -1, copy, "color_copy")
+            last.append(6); break;
+        elif i == 7:
+            x, y = incrementation(x, y, -1, 1, copy, "color_copy")
+            last.append(7); break;
+
+    return x, y
 
 def redraw_contour(pict):
 
@@ -131,8 +157,6 @@ def redraw_contour(pict):
     #We search the first left top white point.
     x, y = find_first_points(gray)
 
-
-
     ocontinuer = True
     while ocontinuer:
 
@@ -143,48 +167,14 @@ def redraw_contour(pict):
         #choice of the next point.
         choice_next_points(current, last, historic,
                            x, y, copy, gray)
+        last = []
 
         #Recup historic
         historic.append([x, y])
         histo_current.append(current[0])
 
-
         #Increment position and Replace last position
-        for i in current:
-            last = []
-            if i == 0:
-                x, y = incrementation(x, y, 1, 0, copy, "color_copy")
-                last.append(0); break;
-
-            if i == 1:
-                x, y = incrementation(x, y, -1, 0, copy, "color_copy")
-                last.append(1); break;
-
-            elif i == 2:
-                x, y = incrementation(x, y, 0, 1, copy, "color_copy")
-                last.append(2); break;
-
-            elif i == 3:
-                x, y = incrementation(x, y, 0, -1, copy, "color_copy")
-                last.append(3); break;
-
-            elif i == 4:
-                x, y = incrementation(x, y, 1, 1, copy, "color_copy")
-                last.append(4); break;
-
-            elif i == 5:
-                x, y = incrementation(x, y, -1, -1, copy, "color_copy")
-                last.append(5); break;
-
-            elif i == 6:
-                x, y = incrementation(x, y, 1, -1, copy, "color_copy")
-                last.append(6); break;
-
-
-            elif i == 7:
-                x, y = incrementation(x, y, -1, 1, copy, "color_copy")
-                last.append(7); break;
-
+        x, y = movement(last, current, x, y, copy)
 
         #End condition
         ocontinuer = end_condition(historic, histo_current)
@@ -193,13 +183,11 @@ def redraw_contour(pict):
         displaying(gray, copy)
 
 
-
     #Saving blanck contour draw
     path = "images/blanck/"
-    #cv2.imwrite(path + str(pict[:-4]) + "blanck" + ".jpg", gray)
+    cv2.imwrite(path + str(pict[:-4]) + "blanck" + ".jpg", gray)
     #show_picture("blanck_resize", blanck_resize, 0, "y")
 
 
 
-
-redraw_contour(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\treatment\contour0.png")
+#redraw_contour(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\treatment\contour0.png")
