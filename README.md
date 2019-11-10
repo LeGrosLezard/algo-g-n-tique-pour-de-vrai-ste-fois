@@ -7,7 +7,7 @@ faut que le trait prenne toute la surface des deux truks
 si par exemple ligne touche mais que c'est corner ?
 
 
-
+refaire les pts de formes
 
 
 
