@@ -1,5 +1,8 @@
 #==============================================
 
+verticale faut le faire une fois en haut une fois en bas
+
+
 refaire parcourage (une a été effacé) + le code
 
 tout refaire (supprimer les images contours en trop)
