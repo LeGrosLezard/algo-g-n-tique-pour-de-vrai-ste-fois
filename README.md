@@ -1,9 +1,21 @@
 #==============================================
 
+refaire parcourage (une a été effacé)
+
+tout refaire (supprimer les contours en trop)
+
+depuis main faire les transfere de liste
+
+
+
 Trouver un truk pour les zones manque que ca
 
 Tout réécrire
 
+
+
+
+<br><br><br><br>
 faire un active contour sur une image bruité
 
 par les route on essaie de supprimer les contour qu'on veut pas par bricolage
