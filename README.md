@@ -1,6 +1,6 @@
 #==============================================
 
-refaire parcourage (une a été effacé)
+refaire parcourage (une a été effacé) + le code
 
 tout refaire (supprimer les images contours en trop)
 
