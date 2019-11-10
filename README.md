@@ -1,3 +1,11 @@
+#==============================================
+
+Trouver un truk pour les zones manque que ca
+
+Tout réécrire
+
+
+#==============================================
 
 <h1>0 - Starter</h1>
  
