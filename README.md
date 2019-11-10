@@ -38,9 +38,9 @@
  - escalier = arrondis (droite bas , gauche bas, gauche haut, droite haut), ligne verticale, horizontale
 
 
+<h1>5 - Connected</h1>
 
-
-
+- permet de faire les liaisons entre les points en essaynt des schémas jusqu'a rencontre avec l'autre forme mais ca...
 
 
 
