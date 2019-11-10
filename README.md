@@ -1,14 +1,14 @@
 
-0 - picture_operation
+<h1>0 - picture_operation</h1>
  
  - pour les opérations de départ
 
-1 - delimitation
+<h1>1 - delimitation</h1>
 
  - nous donne tous les parties via les contours
 
 
-2 - parcourage/drawing:
+<h1>2 - parcourage/drawing:</h1>
 
  - on redessine les traits.
  
@@ -18,7 +18,7 @@
  
  - pk on doit redessiner les traits ca sert a quoi ?
  
-3 - data_regroupement
+<h1>3 - data_regroupement</h1>
 
  - regroupe les informations des images
  
