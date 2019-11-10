@@ -174,31 +174,42 @@ for nb in range(len(minini) * 4):
 
 
         elif i == 'lign verticale':
-            #for i in range(2)
-
-            x = treat_minini[nb][0]
-            y = treat_minini[nb][1]
-            
-            listex = [x,       x+1,     x+1]
-            listey = [y+1,     y+1,      y-1]
-
-            for counter in range(50):
-                if counter == 49:
-                    raising(blanck)
+            for i in range(2):
+                
+                if find is True:
                     break
 
-                stop = end_condition(x , y, (0, 0, 255), blanck)
-                if stop is True:
-                    drawing(blanck, gray)
-                    break
+                x = treat_minini[nb][0]
+                y = treat_minini[nb][1]
+                
+                listex = [x,       x+1,     x+1]
+                listey = [y+1,     y+1,      y-1]
 
-                blanck[x, y] = 255, 255, 255
-                copy1 = cv2.resize(blanck, (800, 800))
-                show_picture("copy1", copy1, 0, "")
-                x+=1
-                y
+                for counter in range(50):
+                    if counter == 49:
+                        raising(blanck)
+                        break
 
-            
+                    stop = end_condition(x , y, (0, 0, 255), blanck)
+                    if stop is True:
+                        drawing(blanck, gray)
+                        find = True
+                        break
+
+                    blanck[x, y] = 255, 255, 255
+                    copy1 = cv2.resize(blanck, (800, 800))
+                    show_picture("copy1", copy1, 0, "")
+
+                    if i == 0:
+                        x+=1
+                        y
+
+                    elif i == 1:
+                        x -= 1
+
+
+
+
         elif i == 'corner7':pass
         elif i == 'lign horrizontale':pass
         elif i == 'corner5':pass
