@@ -3,12 +3,23 @@ import os
 #Path of our pictures
 from paths import path_image_treatment as PIT
 
-from parcourage import redraw_contour
+from starter.delimitation import make_contours
+from starter.data_treatment import delete_same_detection
 
-#We make the treated picture into a list.
-liste_treat = os.listdir(PIT)
+from contours_complement.parcourage import redraw_contour
 
-#We crop last points of the draw.
-#Now we course the folder.
-for pict in liste_treat:
-    redraw_contour(PIT + pict)
+
+
+#Recuperate contours and save it.
+name = "{}contour{}.png"
+image_path = r"C:\Users\jeanbaptiste\Desktop\chaipas\images\lign_v1.jpg"
+dico_data = make_contours(image_path)
+dico_data = delete_same_detection(dico_data, name, PIT)
+
+#Run these contours and rebuild their contours.
+for key, value in dico_data.items():
+    redraw_contour(key)
+    
+
+
+    
