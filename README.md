@@ -31,9 +31,11 @@
  - visualisation du plus court chemin entre les images
 
 
+<h1>4 - Schemas</h1>
 
-
-
+ - permet de faire les schéma "géométrique" de l'image
+ 
+ - escalier = arrondis (droite bas , gauche bas, gauche haut, droite haut), ligne verticale, horizontale
 
 
 
