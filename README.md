@@ -18,7 +18,7 @@
  
  - pk on doit redessiner les traits ca sert a quoi ?
  
-<h1>3 - data_regroupement</h1>
+<h1>3 - data_regroupement / Display</h1>
 
  - regroupe les informations des images
  
@@ -26,7 +26,9 @@
  
  - la position par apport a l'autre (haut, bas)
 
+ - affichage visuel via les pts les plus a droite a gauche en haut en bas
  
+ - visualisation du plus court chemin entre les images
 
 
 
