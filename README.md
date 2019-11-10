@@ -4,6 +4,9 @@ Trouver un truk pour les zones manque que ca
 
 Tout réécrire
 
+faire un active contour sur une image bruité
+
+par les route on essaie de supprimer les contour qu'on veut pas par bricolage
 
 #==============================================
 
