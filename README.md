@@ -2,21 +2,21 @@
 
 verticale faut le faire une fois en haut une fois en bas
 
-le truk c qu'il faut que le trait prenne toute la surface des deux truks
+faut que le trait prenne toute la surface des deux truks
 
-jvai faire nuit blanche comme ca je rattrape les horraires j'ai fais que quattre ou cinq nuits blanches jcrois
-
-refaire parcourage (une a été effacé) + le code
-
-tout refaire (supprimer les images contours en trop)
-
-depuis main faire les transfere de liste
+si par exemple ligne touche mais que c'est corner ?
 
 
 
-Trouver un truk pour les zones manque que ca
 
-Tout réécrire
+
+
+
+
+
+
+
+
 
 
 
