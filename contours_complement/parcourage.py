@@ -1,7 +1,7 @@
 #========================================================================
 """Importation of module"""
 
-#for paths
+
 import os
 
 import sys
@@ -140,7 +140,7 @@ def movement(last, current, x, y, copy):
 
 
 
-def redraw_contour(pict):
+def redraw_contour(pict, name):
 
     #Open picture, filter, copy
     img = open_picture(pict)
@@ -184,8 +184,9 @@ def redraw_contour(pict):
 
 
     #Saving blanck contour draw
-    path = "../images/blanck/"
-    cv2.imwrite(path + str(pict[:-4]) + "blanck" + ".jpg", gray)
+    path = "images/blanck/{}"
+    print(path.format(name + "blanck.jpg"))
+    cv2.imwrite(path.format(name + "blanck.jpg"), gray)
     #show_picture("blanck_resize", blanck_resize, 0, "y")
 
 
