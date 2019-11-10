@@ -22,13 +22,13 @@ from starter.operation import find_first_points
 from starter.operation import incrementation
 
 #Our conditions for moving to the next point
-from drawing import recup_contours
-from drawing import neightboors_points
-from drawing import no_bloc
-from drawing import diagonale
-from drawing import arrierre_avant
-from drawing import corner_to_lign
-from drawing import speciale_corner_after_selection
+from contours_complement.drawing import recup_contours
+from contours_complement.drawing import neightboors_points
+from contours_complement.drawing import no_bloc
+from contours_complement.drawing import diagonale
+from contours_complement.drawing import arrierre_avant
+from contours_complement.drawing import corner_to_lign
+from contours_complement.drawing import speciale_corner_after_selection
 
 def search_neightboors(current, gray, x, y, t):
 
@@ -68,8 +68,6 @@ def choice_next_points(current, last, historic, x, y, copy, gray):
 
     #Delete a corner by a lign
     current = corner_to_lign(current, last)
-    
-
 
     #Add pixel if we moving by diagonal.
     out = speciale_corner_after_selection(current, copy, gray, x, y)
@@ -140,6 +138,8 @@ def movement(last, current, x, y, copy):
 
     return x, y
 
+
+
 def redraw_contour(pict):
 
     #Open picture, filter, copy
@@ -184,7 +184,7 @@ def redraw_contour(pict):
 
 
     #Saving blanck contour draw
-    path = "images/blanck/"
+    path = "../images/blanck/"
     cv2.imwrite(path + str(pict[:-4]) + "blanck" + ".jpg", gray)
     #show_picture("blanck_resize", blanck_resize, 0, "y")
 
