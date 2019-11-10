@@ -1,5 +1,6 @@
 chemin le plus court 
 
+sinon faire le meme trait pour toute la facade !
 
 faut additionné image 1 avec image2
 
