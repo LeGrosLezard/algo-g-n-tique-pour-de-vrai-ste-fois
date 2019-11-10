@@ -1,6 +1,8 @@
 chemin le plus court 
 
+1 - parcourage:
 
+on redessine les traits.
 
 
  
