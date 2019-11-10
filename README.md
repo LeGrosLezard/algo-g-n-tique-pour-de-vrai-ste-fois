@@ -2,6 +2,7 @@
 
 verticale faut le faire une fois en haut une fois en bas
 
+le truk c qu'il faut que le trait prenne toute la surface des deux truks
 
 refaire parcourage (une a été effacé) + le code
 
