@@ -48,12 +48,14 @@ def color_it(color, picture, blanck):
     return blanck
 
 def end_condition(x , y, c, blanck):
+    
 
     if blanck[x, y][0] == c[0] and\
-       blanck[x, y][1] == c[1] and\
-       blanck[x, y][2] == c[2]:
+        blanck[x, y][1] == c[1] and\
+        blanck[x, y][2] == c[2]:
         return True
-    
+
+
 def drawing(blanck, gray):
     for x in range(gray.shape[1]):
         for y in range(gray.shape[0]):
@@ -106,15 +108,19 @@ for i in range(0, len(picture), 1):
         pass
 
 
+
+
 treat_minini = treat_mini(minini)
 schema = ['corner4', 'lign verticale', 'corner7', 'lign horrizontale', 'corner5', 'corner6']
 
-
-for nb in range(len(minini) * 4):
+print(treat_minini)
+for nb in range(len(treat_minini)):
     blanck = blanck_picture(img)
 
     print(nb)
     print(oki_picture[nb][0])
+
+      
     img1 = open_picture(oki_picture[nb][0])
     img2 = open_picture(oki_picture[nb][1])
 
@@ -122,8 +128,7 @@ for nb in range(len(minini) * 4):
     gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
 
-    #print(treat_minini[nb], treat_minini[nb+1])
-
+    height, width, chann = img1.shape
 
     x = treat_minini[nb][0]
     y = treat_minini[nb][1]
@@ -141,14 +146,11 @@ for nb in range(len(minini) * 4):
     find = False
     for i in schema:
 
-        #If we fine color don't run the others.
-        if find is True:
-            break
 
         if i == "corner4":
 
-            listex = [x+1,        x,       x+1,     x+1,  x-1]
-            listey = [y,          y+1,     y+1,      y-1,  y+1]
+            listex = [x+1,        x,        x+1,  x-1]
+            listey = [y,          y+1,      y-1,  y+1]
 
             #We stop if we course more 50 pixels
             for counter in range(50):
@@ -156,11 +158,15 @@ for nb in range(len(minini) * 4):
                     raising(blanck)
                     break
 
+                if x >= width - 10 or y >= height - 10:break
+
+
                 #We stop if we get pixel form color
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
                     drawing(blanck, gray)
-                    find = True
+                    print(counter)
+                    raising(blanck)
                     break
 
                 blanck[x, y] = 255, 255, 255
@@ -176,8 +182,6 @@ for nb in range(len(minini) * 4):
         elif i == 'lign verticale':
             for i in range(2):
                 
-                if find is True:
-                    break
 
                 x = treat_minini[nb][0]
                 y = treat_minini[nb][1]
@@ -190,10 +194,14 @@ for nb in range(len(minini) * 4):
                         raising(blanck)
                         break
 
+                    if x >= width - 10 or y >= height - 10:break
+
+
                     stop = end_condition(x , y, (0, 0, 255), blanck)
                     if stop is True:
                         drawing(blanck, gray)
-                        find = True
+                        print(counter)
+                        raising(blanck)
                         break
 
                     blanck[x, y] = 255, 255, 255
@@ -210,11 +218,154 @@ for nb in range(len(minini) * 4):
 
 
 
-        elif i == 'corner7':pass
-        elif i == 'lign horrizontale':pass
-        elif i == 'corner5':pass
-        elif i == 'corner6':pass
+        elif i == 'corner7':
 
+            listex = [x-1,   x,      x+1,   x-1]
+            listey = [  y,   y+1,    y+1,   y-1]
+
+
+            x = treat_minini[nb][0]
+            y = treat_minini[nb][1]
+
+
+            #We stop if we course more 50 pixels
+            for counter in range(50):
+                if counter == 49:
+                    raising(blanck)
+                    break
+
+                if x >= width - 10 or y >= height - 10:break
+
+                #We stop if we get pixel form color
+                stop = end_condition(x , y, (0, 0, 255), blanck)
+                if stop is True:
+                    drawing(blanck, gray)
+                    print(counter)
+                    raising(blanck)
+                    break
+
+                blanck[x, y] = 255, 255, 255
+                blanck[x, y + 1] = 255, 255, 255
+                copy1 = cv2.resize(blanck, (800, 800))
+                show_picture("copy1", copy1, 0, "")
+                x -= 1
+                y += 1
+
+
+
+
+        elif i == 'lign horrizontale':
+
+            listex = [x+1,   x-1,   x+1,   x-1,   x+1,  x-1]
+            listey = [y,       y,   y+1,   y-1,   y-1,  y+1]
+
+
+            for i in range(2):
+                
+
+                x = treat_minini[nb][0]
+                y = treat_minini[nb][1]
+                
+                listex = [x,       x+1,     x+1]
+                listey = [y+1,     y+1,      y-1]
+
+                for counter in range(50):
+                    if counter == 49:
+                        raising(blanck)
+                        break
+
+                    if x >= width - 10 or y >= height - 10:break
+
+                    stop = end_condition(x , y, (0, 0, 255), blanck)
+                    if stop is True:
+                        drawing(blanck, gray)
+                        print(counter)
+                        raising(blanck)
+                        break
+
+                    blanck[x, y] = 255, 255, 255
+                    copy1 = cv2.resize(blanck, (800, 800))
+                    show_picture("copy1", copy1, 0, "")
+
+                    if i == 0:
+                        y -= 1
+
+                    elif i == 1:
+                        y += 1
+
+
+
+
+
+
+
+
+        elif i == 'corner5':
+
+            listex = [x+1,   x-1,      x,   x+1,  x-1]
+            listey = [y,       y,     y-1,  y-1,  y+1]
+
+
+            x = treat_minini[nb][0]
+            y = treat_minini[nb][1]
+
+
+            #We stop if we course more 50 pixels
+            for counter in range(50):
+                if counter == 49:
+                    raising(blanck)
+                    break
+
+                if x >= width - 10 or y >= height - 10:break
+
+                #We stop if we get pixel form color
+                stop = end_condition(x , y, (0, 0, 255), blanck)
+                if stop is True:
+                    drawing(blanck, gray)
+                    print(counter)
+                    raising(blanck)
+                    break
+
+                blanck[x, y] = 255, 255, 255
+                blanck[x, y + 1] = 255, 255, 255
+                copy1 = cv2.resize(blanck, (800, 800))
+                show_picture("copy1", copy1, 0, "")
+                x -= 1
+                y -= 1
+
+
+
+        elif i == 'corner6':
+
+            listex = [x-1,    x,      x+1,   x-1]
+            listey = [y,     y-1,    y+1,   y-1] 
+
+            x = treat_minini[nb][0]
+            y = treat_minini[nb][1]
+
+
+            #We stop if we course more 50 pixels
+            for counter in range(50):
+                if counter == 49:
+                    raising(blanck)
+                    break
+
+                if x >= width - 10 or y >= height - 10:break
+
+                #We stop if we get pixel form color
+                stop = end_condition(x , y, (0, 0, 255), blanck)
+                if stop is True:
+                    drawing(blanck, gray)
+                    print(counter)
+                    raising(blanck)
+                    break
+
+                blanck[x, y] = 255, 255, 255
+                blanck[x, y + 1] = 255, 255, 255
+                copy1 = cv2.resize(blanck, (800, 800))
+                show_picture("copy1", copy1, 0, "")
+                x -= 1
+                y += 1
 
 
 
