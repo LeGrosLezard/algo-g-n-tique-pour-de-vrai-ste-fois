@@ -1,9 +1,7 @@
 
-<h1>0 - picture_operation</h1>
+<h1>0 - Starter</h1>
  
  - pour les opérations de départ
-
-<h1>1 - delimitation</h1>
 
  - nous donne tous les parties via les contours
 
