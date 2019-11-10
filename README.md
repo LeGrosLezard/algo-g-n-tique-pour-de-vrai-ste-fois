@@ -1,4 +1,3 @@
-chemin le plus court 
 
 0 - picture_operation
  
