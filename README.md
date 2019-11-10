@@ -2,7 +2,7 @@
 
 refaire parcourage (une a été effacé)
 
-tout refaire (supprimer les contours en trop)
+tout refaire (supprimer les images contours en trop)
 
 depuis main faire les transfere de liste
 
