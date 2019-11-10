@@ -4,6 +4,9 @@
 #for paths
 import os
 
+import sys
+sys.path.append(r"C:\Users\jeanbaptiste\Desktop\chaipas")
+
 #Librairy for treating pictures
 import cv2
 from PIL import Image
@@ -12,36 +15,73 @@ from PIL import Image
 import numpy as np
 
 #Show, Open, Create black picture
-from operation import open_picture
-from operation import show_picture
-from operation import blanck_picture
-from operation import find_first_points
-from operation import incrementation
+from starter.operation import open_picture
+from starter.operation import show_picture
+from starter.operation import blanck_picture
+from starter.operation import find_first_points
+from starter.operation import incrementation
 
 #Our conditions for moving to the next point
-from drawing import *
+from drawing import recup_contours
+from drawing import neightboors_points
+from drawing import no_bloc
+from drawing import diagonale
+from drawing import arrierre_avant
+from drawing import corner_to_lign
+from drawing import speciale_corner_after_selection
+
+
+
+def choice_next_points(current, last, historic, x, y):
+    #Move x + 1 delete x - 1 detection
+    current = no_bloc(last, current)
+
+    #Delete x - 1 if we have moved to (x + 1; y + 1)
+    current = diagonale(current)
+
+    #Delete from historic
+    current = arrierre_avant(historic, current, x, y, last)
+
+    #Delete a corner by a lign
+    current = corner_to_lign(current, last)
+
+    return current
+
+def end_condition(historic, histo_current):
+
+    ocontinuer = True
+
+    #End condition
+    if len(historic) > 10:
+        if historic[0] == historic[-1]:
+            ocontinuer = False
+            print(historic)
+            print("")
+            print(histo_current)
+
+    return ocontinuer
+
+
+
+
 
 def redraw_contour(pict):
 
+    #Open picture, filter, copy
     img = open_picture(pict)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     copy = img.copy()
 
-
-    #===========================================
     #Variables
-    last = []     #last point
-    historic = [] #All last points
-    t = 0         #We decide to move to the top (x+1)
-                  #bot for us
-    histo_current = []
-    #===========================================
+    last = []          #last point
+    historic = []      #All last points
+    t = 0              #We decide to move to the top (x+1)
+    histo_current = [] #All deplacements
 
 
     #We search the first left top white point.
     x, y = find_first_points(gray)
 
-    #===========================================
 
 
     ocontinuer = True
@@ -70,42 +110,22 @@ def redraw_contour(pict):
         #print(last)
         #print(current)
 
+        #choice of the next point.
+        current = choice_next_points(current, last, historic, x, y)
 
-        #===========================================
-        #We treat points for decide where keep moving.
-
-        #Move x + 1 delete x - 1 detection
-        current = no_bloc(last, current)
-
-        #Delete x - 1 if we have moved to (x + 1; y + 1)
-        current = diagonale(current)
-
-        #Delete from historic
-        current = arrierre_avant(historic, current, x, y, last)
-
-        #Delete a corner by a lign
-        current = corner_to_lign(current, last)
-
-        #Add pixel if we moving by diagonal
+        #Add pixel if we moving by diagonal.
         out = speciale_corner_after_selection(current, copy, gray, x, y)
         if out != [""]:
             historic.append([out[0][0], out[0][1]])
-        #print(current)
 
         historic.append([x, y])
 
         #print(x, y)
-        #===========================================
         histo_current.append(current[0])
 
 
 
-
-        
-        #===========================================
-        #Increment position
-        #Replace last position
-        #Break because a noob coded it
+        #Increment position and Replace last position
         for i in current:
 
             if i == 0:
@@ -152,22 +172,14 @@ def redraw_contour(pict):
         #print(x, y)
         #print("")
 
-        #===========================================
         #End condition
-      
-        if len(historic) > 10:
-            if historic[0] == historic[-1]:
-                ocontinuer = False
-                print(historic)
-                print("")
-                print(histo_current)
+        ocontinuer = end_condition(historic, histo_current)
+                
 
-        #===========================================
         #Display help part
-
         copy1 = copy.copy()
-        cv2.imwrite("ici.png", copy1)
-        cv2.imwrite("iciblanck.png", gray)
+        #cv2.imwrite("ici.png", copy1)
+        #cv2.imwrite("iciblanck.png", gray)
         copy1 = cv2.resize(copy1, (800, 800))
         #show_picture("copy1", copy1, 0, "")
 
@@ -175,14 +187,13 @@ def redraw_contour(pict):
         show_picture("copy1", copy1, 1, "")
         #show_picture("blanck_resize", blanck_resize, 0, "")
 
-        #===========================================
 
-    #===========================================
     #Saving blanck contour draw
     path = "images/blanck/"
-    cv2.imwrite(path + str(pict[:-4]) + "blanck" + ".jpg", gray)
+    #cv2.imwrite(path + str(pict[:-4]) + "blanck" + ".jpg", gray)
     #show_picture("blanck_resize", blanck_resize, 0, "y")
 
-    #===========================================
 
-#redraw_contour(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\treatment\contour0.png")
+
+
+redraw_contour(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\treatment\contour0.png")
