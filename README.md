@@ -18,7 +18,7 @@
  
  - pk on doit redessiner les traits ca sert a quoi ?
  
-<h1>3 - data_regroupement / Display</h1>
+<h1>3 - data_regroupement / (formes, display)</h1>
 
  - regroupe les informations des images
  
