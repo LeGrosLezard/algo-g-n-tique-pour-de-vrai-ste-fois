@@ -18,7 +18,13 @@
  
  - pk on doit redessiner les traits ca sert a quoi ?
  
+3 - data_regroupement
 
+ - regroupe les informations des images
+ 
+ - position depuis l'orignal (ordre droite gauche)
+ 
+ - la position par apport a l'autre (haut, bas)
 
  
 
