@@ -1,13 +1,6 @@
 chemin le plus court 
 
-sinon faire le meme trait pour toute la facade !
-
-faut additionné image 1 avec image2
-
-les enregistrer
-
-les superposés
-
+ok jpourrai pas toujours faire ce que j'ai envie tout refaire et bien le faire encore mieux que tous les autres trucks
 
 
 tout réécrire
