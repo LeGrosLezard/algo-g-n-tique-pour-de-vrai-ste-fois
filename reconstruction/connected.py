@@ -1,6 +1,7 @@
 #for paths
 import os
-
+import sys
+sys.path.append(r"C:\Users\jeanbaptiste\Desktop\chaipas")
 #Librairy for treating pictures
 import cv2
 from PIL import Image
@@ -9,11 +10,11 @@ from PIL import Image
 import numpy as np
 
 #Show, Open, Create black picture
-from operation import open_picture
-from operation import show_picture
-from operation import blanck_picture
-from operation import find_first_points
-from operation import incrementation
+from starter.operation import open_picture
+from starter.operation import show_picture
+from starter.operation import blanck_picture
+from starter.operation import find_first_points
+from starter.operation import incrementation
 
 
 
@@ -87,8 +88,8 @@ blanck1 = blanck_picture(img)
 
 minini = [[[[65, 33], [69, 40]]], [[[113, 60], [103, 56]]], [[[116, 83], [117, 89]]], [[[109, 140], [107, 165]]]]
 
-picture = ['images/blanck/contour6blanck.jpg', 'images/blanck/contour2blanck.jpg', 'images/blanck/contour4blanck.jpg',
-           'images/blanck/contour8blanck.jpg', 'images/blanck/contour10blanck.jpg', 'images/blanck/contour0blanck.jpg',]
+picture = ['../images/blanck/6blanck.jpg', '../images/blanck/2blanck.jpg', '../images/blanck/4blanck.jpg',
+           '../images/blanck/8blanck.jpg', '../images/blanck/10blanck.jpg', '../images/blanck/0blanck.jpg',]
 
 a = [['corner4', 'lign verticale', 'corner7', 'lign horrizontale', 'corner7', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'SITUATION', 'corner5', 'lign verticale', 'corner6', 'lign horrizontale', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6'],
      ['corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner7', 'lign horrizontale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'SITUATION', 'corner5', 'corner6', 'lign horrizontale', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner5', 'lign horrizontale', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'lign verticale', 'corner5', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6'],
@@ -113,7 +114,7 @@ for nb in range(len(minini) * 4):
     blanck = blanck_picture(img)
 
     print(nb)
-
+    print(oki_picture[nb][0])
     img1 = open_picture(oki_picture[nb][0])
     img2 = open_picture(oki_picture[nb][1])
 
@@ -137,23 +138,29 @@ for nb in range(len(minini) * 4):
     show_picture("copy1", copy1, 0, "")
 
 
-
+    find = False
     for i in schema:
 
+        #If we fine color don't run the others.
+        if find is True:
+            break
 
         if i == "corner4":
 
             listex = [x+1,        x,       x+1,     x+1,  x-1]
             listey = [y,          y+1,     y+1,      y-1,  y+1]
 
+            #We stop if we course more 50 pixels
             for counter in range(50):
                 if counter == 49:
                     raising(blanck)
                     break
 
+                #We stop if we get pixel form color
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
                     drawing(blanck, gray)
+                    find = True
                     break
 
                 blanck[x, y] = 255, 255, 255
@@ -166,7 +173,32 @@ for nb in range(len(minini) * 4):
 
 
 
-        elif i == 'lign verticale':pass
+        elif i == 'lign verticale':
+            #for i in range(2)
+
+            x = treat_minini[nb][0]
+            y = treat_minini[nb][1]
+            
+            listex = [x,       x+1,     x+1]
+            listey = [y+1,     y+1,      y-1]
+
+            for counter in range(50):
+                if counter == 49:
+                    raising(blanck)
+                    break
+
+                stop = end_condition(x , y, (0, 0, 255), blanck)
+                if stop is True:
+                    drawing(blanck, gray)
+                    break
+
+                blanck[x, y] = 255, 255, 255
+                copy1 = cv2.resize(blanck, (800, 800))
+                show_picture("copy1", copy1, 0, "")
+                x+=1
+                y
+
+            
         elif i == 'corner7':pass
         elif i == 'lign horrizontale':pass
         elif i == 'corner5':pass
