@@ -21,8 +21,9 @@ from starter.operation import incrementation
 def treat_mini(minini):
     treat_minini = []
     for i in minini:
-        treat_minini.append([i[0][0][0], i[0][0][1]])
-        treat_minini.append([i[0][1][0], i[0][1][1]])
+        if i != []:
+            treat_minini.append([i[0][0], i[0][1]])
+            treat_minini.append([i[1][0], i[1][1]])
     return treat_minini
 
 
@@ -88,6 +89,7 @@ blanck = blanck_picture(img)
 blanck1 = blanck_picture(img)
 
 minini = [[[65, 33], [71, 35]], [[109, 60], [103, 56]], [[109, 83], [109, 89]], [[94, 140], [88, 134]], [[107, 165], [117, 165]]]
+
 
 picture = ['../images/blanck/6blanck.jpg', '../images/blanck/2blanck.jpg', '../images/blanck/4blanck.jpg',
            '../images/blanck/8blanck.jpg', '../images/blanck/10blanck.jpg', '../images/blanck/0blanck.jpg',]
