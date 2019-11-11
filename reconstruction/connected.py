@@ -180,7 +180,7 @@ for nb in range(len(treat_minini)):
 
 
             road_test(listex, listey, width, height, blanck, gray,
-                      oki_picture, "corner6", -1, 1, x, y, dico_picture, nb, 0, 1)
+                      oki_picture, "corner6", 1, -1, x, y, dico_picture, nb, 0, 1)
 
 
 
