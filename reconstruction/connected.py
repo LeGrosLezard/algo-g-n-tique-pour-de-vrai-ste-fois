@@ -87,8 +87,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 blanck = blanck_picture(img)
 blanck1 = blanck_picture(img)
 
-
-minini = [[[[65, 33], [69, 40]]], [[[113, 60], [103, 56]]], [[[116, 83], [117, 89]]], [[[109, 140], [107, 165]]]]
+minini = [[[65, 33], [71, 35]], [[109, 60], [103, 56]], [[109, 83], [109, 89]], [[94, 140], [88, 134]], [[107, 165], [117, 165]]]
 
 picture = ['../images/blanck/6blanck.jpg', '../images/blanck/2blanck.jpg', '../images/blanck/4blanck.jpg',
            '../images/blanck/8blanck.jpg', '../images/blanck/10blanck.jpg', '../images/blanck/0blanck.jpg',]
@@ -139,7 +138,7 @@ for nb in range(len(treat_minini)):
             if gray2[ptx, pty] > 100:
                 blanck[ptx, pty] = 0, 0, 255
 
-    copy1 = cv2.resize(blanck, (800, 800))
+    copy1 = cv2.resize(blanck, (400, 400))
     show_picture("copy1", copy1, 0, "")
 
 
@@ -171,7 +170,7 @@ for nb in range(len(treat_minini)):
 
                 blanck[x, y] = 255, 255, 255
                 blanck[x + 1, y] = 255, 255, 255
-                copy1 = cv2.resize(blanck, (800, 800))
+                copy1 = cv2.resize(blanck, (400, 400))
                 show_picture("copy1", copy1, 0, "")
                 x+=1
                 y += 1
@@ -205,7 +204,7 @@ for nb in range(len(treat_minini)):
                         break
 
                     blanck[x, y] = 255, 255, 255
-                    copy1 = cv2.resize(blanck, (800, 800))
+                    copy1 = cv2.resize(blanck, (400, 400))
                     show_picture("copy1", copy1, 0, "")
 
                     if i == 0:
@@ -246,7 +245,7 @@ for nb in range(len(treat_minini)):
 
                 blanck[x, y] = 255, 255, 255
                 blanck[x, y + 1] = 255, 255, 255
-                copy1 = cv2.resize(blanck, (800, 800))
+                copy1 = cv2.resize(blanck, (400, 400))
                 show_picture("copy1", copy1, 0, "")
                 x -= 1
                 y += 1
@@ -284,7 +283,7 @@ for nb in range(len(treat_minini)):
                         break
 
                     blanck[x, y] = 255, 255, 255
-                    copy1 = cv2.resize(blanck, (800, 800))
+                    copy1 = cv2.resize(blanck, (400, 400))
                     show_picture("copy1", copy1, 0, "")
 
                     if i == 0:
@@ -328,7 +327,7 @@ for nb in range(len(treat_minini)):
 
                 blanck[x, y] = 255, 255, 255
                 blanck[x, y + 1] = 255, 255, 255
-                copy1 = cv2.resize(blanck, (800, 800))
+                copy1 = cv2.resize(blanck, (400, 400))
                 show_picture("copy1", copy1, 0, "")
                 x -= 1
                 y -= 1
@@ -362,7 +361,7 @@ for nb in range(len(treat_minini)):
 
                 blanck[x, y] = 255, 255, 255
                 blanck[x, y + 1] = 255, 255, 255
-                copy1 = cv2.resize(blanck, (800, 800))
+                copy1 = cv2.resize(blanck, (400, 400))
                 show_picture("copy1", copy1, 0, "")
                 x -= 1
                 y += 1
