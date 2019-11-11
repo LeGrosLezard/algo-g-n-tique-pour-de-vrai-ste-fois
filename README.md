@@ -4,7 +4,7 @@ prendre le plus petit contour
 
 redesinner via les formes dans les deux sens
 
-par contre j'ai envie de dormir
+pendant une heure chercher si on peut faire un truk prédictif juste avec les formes
 
 
 <br><br><br><br>
