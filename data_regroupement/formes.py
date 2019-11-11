@@ -163,20 +163,38 @@ for number in range(len(position)):
 
 
 
-
-
-    liste = []
-    listex = []
-    listey = []
-
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    for x in range(gray.shape[1]):
-        for y in range(gray.shape[0]):
-            if gray[x, y] >= 200:
-                blanck[x, y] = 255, 255, 255
-                liste.append([x, y])
-                listex.append(x)
-                listey.append(y)
+    def drawing_gray_on_blanck(gray, blanck):
+        """Draw if we find a white pixel"""
+
+        for x in range(gray.shape[1]):
+            for y in range(gray.shape[0]):
+                if gray[x, y] >= 200:
+                    blanck[x, y] = 255, 255, 255
+
+
+    drawing_gray_on_blanck(img, blanck)
+
+    def recuperate_white_pixels(gray):
+        """Recuperate only x, y and both if it's a white pixel"""
+
+        liste_white_pixels = [[[x, y] for x in range(gray.shape[1])\
+                               for y in range(gray.shape[0]) if gray[x, y] >= 200],
+                              [x for x in range(gray.shape[1])\
+                               for y in range(gray.shape[0]) if gray[x, y] >= 200],
+                              [y for x in range(gray.shape[1])\
+                               for y in range(gray.shape[0]) if gray[x, y] >= 200]]
+
+        #print(liste_white_pixels)
+        return liste_white_pixels
+
+    recuperate_white_pixels(gray)
+
+
+    break
+
+
+
 
 
 ##    print("")
