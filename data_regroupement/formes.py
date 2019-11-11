@@ -79,29 +79,31 @@ def final_informations(points_detection, dico):
 
 
 
-
-original = open_picture("../images/" + "lign_v1.jpg")
-show_picture("original", original, 0, "")
-blanck = blanck_picture(original)
-
-
-#Visualization orignal vs crop.
-#displaying(picture, liste)
-
-#Recuperate left position.
-liste_placement = left_position(points_detection)
-#print(liste_placement)
+def sorting_list(points_detection):
+    
+    original = open_picture("../images/" + "lign_v1.jpg")
+    show_picture("original", original, 0, "")
+    blanck = blanck_picture(original)
 
 
-#Recuperate name, position and coordinates.
-dico = name_position_points(pictures, points_detection, liste_placement)
-#print(dico)
+    #Visualization orignal vs crop.
+    #displaying(picture, liste)
+
+    #Recuperate left position.
+    liste_placement = left_position(points_detection)
+    #print(liste_placement)
 
 
-#Final information, name, position.
-position = final_informations(points_detection, dico)
-#print(liste_position)
+    #Recuperate name, position and coordinates.
+    dico = name_position_points(pictures, points_detection, liste_placement)
+    #print(dico)
 
+
+    #Final information, name, position.
+    position = final_informations(points_detection, dico)
+    #print(liste_position)
+
+    return blanck, position
 
 
 
@@ -109,7 +111,7 @@ position = final_informations(points_detection, dico)
 """Recuperate position from the last and the next picture."""
 
 
-def placement_next_form_x(position):
+def placement_next_form_x(position, number):
     """Recuperate x + w position from the first and the next form."""
 
     left_position_1 = position[number][1][0] + position[number][1][2]
@@ -130,7 +132,7 @@ def placement_next_form_x(position):
     return pos_x
 
 
-def placement_next_form_y(position):
+def placement_next_form_y(position, number):
     """Recuperate y position from the first and the next form."""
 
     pos_y = 0
@@ -152,9 +154,8 @@ def placement_next_form_y(position):
 
     return pos_y
 
-#Create this list for area extremity.
-area_points = [[] for i in range(len(position))]
-for number in range(len(position)):
+
+def recuperate_points(position, number):
 
     img = open_picture(position[number][0])
     copy = img.copy()
@@ -164,70 +165,67 @@ for number in range(len(position)):
 
         #Placement pixels x and y axis of the last form.
         last = []
-        last.append([placement_next_form_x(position),
-                     placement_next_form_y(position)])
+        last.append([placement_next_form_x(position, number),
+                     placement_next_form_y(position, number)])
 
         print("last position are: ", last[0], "\n")
 
     except IndexError:
         pass
 
+    return img
 
 
 #======================================================================
-    """Recuperate whites pixels."""
-
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    def drawing_gray_on_blanck(gray, blanck):
-        """Draw if we find a white pixel"""
-
-        for x in range(gray.shape[1]):
-            for y in range(gray.shape[0]):
-                if gray[x, y] >= 200:
-                    blanck[x, y] = 255, 255, 255
+"""Recuperate whites pixels."""
 
 
-    drawing_gray_on_blanck(gray, blanck)
+def drawing_gray_on_blanck(gray, blanck):
+    """Draw if we find a white pixel"""
 
-    def recuperate_white_pixels(gray):
-        """Recuperate only x, y and both if it's a white pixel."""
+    for x in range(gray.shape[1]):
+        for y in range(gray.shape[0]):
+            if gray[x, y] >= 200:
+                blanck[x, y] = 255, 255, 255
 
-        liste_white_pixels = [[[x, y] for x in range(gray.shape[1])\
-                               for y in range(gray.shape[0]) if gray[x, y] >= 200],
-                              [x for x in range(gray.shape[1])\
-                               for y in range(gray.shape[0]) if gray[x, y] >= 200],
-                              [y for x in range(gray.shape[1])\
-                               for y in range(gray.shape[0]) if gray[x, y] >= 200]]
+def recuperate_white_pixels(gray):
+    """Recuperate only x, y and both if it's a white pixel."""
 
-        #print(liste_white_pixels)
-        return liste_white_pixels
+    liste_white_pixels = [[[x, y] for x in range(gray.shape[1])\
+                           for y in range(gray.shape[0]) if gray[x, y] >= 200],
+                          [x for x in range(gray.shape[1])\
+                           for y in range(gray.shape[0]) if gray[x, y] >= 200],
+                          [y for x in range(gray.shape[1])\
+                           for y in range(gray.shape[0]) if gray[x, y] >= 200]]
+
 
     #All points liste_white_pixels[0]
     #X points liste_white_pixels[1]
     #Y points liste_white_pixels[2]
-    liste_white_pixels = recuperate_white_pixels(gray)
 
-
-
+    #print(liste_white_pixels)
+    return liste_white_pixels
 
 
 
 #======================================================================
-    """Recuperate area of extremities."""
+"""Recuperate area of extremities."""
 
 
-    def recuperate_extremities(blanck, extremity, liste, points):
+def recuperate_extremities(blanck, extremity, liste, points):
 
-        coordinate = [pxs for pxs in liste if pxs[points] == extremity]
+    coordinate = [pxs for pxs in liste if pxs[points] == extremity]
 
-        for pxs in liste:
-            if pxs[points] == extremity:
-                blanck[pxs[0], pxs[1]] = 0, 0, 255
+    for pxs in liste:
+        if pxs[points] == extremity:
+            blanck[pxs[0], pxs[1]] = 0, 0, 255
 
-        blanck_copy = cv2.resize(blanck, (800, 800))
-        #show_picture("blanckblanck", blanck_copy, 0, "")
+    blanck_copy = cv2.resize(blanck, (800, 800))
+    #show_picture("blanckblanck", blanck_copy, 0, "")
 
-        return coordinate
+    return coordinate
+
+def recuperate_min_points_liaison(blanck, liste_white_pixels, number, area_points):
 
     #right, left, bot, top
     coordR = recuperate_extremities(blanck, max(liste_white_pixels[2]), liste_white_pixels[0], 1)
@@ -243,14 +241,11 @@ for number in range(len(position)):
     #cv2.imwrite("ici.png", blanck)
 
 
-
-
-
 #======================================================================
 """Recuperate minimum distance beetween areas."""
 
 
-mini_zone = []
+
 def recup_minimum_points(mini_zone, area_points):
     """We run list form one and next list form.
 We compare distance beetween poitns and recup the minimum distance"""
@@ -287,10 +282,6 @@ We compare distance beetween poitns and recup the minimum distance"""
             pass
 
 
-recup_minimum_points(mini_zone, area_points)
-print(mini_zone)
-
-
 def display_points(mini_zone, blanck):
 
     for pxs in mini_zone:
@@ -301,5 +292,49 @@ def display_points(mini_zone, blanck):
     show_picture("blanckblanck", blanck_copy, 0, "")
 
 
-display_points(mini_zone, blanck)
 
+def main_formes(pictures, points_detection):
+
+    #Recuperate all data from picture (name and position from original).
+    blanck, position = sorting_list(points_detection)
+
+    #Create this list for area extremity.
+    area_points = [[] for i in range(len(position))]
+
+    #From data from picture
+    for number in range(len(position)):
+
+        #Recuperate points from orignal and can place
+        #them before or after the last or next.
+        img = recuperate_points(position, number)
+
+        #Draw it.
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        drawing_gray_on_blanck(gray, blanck)
+
+        #Recuperate points from gray.
+        liste_white_pixels = recuperate_white_pixels(gray)
+        #Recuperate white points from gray.
+        recuperate_min_points_liaison(blanck, liste_white_pixels, number, area_points)
+
+    #Define minimum distance from last points.
+    mini_zone = []
+    recup_minimum_points(mini_zone, area_points)
+    print(mini_zone)
+
+    display_points(mini_zone, blanck)
+
+    return mini_zone
+
+main_formes(pictures, points_detection)
+
+
+
+
+
+
+
+
+
+
+main_formes(pictures, points_detection)
