@@ -153,7 +153,7 @@ def placement_next_form_y(position):
     return pos_y
 
 
-
+area_points = [[] for i in range(len(position))]
 for number in range(len(position)):
 
     img = open_picture(position[number][0])
@@ -215,9 +215,10 @@ for number in range(len(position)):
 #======================================================================
     """Recuperate area of extremities"""
 
+
     def recuperate_extremities(blanck, extremity, liste, points):
 
-        coordinate = 0
+        coordinate = [pxs for pxs in liste if pxs[points] == extremity]
 
         for pxs in liste:
             if pxs[points] == extremity:
@@ -226,75 +227,34 @@ for number in range(len(position)):
         blanck_copy = cv2.resize(blanck, (800, 800))
         show_picture("blanckblanck", blanck_copy, 0, "")
 
+        return coordinate
+
     #right, left, bot, top
-    recuperate_extremities(blanck, max(liste_white_pixels[2]), liste_white_pixels[0], 1)
-    recuperate_extremities(blanck, min(liste_white_pixels[2]), liste_white_pixels[0], 1)
-    recuperate_extremities(blanck, max(liste_white_pixels[1]), liste_white_pixels[0], 0)
-    recuperate_extremities(blanck, min(liste_white_pixels[1]), liste_white_pixels[0], 0)
+    coordR = recuperate_extremities(blanck, max(liste_white_pixels[2]), liste_white_pixels[0], 1)
+    coordL = recuperate_extremities(blanck, min(liste_white_pixels[2]), liste_white_pixels[0], 1)
+    coordB = recuperate_extremities(blanck, max(liste_white_pixels[1]), liste_white_pixels[0], 0)
+    coordT = recuperate_extremities(blanck, min(liste_white_pixels[1]), liste_white_pixels[0], 0)
 
-
-
-    liste_pts_liaison[number].append([coord1, coord2, other_coord1, other_coord2])
-
-
-    
-
-
+    area_points[number].append([coordR, coordL, coordB, coordT])
 
     #cv2.imwrite("ici.png", blanck)
-    blanck_copy = cv2.resize(blanck, (800, 800))
-    show_picture("blanckblanck", blanck_copy, 0, "")
 
 
 
 
 
+#======================================================================
+"""Recuperate minimum distance beetween areas"""
 
 
+print("")
+print("AREA ZONES \n")
+
+for i in area_points:
+        print(i)
+        print("")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-####for i in points_road:
-####     blanck[i[1], i[0]] = 255, 0, 0
-##
-####blanck_copy = cv2.resize(blanck, (800, 800))
-####show_picture("blanckblanck", blanck_copy, 0, "")
-####cv2.imwrite("ici.png", blanck)
-####print(ancrage)
-####print("")
-####print(all_recurent_points)
-####
-##
-##
-###print(liste_pts_liaison)
-##
-##
-##pts_endroit1 = [[[65, 33], [78, 14], [78, 19], [60, 33]],
-##                 [[113, 60], [111, 35], [121, 55], [69, 40]],
-##                 [[116, 83], [103, 56], [116, 83], [60, 69]],
-##                 [[109, 140], [117, 89], [124, 131], [58, 110]],
-##                 [[107, 165], [88, 134], [107, 165], [57, 152]]]
-##
-##
-##
 ##minini = []
 ##for nb, i in enumerate(pts_endroit1):
 ##
