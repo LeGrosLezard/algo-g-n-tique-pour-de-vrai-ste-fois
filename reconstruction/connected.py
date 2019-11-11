@@ -99,7 +99,19 @@ a = [['corner4', 'lign verticale', 'corner7', 'lign horrizontale', 'corner7', 'c
      ['corner4', 'lign verticale', 'corner7', 'lign horrizontale', 'corner7', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'SITUATION', 'lign horrizontale', 'corner5', 'lign verticale', 'corner5', 'corner5', 'lign verticale', 'corner5', 'lign verticale', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner6', 'corner6', 'corner6', 'lign horrizontale', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'lign verticale', 'corner6'],
      ['corner4', 'lign verticale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner7', 'lign horrizontale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'lign verticale', 'SITUATION', 'corner5', 'lign verticale', 'corner6', 'lign horrizontale', 'corner6', 'lign verticale', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'lign verticale', 'corner5', 'lign verticale', 'corner5', 'lign verticale', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner6', 'lign horrizontale', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'corner6']]
 
+dico_picture = {}
 
+def counter_schema():
+    pass
+
+
+for i in picture:
+    dico_picture[i] = {'corner4':0, 'lign verticale1':0,
+                       'lign verticale2':0, 'corner7':0,
+                       'lign horrizontale1':0, 'lign horrizontale2':0,
+                       'corner5':0, 'corner6':0}
+
+print(dico_picture)
 oki_picture = []
 for i in range(0, len(picture), 1):
     try:
@@ -118,7 +130,7 @@ print(treat_minini)
 for nb in range(len(treat_minini)):
     blanck = blanck_picture(img)
 
-    print(nb)
+
     print(oki_picture[nb][0])
 
       
@@ -127,7 +139,6 @@ for nb in range(len(treat_minini)):
 
     gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-
 
     height, width, chann = img1.shape
 
@@ -144,9 +155,11 @@ for nb in range(len(treat_minini)):
     show_picture("copy1", copy1, 0, "")
 
 
+
+    points = []
+
     find = False
     for i in schema:
-
 
         if i == "corner4":
 
@@ -166,6 +179,13 @@ for nb in range(len(treat_minini)):
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
                     drawing(blanck, gray)
+
+                    #dico remplissage
+                    for key, value in dico_picture.items():
+                        if key == oki_picture[nb][0]:
+                            dico_picture[key]['corner4'] = counter
+
+                    
                     print(counter)
                     raising(blanck)
                     break
@@ -174,7 +194,7 @@ for nb in range(len(treat_minini)):
                 blanck[x + 1, y] = 255, 255, 255
                 copy1 = cv2.resize(blanck, (400, 400))
                 show_picture("copy1", copy1, 0, "")
-                x+=1
+                x += 1
                 y += 1
 
 
@@ -201,6 +221,15 @@ for nb in range(len(treat_minini)):
                     stop = end_condition(x , y, (0, 0, 255), blanck)
                     if stop is True:
                         drawing(blanck, gray)
+
+                        #dico remplissage
+                        for key, value in dico_picture.items():
+                            if key == oki_picture[nb][0] and i == 0:
+                                dico_picture[key]['lign verticale1'] = counter
+                            elif key == oki_picture[nb][0] and i == 1:
+                                dico_picture[key]['lign verticale2'] = counter
+
+                        
                         print(counter)
                         raising(blanck)
                         break
@@ -241,6 +270,12 @@ for nb in range(len(treat_minini)):
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
                     drawing(blanck, gray)
+ 
+                    #dico remplissage
+                    for key, value in dico_picture.items():
+                        if key == oki_picture[nb][0]:
+                            dico_picture[key]['corner7'] = counter
+                    
                     print(counter)
                     raising(blanck)
                     break
@@ -280,6 +315,15 @@ for nb in range(len(treat_minini)):
                     stop = end_condition(x , y, (0, 0, 255), blanck)
                     if stop is True:
                         drawing(blanck, gray)
+
+                        for key, value in dico_picture.items():
+                            if key == oki_picture[nb][0] and i == 0:
+                                dico_picture[key]['lign horrizontale1'] = counter
+                            elif key == oki_picture[nb][0] and i == 1:
+                                dico_picture[key]['lign horrizontale2'] = counter
+
+
+
                         print(counter)
                         raising(blanck)
                         break
@@ -323,6 +367,13 @@ for nb in range(len(treat_minini)):
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
                     drawing(blanck, gray)
+
+                    #dico remplissage
+                    for key, value in dico_picture.items():
+                        if key == oki_picture[nb][0]:
+                            dico_picture[key]['corner5'] = counter
+
+                    
                     print(counter)
                     raising(blanck)
                     break
@@ -357,6 +408,14 @@ for nb in range(len(treat_minini)):
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
                     drawing(blanck, gray)
+
+
+                    #dico remplissage
+                    for key, value in dico_picture.items():
+                        if key == oki_picture[nb][0]:
+                            dico_picture[key]['corner6'] = counter
+
+                    
                     print(counter)
                     raising(blanck)
                     break
@@ -370,7 +429,7 @@ for nb in range(len(treat_minini)):
 
 
 
-
+    print(dico_picture)
 
 
 
