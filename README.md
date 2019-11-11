@@ -1,5 +1,7 @@
 #==============================================
 
+refaire connected en fonction et road test
+
 prendre le plus petit contour
 
 redesinner via les formes dans les deux sens
