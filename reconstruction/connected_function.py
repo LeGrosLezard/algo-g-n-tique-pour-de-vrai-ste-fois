@@ -24,13 +24,16 @@ def treat_shems(liste):
     return schemas_ran
 
 
-def make_dico(schemas_ran):
+def schema_dico(number):
     """Recuperate all schema into a dico"""
 
     dico_schema = {}
 
-    for i in schemas_ran:
-        dico_schema[i] = 0
+    for i in range(number):
+        dico_schema[str(i)] = {'corner4':0, 'lign verticale1':0,
+                               'lign verticale2':0, 'corner7':0,
+                               'lign horrizontale1':0, 'lign horrizontale2':0,
+                               'corner5':0, 'corner6':0}
 
     return dico_schema
 
@@ -70,20 +73,8 @@ def raising(blanck):
     return blanck
 
 
-def picture_schema_dico(picture):
-    
-    dico_picture = {}
-
-    for i in picture:
-        dico_picture[i] = {'corner4':0, 'lign verticale1':0,
-                           'lign verticale2':0, 'corner7':0,
-                           'lign horrizontale1':0, 'lign horrizontale2':0,
-                           'corner5':0, 'corner6':0}
-    return dico_picture
-
 
 def add_list_next_last(picture):
-
 
     oki_picture = []
     for i in range(0, len(picture), 1):
@@ -93,15 +84,13 @@ def add_list_next_last(picture):
         except:
             pass
 
-
     return oki_picture
 
 
 
 
 def road_test(listex, listey, width, height, blanck, gray, oki_picture,
-              section, nb1, nb2, x, y, dico_picture, nb, nb_add1, nb_add2,
-              dico_picture2):
+              section, nb1, nb2, x, y, dico_picture, nb, nb_add1, nb_add2):
 
     """We course 50 pixels. If we course all of them stop
     If we are less -10 width or height stop
@@ -118,6 +107,7 @@ def road_test(listex, listey, width, height, blanck, gray, oki_picture,
         #Break if we pass border of picture.
         if x >= width - 10 or y >= height - 10:
             raising(blanck)
+
             break
 
         #Stop if we meet red pixel.
@@ -125,27 +115,14 @@ def road_test(listex, listey, width, height, blanck, gray, oki_picture,
         if stop is True:
             drawing(blanck, gray, (255, 255, 255))
 
-
-            ok = False
-
             #Add it to schema dictionnary
             for key, value in dico_picture.items():
-                if key == oki_picture[nb][0]:
-                    for k, v in dico_picture[key].items():
-                        if v != 0:
-                            ok = True
-                            break
- 
-                    if ok is False:
-                        dico_picture[key][section] = [counter, x, y]
-                    else:
-                        dico_picture2[key][section] = [counter, x, y]
+                if key == str(nb):
+                    dico_picture[key][section] = [counter, x, y]
 
-
-
- 
             #Raise white pixel for display
             raising(blanck)
+
             break
 
         #Put pixel.
@@ -153,14 +130,7 @@ def road_test(listex, listey, width, height, blanck, gray, oki_picture,
         
         blanck[x + nb_add1, y + nb_add2] = 255, 255, 255
         copy1 = cv2.resize(blanck, (400, 400))
-        show_picture("copy1", copy1, 1, "")
+        #show_picture("copy1", copy1, 0, "")
         x += nb1
         y += nb2
-
-
-
-
-
-
-
 
