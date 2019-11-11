@@ -1,12 +1,11 @@
 #==============================================
 
-refaire connected en fonction et road test
 
-prendre le plus petit contour
+comprendre pk on a deux dico, et comment les images sont faites mais la jpe pas
 
-redesinner via les formes dans les deux sens
 
-pendant une heure chercher si on peut faire un truk prédictif juste avec les formes
+
+
 
 
 <br><br><br><br>
