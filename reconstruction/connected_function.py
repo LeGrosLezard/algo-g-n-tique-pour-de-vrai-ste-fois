@@ -100,7 +100,8 @@ def add_list_next_last(picture):
 
 
 def road_test(listex, listey, width, height, blanck, gray, oki_picture,
-              section, nb1, nb2, x, y, dico_picture, nb, nb_add1, nb_add2):
+              section, nb1, nb2, x, y, dico_picture, nb, nb_add1, nb_add2,
+              dico_picture2):
 
     """We course 50 pixels. If we course all of them stop
     If we are less -10 width or height stop
@@ -124,11 +125,25 @@ def road_test(listex, listey, width, height, blanck, gray, oki_picture,
         if stop is True:
             drawing(blanck, gray, (255, 255, 255))
 
+
+            ok = False
+
             #Add it to schema dictionnary
             for key, value in dico_picture.items():
                 if key == oki_picture[nb][0]:
-                    dico_picture[key][section] = [counter, x, y]
+                    for k, v in dico_picture[key].items():
+                        if v != 0:
+                            ok = True
+                            break
+ 
+                    if ok is False:
+                        dico_picture[key][section] = [counter, x, y]
+                    else:
+                        dico_picture2[key][section] = [counter, x, y]
 
+
+
+ 
             #Raise white pixel for display
             raising(blanck)
             break
