@@ -85,20 +85,20 @@ show_picture("original", original, 0, "")
 blanck = blanck_picture(original)
 
 
-#Visualization orignal vs crop
+#Visualization orignal vs crop.
 #displaying(picture, liste)
 
-#Recuperate left position
+#Recuperate left position.
 liste_placement = left_position(points_detection)
 #print(liste_placement)
 
 
-#Recuperate name, position and coordinates
+#Recuperate name, position and coordinates.
 dico = name_position_points(pictures, points_detection, liste_placement)
 #print(dico)
 
 
-#Final information, name, position
+#Final information, name, position.
 position = final_informations(points_detection, dico)
 #print(liste_position)
 
@@ -106,7 +106,7 @@ position = final_informations(points_detection, dico)
 
 
 #==========================================================================
-"""Recuperate position from the last and the next picture"""
+"""Recuperate position from the last and the next picture."""
 
 
 def placement_next_form_x(position):
@@ -138,7 +138,7 @@ def placement_next_form_y(position):
     top_position_1 = position[number][1][1]
     top_position_2 = position[number + 1][1][1]
 
-    #Placement pixels y axis
+    #Placement pixels y axis.
 
     #print(top_position_1, top_position_2)
 
@@ -152,7 +152,7 @@ def placement_next_form_y(position):
 
     return pos_y
 
-
+#Create this list for area extremity.
 area_points = [[] for i in range(len(position))]
 for number in range(len(position)):
 
@@ -175,7 +175,7 @@ for number in range(len(position)):
 
 
 #======================================================================
-    """Recuperate whites pixels"""
+    """Recuperate whites pixels."""
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     def drawing_gray_on_blanck(gray, blanck):
@@ -190,7 +190,7 @@ for number in range(len(position)):
     drawing_gray_on_blanck(gray, blanck)
 
     def recuperate_white_pixels(gray):
-        """Recuperate only x, y and both if it's a white pixel"""
+        """Recuperate only x, y and both if it's a white pixel."""
 
         liste_white_pixels = [[[x, y] for x in range(gray.shape[1])\
                                for y in range(gray.shape[0]) if gray[x, y] >= 200],
@@ -213,7 +213,7 @@ for number in range(len(position)):
 
 
 #======================================================================
-    """Recuperate area of extremities"""
+    """Recuperate area of extremities."""
 
 
     def recuperate_extremities(blanck, extremity, liste, points):
@@ -225,7 +225,7 @@ for number in range(len(position)):
                 blanck[pxs[0], pxs[1]] = 0, 0, 255
 
         blanck_copy = cv2.resize(blanck, (800, 800))
-        show_picture("blanckblanck", blanck_copy, 0, "")
+        #show_picture("blanckblanck", blanck_copy, 0, "")
 
         return coordinate
 
@@ -235,7 +235,10 @@ for number in range(len(position)):
     coordB = recuperate_extremities(blanck, max(liste_white_pixels[1]), liste_white_pixels[0], 0)
     coordT = recuperate_extremities(blanck, min(liste_white_pixels[1]), liste_white_pixels[0], 0)
 
-    area_points[number].append([coordR, coordL, coordB, coordT])
+    coords = [coordR + coordL + coordB + coordT]
+
+    for i in coords:
+        area_points[number].append(i)
 
     #cv2.imwrite("ici.png", blanck)
 
@@ -244,63 +247,59 @@ for number in range(len(position)):
 
 
 #======================================================================
-"""Recuperate minimum distance beetween areas"""
+"""Recuperate minimum distance beetween areas."""
 
 
-print("")
-print("AREA ZONES \n")
+mini_zone = []
+def recup_minimum_points(mini_zone, area_points):
+    """We run list form one and next list form.
+We compare distance beetween poitns and recup the minimum distance"""
 
-for i in area_points:
-        print(i)
-        print("")
+    #All points
+    for nb, _ in enumerate(area_points):
 
+        #minimum value.
+        min_val = 100000
 
-##minini = []
-##for nb, i in enumerate(pts_endroit1):
-##
-##
-##    min_val = 100000
-##    here = []
-##    try:
-##        for j in pts_endroit1[nb]:
-##            for k in pts_endroit1[nb + 1]:
-##                a = abs(j[0] - k[0])
-##                b = abs(j[1] - k[1])
-##                c = a + b
-##
-##                if c < min_val:
-##                    mini = []
-##                    mini.append([j, k]) 
-##                    min_val = c
-##        minini.append(mini)
-##            
-##    except:
-##        pass
-##
-##
-##print(minini)
-##
-##for i in minini:
-##    print(i[0][0][0], i[0][0][1], i[0][1][0], i[0][1][1])
-##
-##    cv2.line(blanck, (i[0][0][1], i[0][0][0]), (i[0][1][1], i[0][1][0]),
-##             (0, 0, 255), 1)
-##
-##
-##    
-##blanck_copy = cv2.resize(blanck, (800, 800))
-##show_picture("blanckblanck", blanck_copy, 0, "")
+        try:
+            #First list
+            for el_list1 in area_points[nb][0]:
+                #Second list
+                for el_list2 in area_points[nb + 1][0]:
+                    #abs(x1 - x2), abs(y1 - y2)
+                    x = abs(el_list1[0] - el_list2[0])
+                    y = abs(el_list1[1] - el_list2[1])
+                    #Sum(it)
+                    E = abs(x + y)
+
+                    #Compare it to minimum value
+                    if E < min_val:
+                        #Update minimum value
+                        mini = []
+                        mini.append([el_list1, el_list2]) 
+                        min_val = E
+  
+            #Add minimums distance points
+            for i in mini:
+                mini_zone.append(i)
+
+        except IndexError:
+            pass
 
 
+recup_minimum_points(mini_zone, area_points)
+print(mini_zone)
 
 
+def display_points(mini_zone, blanck):
+
+    for pxs in mini_zone:
+        for p in pxs:
+            blanck[p[0], p[1]] = 255, 0, 0
+
+    blanck_copy = cv2.resize(blanck, (800, 800))
+    show_picture("blanckblanck", blanck_copy, 0, "")
 
 
-
-
-
-
-
-
-
+display_points(mini_zone, blanck)
 
