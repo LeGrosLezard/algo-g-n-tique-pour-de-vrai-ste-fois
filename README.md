@@ -1,24 +1,10 @@
 #==============================================
 
-verticale faut le faire une fois en haut une fois en bas
+prendre le plus petit contour
 
-faut que le trait prenne toute la surface des deux truks
+redesinner via les formes dans les deux sens
 
-si par exemple ligne touche mais que c'est corner ?
-
-
-refaire les pts de formes
-
-
-
-
-
-
-
-
-
-
-
+par contre j'ai envie de dormir
 
 
 <br><br><br><br>
