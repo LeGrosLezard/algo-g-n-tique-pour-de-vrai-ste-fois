@@ -16,77 +16,16 @@ from starter.operation import blanck_picture
 from starter.operation import find_first_points
 from starter.operation import incrementation
 
+from connected_function import treat_mini
+from connected_function import treat_shems
+from connected_function import make_dico
+from connected_function import end_condition
+from connected_function import drawing
+from connected_function import raising
+from connected_function import picture_schema_dico
+from connected_function import add_list_next_last
 
 
-def treat_mini(minini):
-    treat_minini = []
-    for i in minini:
-        if i != []:
-            treat_minini.append([i[0][0], i[0][1]])
-            treat_minini.append([i[1][0], i[1][1]])
-    return treat_minini
-
-
-def treat_shems(liste):
-
-    b = [j for i in liste for j in i if j != "SITUATION"]
-    return b
-
-def make_dico(b):
-    dico_schema = {}
-    for i in b:
-        dico_schema[i] = 0
-
-    return dico_schema
-
-
-def color_it(color, picture, blanck):
-
-    for y in range(picture.shape[1]):
-        for x in range(picture.shape[0]):
-            if picture[x, y] > 100:
-                blanck[x, y] = color
-    return blanck
-
-def end_condition(x , y, c, blanck):
-    
-
-    if blanck[x, y][0] == c[0] and\
-        blanck[x, y][1] == c[1] and\
-        blanck[x, y][2] == c[2]:
-        return True
-
-
-def drawing(blanck, gray):
-    for x in range(gray.shape[1]):
-        for y in range(gray.shape[0]):
-            if gray[x, y] > 100:
-                blanck[x, y] = 255, 255, 255
-
-def raising(blanck):
-
-    for x in range(blanck.shape[1]):
-        for y in range(blanck.shape[0]):
-            if blanck[x ,y][0] == 255 and\
-               blanck[x, y][1] == 255 and\
-               blanck[x, y][2] == 255:
-                blanck[x, y] = 0, 0, 0
-
-    return blanck
-
-
-
-
-
-
-
-
-
-img = open_picture("ici.png")
-copy = img.copy()
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-blanck = blanck_picture(img)
-blanck1 = blanck_picture(img)
 
 minini = [[[65, 33], [71, 35]], [[109, 60], [103, 56]], [[109, 83], [109, 89]], [[94, 140], [88, 134]], [[107, 165], [117, 165]]]
 
@@ -99,65 +38,47 @@ a = [['corner4', 'lign verticale', 'corner7', 'lign horrizontale', 'corner7', 'c
      ['corner4', 'lign verticale', 'corner7', 'lign horrizontale', 'corner7', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'SITUATION', 'lign horrizontale', 'corner5', 'lign verticale', 'corner5', 'corner5', 'lign verticale', 'corner5', 'lign verticale', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner6', 'corner6', 'corner6', 'lign horrizontale', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'lign verticale', 'corner6'],
      ['corner4', 'lign verticale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'lign verticale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'lign verticale', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner4', 'corner7', 'lign horrizontale', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'corner7', 'lign verticale', 'SITUATION', 'corner5', 'lign verticale', 'corner6', 'lign horrizontale', 'corner6', 'lign verticale', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'lign verticale', 'corner5', 'lign verticale', 'corner5', 'lign verticale', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner5', 'corner6', 'lign horrizontale', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'lign verticale', 'corner6', 'corner6', 'corner6']]
 
-dico_picture = {}
 
-def counter_schema():
-    pass
-
-
-for i in picture:
-    dico_picture[i] = {'corner4':0, 'lign verticale1':0,
-                       'lign verticale2':0, 'corner7':0,
-                       'lign horrizontale1':0, 'lign horrizontale2':0,
-                       'corner5':0, 'corner6':0}
-
-print(dico_picture)
-oki_picture = []
-for i in range(0, len(picture), 1):
-    try:
-        oki_picture.append([picture[i], picture[i + 1]])
-        oki_picture.append([picture[i + 1], picture[i]])
-    except:
-        pass
-
-
-
-
-treat_minini = treat_mini(minini)
 schema = ['corner4', 'lign verticale', 'corner7', 'lign horrizontale', 'corner5', 'corner6']
 
-print(treat_minini)
+
+img = open_picture("ici.png")
+copy = img.copy()
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+blanck = blanck_picture(img)
+
+dico_picture = picture_schema_dico(picture)
+
+#Sort list last, next picture 
+oki_picture = add_list_next_last(picture)
+
+#Treat minini
+treat_minini = treat_mini(minini)
+
+
 for nb in range(len(treat_minini)):
     blanck = blanck_picture(img)
 
-
-    print(oki_picture[nb][0])
-
-      
     img1 = open_picture(oki_picture[nb][0])
     img2 = open_picture(oki_picture[nb][1])
 
     gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
+    #Recuperate dimensions of picture
     height, width, chann = img1.shape
 
+    #position of current form
     x = treat_minini[nb][0]
     y = treat_minini[nb][1]
 
-
-    for ptx in range(blanck.shape[1]):
-        for pty in range(blanck.shape[0]):
-            if gray2[ptx, pty] > 100:
-                blanck[ptx, pty] = 0, 0, 255
+    #Next form in red
+    drawing(blanck, gray2, (0, 0, 255))
 
     copy1 = cv2.resize(blanck, (400, 400))
     show_picture("copy1", copy1, 0, "")
 
-
-
-    points = []
-
+    
     find = False
     for i in schema:
 
@@ -178,7 +99,7 @@ for nb in range(len(treat_minini)):
                 #We stop if we get pixel form color
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
-                    drawing(blanck, gray)
+                    drawing(blanck, gray, (255, 255, 255))
 
                     #dico remplissage
                     for key, value in dico_picture.items():
@@ -220,7 +141,7 @@ for nb in range(len(treat_minini)):
 
                     stop = end_condition(x , y, (0, 0, 255), blanck)
                     if stop is True:
-                        drawing(blanck, gray)
+                        drawing(blanck, gray, (255, 255, 255))
 
                         #dico remplissage
                         for key, value in dico_picture.items():
@@ -269,7 +190,7 @@ for nb in range(len(treat_minini)):
                 #We stop if we get pixel form color
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
-                    drawing(blanck, gray)
+                    drawing(blanck, gray, (255, 255, 255))
  
                     #dico remplissage
                     for key, value in dico_picture.items():
@@ -314,7 +235,7 @@ for nb in range(len(treat_minini)):
 
                     stop = end_condition(x , y, (0, 0, 255), blanck)
                     if stop is True:
-                        drawing(blanck, gray)
+                        drawing(blanck, gray, (255, 255, 255))
 
                         for key, value in dico_picture.items():
                             if key == oki_picture[nb][0] and i == 0:
@@ -366,7 +287,7 @@ for nb in range(len(treat_minini)):
                 #We stop if we get pixel form color
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
-                    drawing(blanck, gray)
+                    drawing(blanck, gray, (255, 255, 255))
 
                     #dico remplissage
                     for key, value in dico_picture.items():
@@ -407,7 +328,7 @@ for nb in range(len(treat_minini)):
                 #We stop if we get pixel form color
                 stop = end_condition(x , y, (0, 0, 255), blanck)
                 if stop is True:
-                    drawing(blanck, gray)
+                    drawing(blanck, gray, (255, 255, 255))
 
 
                     #dico remplissage
