@@ -1,3 +1,9 @@
+import cv2
+from starter.operation import open_picture
+from starter.operation import show_picture
+import sys
+sys.path.append(r"C:\Users\jeanbaptiste\Desktop\chaipas")
+
 def treat_mini(minini):
     """Recuperate first form and next form"""
 
@@ -93,7 +99,38 @@ def add_list_next_last(picture):
 
 
 
+def road_test(listex, listey, width, height, blanck, gray, oki_picture,
+              section, nb1, nb2, x, y, dico_picture, nb):
 
+
+    for counter in range(50):
+        if counter == 49:
+            raising(blanck)
+            break
+
+        if x >= width - 10 or y >= height - 10:break
+
+
+        stop = end_condition(x , y, (0, 0, 255), blanck)
+        if stop is True:
+            drawing(blanck, gray, (255, 255, 255))
+
+
+            for key, value in dico_picture.items():
+                if key == oki_picture[nb][0]:
+                    dico_picture[key][section] = counter
+
+
+            print(counter)
+            raising(blanck)
+            break
+
+        blanck[x, y] = 255, 255, 255
+        blanck[x + 1, y] = 255, 255, 255
+        copy1 = cv2.resize(blanck, (400, 400))
+        show_picture("copy1", copy1, 0, "")
+        x += nb1
+        y += nb2
 
 
 
