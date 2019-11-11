@@ -94,6 +94,7 @@ for nb in range(len(treat_minini)):
             road_test(listex, listey, width, height, blanck, gray,
                       oki_picture, "corner4", 1, 1, x, y, dico_picture, nb, 1, 0)
 
+            dico_picture
         elif i == 'lign verticale':
             for i in range(2):
                 
@@ -185,7 +186,8 @@ for nb in range(len(treat_minini)):
 
 
 print(dico_picture)
-
+for i in treat_minini:
+    print(i)
 
 
 
