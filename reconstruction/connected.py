@@ -75,8 +75,8 @@ for nb in range(len(treat_minini)):
     #Next form in red
     drawing(blanck, gray2, (0, 0, 255))
 
-    copy1 = cv2.resize(blanck, (400, 400))
-    show_picture("copy1", copy1, 0, "")
+    #copy1 = cv2.resize(blanck, (400, 400))
+    #show_picture("copy1", copy1, 0, "")
 
 
 
@@ -184,7 +184,7 @@ for nb in range(len(treat_minini)):
 
 
 
-    print(dico_picture)
+print(dico_picture)
 
 
 
