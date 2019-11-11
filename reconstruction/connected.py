@@ -48,6 +48,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 blanck = blanck_picture(img)
 
 dico_picture = picture_schema_dico(picture)
+dico_picture2 = picture_schema_dico(picture)
 
 #Sort list last, next picture 
 oki_picture = add_list_next_last(picture)
@@ -55,7 +56,7 @@ oki_picture = add_list_next_last(picture)
 #Treat minini
 treat_minini = treat_mini(minini)
 
-
+print(len(treat_minini))
 for nb in range(len(treat_minini)):
     blanck = blanck_picture(img)
 
@@ -92,7 +93,7 @@ for nb in range(len(treat_minini)):
             listey = [y,          y+1,      y-1,  y+1]
 
             road_test(listex, listey, width, height, blanck, gray,
-                      oki_picture, "corner4", 1, 1, x, y, dico_picture, nb, 1, 0)
+                      oki_picture, "corner4", 1, 1, x, y, dico_picture, nb, 1, 0, dico_picture2)
 
             dico_picture
         elif i == 'lign verticale':
@@ -109,11 +110,11 @@ for nb in range(len(treat_minini)):
                 if i == 0:
 
                     road_test(listex, listey, width, height, blanck, gray,
-                              oki_picture, 'lign verticale1', 1, 0, x, y, dico_picture, nb, 0, 0)
+                              oki_picture, 'lign verticale1', 1, 0, x, y, dico_picture, nb, 0, 0, dico_picture2)
                 elif i == 1:
 
                     road_test(listex, listey, width, height, blanck, gray,
-                              oki_picture, 'lign verticale2', -1, 0, x, y, dico_picture, nb, 0, 0)
+                              oki_picture, 'lign verticale2', -1, 0, x, y, dico_picture, nb, 0, 0, dico_picture2)
 
 
         elif i == 'corner7':
@@ -126,7 +127,7 @@ for nb in range(len(treat_minini)):
             y = treat_minini[nb][1]
 
             road_test(listex, listey, width, height, blanck, gray,
-                      oki_picture, "corner7", -1, 1, x, y, dico_picture, nb, 0, 1)
+                      oki_picture, "corner7", -1, 1, x, y, dico_picture, nb, 0, 1, dico_picture2)
 
 
 
@@ -149,11 +150,11 @@ for nb in range(len(treat_minini)):
                 if i == 0:
 
                     road_test(listex, listey, width, height, blanck, gray,
-                              oki_picture, 'lign horrizontale1', 0, -1, x, y, dico_picture, nb, 0, 0)
+                              oki_picture, 'lign horrizontale1', 0, -1, x, y, dico_picture, nb, 0, 0, dico_picture2)
                 elif i == 1:
 
                     road_test(listex, listey, width, height, blanck, gray,
-                              oki_picture, 'lign horrizontale2', 0, 1, x, y, dico_picture, nb, 0, 0)
+                              oki_picture, 'lign horrizontale2', 0, 1, x, y, dico_picture, nb, 0, 0, dico_picture2)
 
 
 
@@ -167,7 +168,7 @@ for nb in range(len(treat_minini)):
             y = treat_minini[nb][1]
 
             road_test(listex, listey, width, height, blanck, gray,
-                      oki_picture, "corner5", -1, -1, x, y, dico_picture, nb, 0, 1)
+                      oki_picture, "corner5", -1, -1, x, y, dico_picture, nb, 0, 1, dico_picture2)
 
 
 
@@ -181,13 +182,15 @@ for nb in range(len(treat_minini)):
 
 
             road_test(listex, listey, width, height, blanck, gray,
-                      oki_picture, "corner6", 1, -1, x, y, dico_picture, nb, 0, 1)
+                      oki_picture, "corner6", 1, -1, x, y, dico_picture, nb, 0, 1, dico_picture2)
 
 
 
 print(dico_picture)
-for i in treat_minini:
-    print(i)
+print("")
+print(dico_picture2)
+print("")
+print(treat_minini)
 
 
 
