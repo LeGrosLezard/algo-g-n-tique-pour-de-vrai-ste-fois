@@ -31,6 +31,10 @@ points_detection = [[160, 117, 22, 14], [35, 69, 26, 53], [56, 60, 28, 57], [14,
                    [89, 58, 52, 67], [134, 57, 32, 51]]
 
 
+#==========================================================================
+"""Sort lists"""
+
+
 def display(dico):
     for cle, valeur in dico.items():
         print(cle, valeur)
@@ -75,6 +79,7 @@ def final_informations(points_detection, dico):
 
 
 
+
 original = open_picture("../images/" + "lign_v1.jpg")
 show_picture("original", original, 0, "")
 blanck = blanck_picture(original)
@@ -97,6 +102,11 @@ dico = name_position_points(pictures, points_detection, liste_placement)
 position = final_informations(points_detection, dico)
 #print(liste_position)
 
+
+
+
+#==========================================================================
+"""Recuperate position from the last and the next picture"""
 
 
 def placement_next_form_x(position):
@@ -146,6 +156,9 @@ def placement_next_form_y(position):
 
 for number in range(len(position)):
 
+    img = open_picture(position[number][0])
+    copy = img.copy()
+
     try:
         print(position[number], position[number + 1])
 
@@ -155,13 +168,14 @@ for number in range(len(position)):
                      placement_next_form_y(position)])
 
         print("last position are: ", last[0], "\n")
-        img = open_picture(position[number][0])
-        copy = img.copy()
 
     except IndexError:
         pass
 
 
+
+#======================================================================
+    """Recuperate whites pixels"""
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     def drawing_gray_on_blanck(gray, blanck):
@@ -173,7 +187,7 @@ for number in range(len(position)):
                     blanck[x, y] = 255, 255, 255
 
 
-    drawing_gray_on_blanck(img, blanck)
+    drawing_gray_on_blanck(gray, blanck)
 
     def recuperate_white_pixels(gray):
         """Recuperate only x, y and both if it's a white pixel"""
@@ -188,75 +202,76 @@ for number in range(len(position)):
         #print(liste_white_pixels)
         return liste_white_pixels
 
-    recuperate_white_pixels(gray)
+    #All points liste_white_pixels[0]
+    #X points liste_white_pixels[1]
+    #Y points liste_white_pixels[2]
+    liste_white_pixels = recuperate_white_pixels(gray)
 
 
-    break
+
+
+
+
+#======================================================================
+    """Recuperate area of extremities"""
+
+    def recuperate_extremities(blanck, extremity, liste, points):
+
+        coordinate = 0
+
+        for pxs in liste:
+            if pxs[points] == extremity:
+                blanck[pxs[0], pxs[1]] = 0, 0, 255
+
+        blanck_copy = cv2.resize(blanck, (800, 800))
+        show_picture("blanckblanck", blanck_copy, 0, "")
+
+    #right, left, bot, top
+    recuperate_extremities(blanck, max(liste_white_pixels[2]), liste_white_pixels[0], 1)
+    recuperate_extremities(blanck, min(liste_white_pixels[2]), liste_white_pixels[0], 1)
+    recuperate_extremities(blanck, max(liste_white_pixels[1]), liste_white_pixels[0], 0)
+    recuperate_extremities(blanck, min(liste_white_pixels[1]), liste_white_pixels[0], 0)
+
+
+
+    liste_pts_liaison[number].append([coord1, coord2, other_coord1, other_coord2])
+
+
+    
+
+
+
+    #cv2.imwrite("ici.png", blanck)
+    blanck_copy = cv2.resize(blanck, (800, 800))
+    show_picture("blanckblanck", blanck_copy, 0, "")
 
 
 
 
 
-##    print("")
-####    print(liste)
-####    print(listex)
-####    print(listey)
-##
-##    print("")
-##
-##    coord1 = 0
-##
-##    b = max(listey)
-##    for i in liste:
-##        if i[1] == b:
-##            coord1 = i
-##    blanck[coord1[0], coord1[1]] = 0, 255, 0
-##
-##
-##    coord2 = 0
-##    b = min(listey)
-##    for i in liste:
-##        if i[1] == b:
-##            coord2 = i
-##
-##    blanck[coord2[0], coord2[1]] = 0, 0, 255
-##
-##
-##
-##    other_coord1 = 0
-##
-##    b = max(listex)
-##    for i in liste:
-##        if i[0] == b:
-##            other_coord1 = i
-##    blanck[other_coord1[0], other_coord1[1]] = 255, 255, 0
-##
-##    other_coord2 = 0
-##
-##    b = min(listex)
-##    for i in liste:
-##        if i[0] == b:
-##            other_coord2 = i
-##
-##    blanck[other_coord2[0], other_coord2[1]] = 255, 0, 255
-##
-##
-##
-##    liste_pts_liaison[number].append([coord1, coord2, other_coord1, other_coord2])
-##
-##
-##    
-##
-##
-##
-##    cv2.imwrite("ici.png", blanck)
-##    #blanck_copy = cv2.resize(blanck, (800, 800))
-##    #show_picture("blanckblanck", blanck_copy, 0, "")
-##
-##
-##
-##
-##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ####for i in points_road:
 ####     blanck[i[1], i[0]] = 255, 0, 0
 ##
