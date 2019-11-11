@@ -130,12 +130,13 @@ def road_test(listex, listey, width, height, blanck, gray, oki_picture,
             #Raise white pixel for display
             raising(blanck)
             break
+
         #Put pixel.
         blanck[x, y] = 255, 255, 255
         
         blanck[x + nb_add1, y + nb_add2] = 255, 255, 255
         copy1 = cv2.resize(blanck, (400, 400))
-        show_picture("copy1", copy1, 0, "")
+        show_picture("copy1", copy1, 1, "")
         x += nb1
         y += nb2
 
