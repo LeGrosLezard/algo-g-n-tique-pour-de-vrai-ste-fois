@@ -100,33 +100,40 @@ def add_list_next_last(picture):
 
 
 def road_test(listex, listey, width, height, blanck, gray, oki_picture,
-              section, nb1, nb2, x, y, dico_picture, nb):
+              section, nb1, nb2, x, y, dico_picture, nb, nb_add1, nb_add2):
 
+    """We course 50 pixels. If we course all of them stop
+    If we are less -10 width or height stop
+    If we meet a red pixel stop and count last run
+    increment x or y
+    """
 
+    #Course 50 pixels.
     for counter in range(50):
         if counter == 49:
             raising(blanck)
             break
 
+        #Break if we pass border of picture.
         if x >= width - 10 or y >= height - 10:break
 
-
+        #Stop if we meet red pixel.
         stop = end_condition(x , y, (0, 0, 255), blanck)
         if stop is True:
             drawing(blanck, gray, (255, 255, 255))
 
-
+            #Add it to schema dictionnary
             for key, value in dico_picture.items():
                 if key == oki_picture[nb][0]:
                     dico_picture[key][section] = counter
 
-
-            print(counter)
+            #Raise white pixel for display
             raising(blanck)
             break
-
+        #Put pixel.
         blanck[x, y] = 255, 255, 255
-        blanck[x + 1, y] = 255, 255, 255
+        
+        blanck[x + nb_add1, y + nb_add2] = 255, 255, 255
         copy1 = cv2.resize(blanck, (400, 400))
         show_picture("copy1", copy1, 0, "")
         x += nb1
