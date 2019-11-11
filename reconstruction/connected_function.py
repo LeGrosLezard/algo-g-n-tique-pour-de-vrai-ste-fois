@@ -115,7 +115,9 @@ def road_test(listex, listey, width, height, blanck, gray, oki_picture,
             break
 
         #Break if we pass border of picture.
-        if x >= width - 10 or y >= height - 10:break
+        if x >= width - 10 or y >= height - 10:
+            raising(blanck)
+            break
 
         #Stop if we meet red pixel.
         stop = end_condition(x , y, (0, 0, 255), blanck)
@@ -125,7 +127,7 @@ def road_test(listex, listey, width, height, blanck, gray, oki_picture,
             #Add it to schema dictionnary
             for key, value in dico_picture.items():
                 if key == oki_picture[nb][0]:
-                    dico_picture[key][section] = counter
+                    dico_picture[key][section] = [counter, x, y]
 
             #Raise white pixel for display
             raising(blanck)
