@@ -144,16 +144,6 @@ def placement_next_form_y(position):
 
 
 
-
-all_recurent_points = []
-ancrage = []
-liste_pts_liaison = []
-
-
-for number in range(len(position)):
-    liste_pts_liaison.append([])
-
-
 for number in range(len(position)):
 
     try:
@@ -175,47 +165,20 @@ for number in range(len(position)):
 
 
 
+    liste = []
+    listex = []
+    listey = []
+
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    for x in range(gray.shape[1]):
+        for y in range(gray.shape[0]):
+            if gray[x, y] >= 200:
+                blanck[x, y] = 255, 255, 255
+                liste.append([x, y])
+                listex.append(x)
+                listey.append(y)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-##    liste = []
-##    listex = []
-##    listey = []
-##
-##    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-##    for x in range(gray.shape[1]):
-##        for y in range(gray.shape[0]):
-##            if gray[x, y] >= 200:
-##                blanck[x, y] = 255, 255, 255
-##                liste.append([x, y])
-##                listex.append(x)
-##                listey.append(y)
-##
-##
 ##    print("")
 ####    print(liste)
 ####    print(listex)
