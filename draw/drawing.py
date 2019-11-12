@@ -106,10 +106,9 @@ for key, value in a.items():
     counter+=1
 
 def draw_shema(number, schema, posX, posY, blanck):
-
+    """recup x, y from other form it give info for area"""
     x = posX
     y = posY
-
 
     for i in range(number):
         blanck[x, y] = 255, 255, 255
@@ -137,6 +136,14 @@ def draw_shema(number, schema, posX, posY, blanck):
 
 
     return x, y
+
+def to_zone(schema, x, y, pts_other1, pts_other2, blanck):
+
+
+    cv2.line(blanck, (pts_other2, pts_other1), (y, x), (255, 255, 255), 1)
+
+    copy1 = cv2.resize(blanck, (800, 400))
+    show_picture("copy1", copy1, 0, "")
 
 
 blanck = blanck_picture(img)
@@ -172,24 +179,28 @@ for pict in range(len(oki_picture)):
                 if form1[x, y] > 100:
                     liste_w.append([x, y])
 
-        print(liste_w)
+
         if i == 0:
             zone = draw_shema(liste[pict][1][0], liste[pict][0],
                                 liste[pict][1][1], liste[pict][1][2], blanck)
 
 
-
+            print(liste[pict])
             for el in liste_w:
-                if el[0] > zone[0]-3 and el[0] < zone[0] + 3:
+                if el[0] > zone[0]-2 and el[0] < zone[0] + 2:
                     print(abs((el[0] + el[1]) - (zone[0] + zone[1])))
-                    if abs((el[0] + el[1]) - (zone[0] + zone[1])) < 10:
-                        blanck[el[0], el[1]] = 0, 0, 255
+                    if abs((el[0] + el[1]) - (zone[0] + zone[1])) < 8:
+                        #blanck[el[0], el[1]] = 0, 0, 255 demo^^
+                        to_zone(liste[pict][0], liste[pict][1][1], liste[pict][1][2],
+                                el[0], el[1], blanck)
 
-                elif el[1] > zone[1]-3 and el[1] < zone[1] + 3:
+
+                elif el[1] > zone[1]-2 and el[1] < zone[1] + 2:
                     print(abs((el[0] + el[1]) - (zone[0] + zone[1])))
-                    if abs((el[0] + el[1]) - (zone[0] + zone[1])) < 10:
-                        blanck[el[0], el[1]] = 0, 0, 255
-
+                    if abs((el[0] + el[1]) - (zone[0] + zone[1])) < 8:
+                        #blanck[el[0], el[1]] = 0, 0, 255
+                        to_zone(liste[pict][0], liste[pict][1][1], liste[pict][1][2],
+                                el[0], el[1], blanck)
 
             print(zone)
 
@@ -197,6 +208,28 @@ for pict in range(len(oki_picture)):
             show_picture("copy1", copy1, 0, "")
 
     print("")
+
+R = cv2.RETR_TREE
+P = cv2.CHAIN_APPROX_NONE
+
+blanck1 = blanck_picture(img)
+cv2.imwrite("final.png", blanck)
+gray = cv2.cvtColor(blanck, cv2.COLOR_BGR2GRAY)
+
+
+contours, _ = cv2.findContours(gray, R, P)
+for cnt in contours:
+    cv2.drawContours(blanck1, [cnt], -1, (255,255,255), 2)
+    cv2.fillPoly(blanck1, pts =[cnt], color=(255, 255, 255))
+
+copy1 = cv2.resize(blanck1, (800, 800))
+show_picture("copy1", copy1, 0, "")
+
+
+
+
+
+
 
 
 
