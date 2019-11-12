@@ -32,7 +32,9 @@ faire un snake contour sur une image non bruité
  
  - pk on doit redessiner les traits ca sert a quoi ?
  
-<h1>3 - data_regroupement / (formes, display, points)</h1>
+<h1>3 - data_regroupement / (1) formes, 2) display, 3)points)</h1>
+
+ - dans formes on trie la liste pour points, dans points on récup les extremités
 
  - regroupe les informations des images
  
