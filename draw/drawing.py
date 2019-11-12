@@ -139,9 +139,9 @@ def draw_shema(number, schema, posX, posY, blanck):
     return x, y
 
 
-
+blanck = blanck_picture(img)
 for pict in range(len(oki_picture)):
-    blanck = blanck_picture(img)
+    
     print(oki_picture[pict])
     print(liste[pict])
 
