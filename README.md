@@ -1,4 +1,4 @@
-trouvé d'ou vient l'esapce de merde entre la forme et le début
+faut juste inversé le truk ^^
 
 #==============================================
 
