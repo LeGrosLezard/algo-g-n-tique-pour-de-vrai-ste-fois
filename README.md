@@ -1,13 +1,13 @@
-tout réécrire et on peut faire des dilates et tout pour rendre jolie mais pas grave et la couleur pas grave
+
 
 refaire parcourage ca bloque
 
 faire la doc
 
 <br><br><br><br>
-faire un active contour sur une image bruité
+faire un active contour sur une image non bruité
 
-par les route on essaie de supprimer les contour qu'on veut pas par bricolage
+
 
 #==============================================
 
