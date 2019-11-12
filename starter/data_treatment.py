@@ -12,3 +12,18 @@ def delete_same_detection(dico, name, PIT):
                 del dico[name.format(PIT, str(nb + 1))]
 
     return dico
+
+
+
+def put_name(key):
+
+    name = ""
+    for i in key:
+        try:
+            i = int(i)
+            if i == int(i):
+                name += str(i)
+        except:
+            pass
+
+    return name
