@@ -2,41 +2,36 @@ import matplotlib.pyplot as plt
 import cv2
 import os
 
-
+from paths import path_blanck
 
 #Show, Open, Create black picture
-from operation import open_picture
-from operation import show_picture
-from operation import blanck_picture
+from starter.operation import open_picture
+from starter.operation import show_picture
+from starter.operation import blanck_picture
 
-def displaying(picture, liste):
-    original = open_picture("images/" + "lign_v1.jpg")
+def displaying(original, picture, liste):
+    """Here we show the orginal picture
+    with part of the current picture
+    with detection write in the orginal picture"""
 
-    path = "images/blanck/"
-    liste_treat = os.listdir(path)
+    #Open original picture.
+    original = open_picture(original)
 
-    for i in range(len(liste_treat)):
+    copy = original.copy()
 
-        copy = original.copy()
+    cv2.rectangle(copy, (liste[0], liste[1]),
+                  (liste[0] + liste[2],
+                   liste[1] + liste[3]), (0, 0, 255), 1)
 
-        cv2.rectangle(copy, (liste[i][0], liste[i][1]),
-                      (liste[i][0] + liste[i][2],
-                       liste[i][1] + liste[i][3]), (0, 0, 255), 1)
-        
+    #Open part of orginal picture.
+    img = open_picture(picture)
 
-
-        img = open_picture(picture[i])
-
-        
-
-
-
-
-        plt.subplot(121),plt.imshow(copy)
-        plt.title('Original Image'), plt.xticks([]), plt.yticks([])
-        plt.subplot(122),plt.imshow(img) 
-        plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
-         
-        plt.show()
+    #Display them in double window.
+    plt.subplot(121),plt.imshow(copy)
+    plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+    plt.subplot(122),plt.imshow(img) 
+    plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+     
+    plt.show()
 
 
