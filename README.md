@@ -5,7 +5,7 @@ refaire parcourage ca bloque
 faire la doc
 
 <br><br><br><br>
-faire un active contour sur une image non bruité
+faire un snake contour sur une image non bruité
 
 
 
