@@ -1,6 +1,8 @@
 faire points
 
+parcourage2 et 3 ("iciiiiiiiiiiiiiiiiiiii" a été rajouté)
 
+les conteneurs ont changé 
 
 refaire parcourage ca bloque
 
