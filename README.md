@@ -1,4 +1,4 @@
-faire points
+faire un truk qui dit qu'elle image est la premiere et qu'elle image est la derniere ^^
 
 parcourage2 et 3 ("iciiiiiiiiiiiiiiiiiiii" a été rajouté)
 
