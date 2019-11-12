@@ -81,7 +81,7 @@ c = [[65, 33], [71, 35], [109, 60], [103, 56], [109, 83], [109, 89], [94, 140], 
 
 img = open_picture(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\lign_v1.jpg")
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
+blanck = blanck_picture(img)
 
 
 
@@ -139,26 +139,39 @@ def draw_shema(number, schema, posX, posY, blanck):
 
 
 for pict in range(len(oki_picture)):
-    blanck = blanck_picture(img)
+    
 
     form1 = open_picture(oki_picture[pict][0])
     form1 = cv2.cvtColor(form1, cv2.COLOR_BGR2GRAY)
 
-    print(liste[pict])
-    for x in range(form1.shape[0]):
-        for y in range(form1.shape[1]):
-            if form1[x, y] > 100:
-                blanck[x, y] = 255, 255, 255
-
-    draw_shema(liste[pict][1][0], liste[pict][0],
-               liste[pict][1][1], liste[pict][1][2], blanck)
-
-    show_picture("blanck", blanck, 0, "")
-
-
-
     form2 = open_picture(oki_picture[pict][1])
+    form2 = cv2.cvtColor(form2, cv2.COLOR_BGR2GRAY)
+
+
+
+    for i in range(len(oki_picture[pict])):
+
+        if i == 0:
+            form = form1
+        else:
+            form = form2
+
+        for x in range(form.shape[0]):
+            for y in range(form.shape[1]):
+                if form[x, y] > 100:
+                    blanck[x, y] = 255, 255, 255
+
+        draw_shema(liste[pict][1][0], liste[pict][0],
+                   liste[pict][1][1], liste[pict][1][2], blanck)
+
+
+
+
     
+
+    
+
+
 
     
 
