@@ -2,6 +2,8 @@ ok mtn essayer de tout raccorder
 
 refaire parcourage ca bloque
 
+faire la doc
+
 <br><br><br><br>
 faire un active contour sur une image bruité
 
