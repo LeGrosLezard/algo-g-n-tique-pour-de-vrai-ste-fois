@@ -1,8 +1,12 @@
 #==============================================
 
+1 - faire dessiner les deux formes
 
-comprendre pk on a deux dico, et comment les images sont faites mais la jpe pas
+2 - récupérer les deux régions
 
+3 - faire la combinaison des deux traits dansu ne nouvelle images
+
+4 - superposé toutes les images
 
 
 
