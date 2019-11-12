@@ -1,4 +1,4 @@
-ok mtn essayer de tout raccorder
+tout réécrire et on peut faire des dilates et tout pour rendre jolie mais pas grave et la couleur pas grave
 
 refaire parcourage ca bloque
 
