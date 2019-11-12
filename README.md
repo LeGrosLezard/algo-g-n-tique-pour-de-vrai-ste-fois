@@ -1,14 +1,4 @@
-faut juste inversé le truk ^^
-
-#==============================================
-
-1 - faire dessiner les deux formes
-
-2 - récupérer les deux régions
-
-3 - faire la combinaison des deux traits dansu ne nouvelle images
-
-4 - superposé toutes les images
+ptin tout ca pour ca....
 
 
 
