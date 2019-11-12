@@ -53,8 +53,6 @@ def final_informations(points_detection, dico):
 
 
 
-
-
 #==========================================================================
 """Recuperate position from the last and the next picture."""
 
@@ -117,6 +115,7 @@ def drawing_gray_on_blanck(gray, blanck):
             if gray[x, y] >= 200:
                 blanck[x, y] = 255, 255, 255
 
+
 def recuperate_white_pixels(gray):
     """Recuperate only x, y and both if it's a white pixel."""
 
@@ -134,6 +133,8 @@ def recuperate_white_pixels(gray):
 
     #print(liste_white_pixels)
     return liste_white_pixels
+
+
 
 
 
@@ -189,7 +190,7 @@ def recup_minimum_points(mini_zone, area_points):
                         mini = []
                         mini.append([el_list1, el_list2]) 
                         min_val = E
-  
+
             #Add minimums distance points
             for i in mini:
                 mini_zone.append(i)
@@ -203,16 +204,3 @@ def display_points(mini_zone, blanck):
     for pxs in mini_zone:
         for p in pxs:
             blanck[p[0], p[1]] = 255, 0, 0
-
-
-
-
-
-
-
-
-
-
-
-
-
