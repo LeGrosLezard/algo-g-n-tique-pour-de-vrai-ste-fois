@@ -1,6 +1,6 @@
 ok mtn essayer de tout raccorder
 
-
+refaire parcourage ca bloque
 
 <br><br><br><br>
 faire un active contour sur une image bruité
