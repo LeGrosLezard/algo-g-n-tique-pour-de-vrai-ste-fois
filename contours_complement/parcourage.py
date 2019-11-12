@@ -4,8 +4,10 @@
 
 import os
 
+from paths import full_path
+
 import sys
-sys.path.append(r"C:\Users\jeanbaptiste\Desktop\chaipas")
+sys.path.append(full_path)
 
 #Librairy for treating pictures
 import cv2
@@ -13,6 +15,8 @@ from PIL import Image
 
 #Here numpy generate matrix
 import numpy as np
+
+from paths import path_blanck
 
 #Show, Open, Create black picture
 from starter.operation import open_picture
@@ -29,6 +33,8 @@ from contours_complement.drawing import diagonale
 from contours_complement.drawing import arrierre_avant
 from contours_complement.drawing import corner_to_lign
 from contours_complement.drawing import speciale_corner_after_selection
+
+
 
 def search_neightboors(current, gray, x, y, t):
 
@@ -85,11 +91,11 @@ def end_condition(historic, histo_current):
     if len(historic) > 10:
         if historic[0] == historic[-1]:
             ocontinuer = False
-            print(historic)
-            print("")
-            print(histo_current)
+            #print(historic)
+            #print("")
+            #print(histo_current)
 
-    return ocontinuer
+    return ocontinuer, historic, histo_current
 
 
 
@@ -107,6 +113,7 @@ def displaying(gray, copy):
     #show_picture("blanck_resize", blanck_resize, 0, "")
 
 
+#from starter.operation import incrementation
 def movement(last, current, x, y, copy):
 
     for i in current:
@@ -177,18 +184,19 @@ def redraw_contour(pict, name):
         x, y = movement(last, current, x, y, copy)
 
         #End condition
-        ocontinuer = end_condition(historic, histo_current)
+        ocontinuer, historic, histo_current\
+                    = end_condition(historic, histo_current)
 
         #Displaying
         displaying(gray, copy)
 
-
+        
     #Saving blanck contour draw
-    path = "images/blanck/{}"
-    print(path.format(name + "blanck.jpg"))
-    cv2.imwrite(path.format(name + "blanck.jpg"), gray)
-    #show_picture("blanck_resize", blanck_resize, 0, "y")
+    #print(path_blanck.format(name + "blanck.jpg"))
+    #cv2.imwrite(path.format(name + "blanck.jpg"), gray)
+
+    return historic, histo_current
 
 
 
-#redraw_contour(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\treatment\contour0.png")
+#redraw_contour(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\treatment\contour0.png", "coucou")
