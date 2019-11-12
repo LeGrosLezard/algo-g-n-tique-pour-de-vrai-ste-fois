@@ -1,7 +1,10 @@
-#for paths
 import os
+
+from paths import full_path
+
 import sys
-sys.path.append(r"C:\Users\jeanbaptiste\Desktop\chaipas")
+sys.path.append(full_path)
+
 #Librairy for treating pictures
 import cv2
 from PIL import Image
@@ -20,35 +23,27 @@ from starter.operation import incrementation
 
 from contours_complement.drawing import *
 
-from data_regroupement.display import displaying
-
 
 
 #==========================================================================
 """Sort lists"""
 
-from formes_function import left_position
-from formes_function import name_position_points
-from formes_function import final_informations
-def sorting_list(points_detection):
+from data_regroupement.formes_function import left_position
+from data_regroupement.formes_function import name_position_points
+from data_regroupement.formes_function import final_informations
+def sorting_list(points_detection, original, pictures):
     
-    original = open_picture("../images/" + "lign_v1.jpg")
+    original = open_picture(original)
     show_picture("original", original, 0, "")
     blanck = blanck_picture(original)
-
-
-    #Visualization orignal vs crop.
-    #displaying(picture, liste)
 
     #Recuperate left position.
     liste_placement = left_position(points_detection)
     #print(liste_placement)
 
-
     #Recuperate name, position and coordinates.
     dico = name_position_points(pictures, points_detection, liste_placement)
     #print(dico)
-
 
     #Final information, name, position.
     position = final_informations(points_detection, dico)
@@ -60,8 +55,9 @@ def sorting_list(points_detection):
 
 #==========================================================================
 """Recuperate position from the last and the next picture."""
-from formes_function import placement_next_form_x
-from formes_function import placement_next_form_y
+
+from data_regroupement.formes_function import placement_next_form_x
+from data_regroupement.formes_function import placement_next_form_y
 def recuperate_points(position, number):
 
     img = open_picture(position[number][0])
@@ -86,9 +82,10 @@ def recuperate_points(position, number):
 #======================================================================
 """Recuperate whites pixels."""
 
-from formes_function import drawing_gray_on_blanck
-from formes_function import recuperate_white_pixels
+from data_regroupement.formes_function import drawing_gray_on_blanck
+from data_regroupement.formes_function import recuperate_white_pixels
 def recuperate_pixels(gray, blanck):
+
     drawing_gray_on_blanck(gray, blanck)
     liste_white_pixels = recuperate_white_pixels(gray)
 
@@ -98,7 +95,7 @@ def recuperate_pixels(gray, blanck):
 #======================================================================
 """Recuperate area of extremities."""
 
-from formes_function import recuperate_extremities
+from data_regroupement.formes_function import recuperate_extremities
 def recuperate_min_points_liaison(blanck, liste_white_pixels, number, area_points):
 
     #right, left, bot, top
@@ -118,8 +115,8 @@ def recuperate_min_points_liaison(blanck, liste_white_pixels, number, area_point
 #======================================================================
 """Recuperate minimum distance beetween areas."""
 
-from formes_function import recup_minimum_points
-from formes_function import display_points
+from data_regroupement.formes_function import recup_minimum_points
+from data_regroupement.formes_function import display_points
 
 def recuperation_distance(mini_zone, area_points, blanck):
 
@@ -128,10 +125,10 @@ def recuperation_distance(mini_zone, area_points, blanck):
 
 
 
-def main_formes(pictures, points_detection):
+def main_formes(pictures, points_detection, original):
 
     #Recuperate all data from picture (name and position from original).
-    blanck, position = sorting_list(points_detection)
+    blanck, position = sorting_list(points_detection, original, pictures)
 
     #Create this list for area extremity.
     area_points = [[] for i in range(len(position))]
@@ -158,7 +155,8 @@ def main_formes(pictures, points_detection):
     blanck_copy = cv2.resize(blanck, (800, 800))
     show_picture("blanckblanck", blanck_copy, 0, "")
 
-    return mini_zone
+    return mini_zone, area_points
+
 
 
 
@@ -170,4 +168,3 @@ pictures = ['../images/blanck/0blanck.jpg', '../images/blanck/2blanck.jpg',
 points_detection = [[160, 117, 22, 14], [35, 69, 26, 53], [56, 60, 28, 57], [14, 60, 20, 19], 
                    [89, 58, 52, 67], [134, 57, 32, 51]]
 
-main_formes(pictures, points_detection)
