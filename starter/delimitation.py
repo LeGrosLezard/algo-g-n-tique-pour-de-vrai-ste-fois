@@ -83,7 +83,7 @@ def make_contours(pict):
         dico_data = add_dico(dico_data, cnt, nb, name, PIT)
 
         #Save picture
-        cv2.imwrite(name.format(PIT, str(nb)), blanck)
+        #cv2.imwrite(name.format(PIT, str(nb)), blanck)
         #show_picture("img", img, 0, "")
 
 
