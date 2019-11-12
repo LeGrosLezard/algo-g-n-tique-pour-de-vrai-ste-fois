@@ -123,14 +123,14 @@ def draw_shema(number, schema, posX, posY, blanck):
     for i in range(number):
         blanck[x, y] = 255, 255, 255
 
-        if schema == "corner4":x += 1; y+= 1
-        if schema == "corner7":x -= 1; y+= 1
-        if schema == "corner5":x -= 1; y-= 1
-        if schema == "corner6":x += 1; y-= 1
-        if schema == "lign horrizontale1":y -= 1;
-        if schema == "lign horrizontale2":y += 1;
-        if schema == "lign verticale1":x += 1;
-        if schema == "lign verticale2":x -= 1;
+        if schema == "corner4":x -= 1; y-= 1
+        if schema == "corner7":x += 1; y-= 1
+        if schema == "corner5":x += 1; y+= 1
+        if schema == "corner6":x -= 1; y+= 1
+        if schema == "lign horrizontale1":y += 1;
+        if schema == "lign horrizontale2":y -= 1;
+        if schema == "lign verticale1":x -= 1;
+        if schema == "lign verticale2":x += 1;
 
         copy1 = cv2.resize(blanck, (800, 800))
         show_picture("copy1", copy1, 0, "")
