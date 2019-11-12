@@ -1,3 +1,5 @@
+trouvé d'ou vient l'esapce de merde entre la forme et le début
+
 #==============================================
 
 1 - faire dessiner les deux formes
