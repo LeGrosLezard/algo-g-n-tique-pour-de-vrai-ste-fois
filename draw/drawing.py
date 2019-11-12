@@ -13,8 +13,7 @@ import numpy as np
 from starter.operation import open_picture
 from starter.operation import show_picture
 from starter.operation import blanck_picture
-from starter.operation import find_first_points
-from starter.operation import incrementation
+
 
 #nos images
 picture = ['../images/blanck/6blanck.jpg', '../images/blanck/2blanck.jpg', '../images/blanck/4blanck.jpg',
@@ -74,31 +73,37 @@ area = [[[[60, 33], [61, 33], [62, 33], [63, 33], [64, 33],
 #nos pts de départ
 c = [[65, 33], [71, 35], [109, 60], [103, 56], [109, 83], [109, 89], [94, 140], [88, 134], [107, 165], [117, 165]]
 
+##          #0     #1     #2    #3      #4     #5     #6    #7
+##listex = [x+1,   x-1,   x,    x,      x+1,   x-1,   x+1,  x-1]
+##listey = [y,       y,   y+1,  y-1,    y+1,   y-1,   y-1,  y+1]
+
 
 
 img = open_picture(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\lign_v1.jpg")
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-blanck = blanck_picture(img)
 
 
+
+
+
+liste = []
 
 counter = 0
 
 for key, value in a.items():
     min_value = 10000
     data = ""
-    print(key, oki_picture[counter])
 
     for key1, value1 in a[key].items():
 
         if value1 != 0:
-            print(value1)
             if value1[0] < min_value:
                 min_value = value1[0]
                 data  = [key1, value1]
 
-    print(min_value)
-    print("")
+    liste.append(data)
+    #print(data)
+    #print("")
 
 
 
@@ -109,13 +114,53 @@ for key, value in a.items():
 
     counter+=1
 
+def draw_shema(number, schema, posX, posY, blanck):
+
+    x = posX
+    y = posY
+
+
+    for i in range(number):
+        blanck[x, y] = 255, 255, 255
+
+        if schema == "corner4":x += 1; y+= 1
+        if schema == "corner7":x -= 1; y+= 1
+        if schema == "corner5":x -= 1; y-= 1
+        if schema == "corner6":x += 1; y-= 1
+        if schema == "lign horrizontale1":y -= 1;
+        if schema == "lign horrizontale2":y += 1;
+        if schema == "lign verticale1":x += 1;
+        if schema == "lign verticale2":x -= 1;
+
+        copy1 = cv2.resize(blanck, (800, 800))
+        show_picture("copy1", copy1, 0, "")
 
 
 
 
+for pict in range(len(oki_picture)):
+    blanck = blanck_picture(img)
+
+    form1 = open_picture(oki_picture[pict][0])
+    form1 = cv2.cvtColor(form1, cv2.COLOR_BGR2GRAY)
+
+    print(liste[pict])
+    for x in range(form1.shape[0]):
+        for y in range(form1.shape[1]):
+            if form1[x, y] > 100:
+                blanck[x, y] = 255, 255, 255
+
+    draw_shema(liste[pict][1][0], liste[pict][0],
+               liste[pict][1][1], liste[pict][1][2], blanck)
+
+    show_picture("blanck", blanck, 0, "")
 
 
 
+    form2 = open_picture(oki_picture[pict][1])
+    
+
+    
 
 
 
