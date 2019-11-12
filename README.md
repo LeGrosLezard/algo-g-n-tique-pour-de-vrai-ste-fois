@@ -1,4 +1,4 @@
-ok mtn essayer de tout raccorder
+ok mtn essayer de tout raccorder par contre apres 16 de dodo faut eviter les bonbons
 
 
 
