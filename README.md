@@ -1,4 +1,4 @@
-certain truk sert a rien, j'aurai pu directe faire les lignes mais les anim sont supers !
+certains truks servent à rien, j'aurais pu directement faire les lignes mais les animations sont supers !
 
 
 
