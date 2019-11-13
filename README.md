@@ -1,10 +1,10 @@
-faire un truk qui dit qu'elle image est la premiere et qu'elle image est la derniere ^^
 
-parcourage2 et 3 ("iciiiiiiiiiiiiiiiiiiii" a été rajouté)
 
-les conteneurs ont changé 
 
-refaire parcourage ca bloque
+
+
+
+
 
 faire la doc
 
@@ -49,14 +49,7 @@ faire un snake contour sur une image non bruité
 - permet de voir la zone en question par apport a l'original
 
 
-<h1>4 - Schemas</h1>
-
- - permet de faire les schéma "géométrique" de l'image
- 
- - escalier = arrondis (droite bas , gauche bas, gauche haut, droite haut), ligne verticale, horizontale
-
-
-<h1>5 - Reconstruction</h1>
+<h1>4 - Reconstruction</h1>
 
 - permet de faire les liaisons entre les points en essaynt des schémas jusqu'a rencontre avec l'autre forme mais ca...
 
