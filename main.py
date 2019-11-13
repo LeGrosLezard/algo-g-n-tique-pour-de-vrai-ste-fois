@@ -79,12 +79,13 @@ if __name__ == "__main__":
 
 
     from reconstruction.connected import main_connected
+    dico_picture, treat_minini, oki_picture =\
     main_connected("reconstruction/ici.png", picture_treat, mini_zone)
     
+    #print(dico_picture, "\n\n", oki_picture)
 
-
-
-
+    from draw.drawing import drawing_main
+    drawing_main(image_path, oki_picture, dico_picture)
 
 
 
