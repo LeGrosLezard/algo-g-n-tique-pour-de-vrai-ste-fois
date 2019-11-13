@@ -1,8 +1,11 @@
 import cv2
+
 from starter.operation import open_picture
 from starter.operation import show_picture
+
 import sys
 sys.path.append(r"C:\Users\jeanbaptiste\Desktop\chaipas")
+
 
 def treat_mini(minini):
     """Recuperate first form and next form"""
@@ -15,13 +18,6 @@ def treat_mini(minini):
 
     return treat_minini
 
-
-def treat_shems(liste):
-    """Recuperate all schemas expect situation
-    who's represent points"""
-
-    schemas_ran = [j for i in liste for j in i if j != "SITUATION"]
-    return schemas_ran
 
 
 def schema_dico(number):
@@ -129,8 +125,10 @@ def road_test(listex, listey, width, height, blanck, gray, oki_picture,
         blanck[x, y] = 255, 255, 255
         
         blanck[x + nb_add1, y + nb_add2] = 255, 255, 255
+
         copy1 = cv2.resize(blanck, (400, 400))
-        #show_picture("copy1", copy1, 0, "")
+        show_picture("copy1", copy1, 1, "")
+
         x += nb1
         y += nb2
 
