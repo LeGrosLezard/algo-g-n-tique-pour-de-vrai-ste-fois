@@ -1,11 +1,8 @@
+certain truk sert a rien, j'aurai pu directe faire les lignes mais les anim sont supers !
 
 
 
 
-
-
-
-faire la doc
 
 <br><br><br><br>
 faire un snake contour sur une image non bruité
