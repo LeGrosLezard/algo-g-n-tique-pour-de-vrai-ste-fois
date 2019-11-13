@@ -14,10 +14,70 @@ from starter.operation import open_picture
 from starter.operation import show_picture
 from starter.operation import blanck_picture
 
+from draw.drawing_function import draw_shema
+from draw.drawing_function import min_distance
+from draw.drawing_function import finish_picture
+from draw.drawing_function import draw_form
+from draw.drawing_function import recup_points
+from draw.drawing_function import draw_lines_to_zone
 
-#nos images
-picture = ['../images/blanck/6blanck.jpg', '../images/blanck/2blanck.jpg', '../images/blanck/4blanck.jpg',
-           '../images/blanck/8blanck.jpg', '../images/blanck/10blanck.jpg', '../images/blanck/0blanck.jpg',]
+
+
+
+def drawing_main(original, oki_picture, a):
+
+    img = open_picture(original)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    liste = min_distance(a)
+
+    blanck = blanck_picture(img)
+    for pict in range(len(oki_picture)):
+
+        form1 = open_picture(oki_picture[pict][0])
+        form1 = cv2.cvtColor(form1, cv2.COLOR_BGR2GRAY)
+
+        form2 = open_picture(oki_picture[pict][1])
+        form2 = cv2.cvtColor(form2, cv2.COLOR_BGR2GRAY)
+
+        for i in range(len(oki_picture[pict])):
+
+            if i == 0:
+                form1 = form1
+                form2 = form2
+            else:
+                form1 = form2
+                form2 = form1
+
+            #Draw form in function of passation
+            draw_form(form1, blanck)
+
+            #Recup pixel > 100
+            liste_w = recup_points(form1)
+
+
+            if i == 0:
+                zone = draw_shema(liste[pict][1][0], liste[pict][0],
+                                    liste[pict][1][1], liste[pict][1][2], blanck)
+
+                draw_lines_to_zone(liste_w, liste, pict, blanck, zone)
+            
+                #print(zone)
+
+                copy1 = cv2.resize(blanck, (800, 800))
+                show_picture("copy1", copy1, 1, "")
+
+
+
+    blanck1 = finish_picture(img, blanck)
+    copy1 = cv2.resize(blanck1, (800, 800))
+    show_picture("copy1", copy1, 0, "")
+
+
+
+
+
+
 
 #image regroupé pts to pts
 oki_picture = [['../images/blanck/6blanck.jpg', '../images/blanck/2blanck.jpg'],
@@ -61,173 +121,7 @@ a = {'0': {'corner4': [4, 69, 37], 'lign verticale1': 0,
            'lign horrizontale1': 0, 'lign horrizontale2': 0, 'corner5': 0, 'corner6': 0},
      '9': {'corner4': 0, 'lign verticale1': 0, 'lign verticale2': [10, 107, 165], 'corner7': 0,
            'lign horrizontale1': 0, 'lign horrizontale2': 0, 'corner5': [29, 88, 136], 'corner6': 0}}
-
-
-
-##          #0     #1     #2    #3      #4     #5     #6    #7
-##listex = [x+1,   x-1,   x,    x,      x+1,   x-1,   x+1,  x-1]
-##listey = [y,       y,   y+1,  y-1,    y+1,   y-1,   y-1,  y+1]
-
-
-
-img = open_picture(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\lign_v1.jpg")
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-
-
-
-
-liste = []
-
-counter = 0
-
-for key, value in a.items():
-    min_value = 10000
-    data = ""
-
-    for key1, value1 in a[key].items():
-
-        if value1 != 0:
-            if value1[0] < min_value:
-                min_value = value1[0]
-                data  = [key1, value1]
-
-    liste.append(data)
-    #print(data)
-    #print("")
-
-
-
-
-##    print(data)
-##    print("zone ", b[c])
-##    print("")
-
-    counter+=1
-
-def draw_shema(number, schema, posX, posY, blanck):
-    """recup x, y from other form it give info for area"""
-    x = posX
-    y = posY
-
-    for i in range(number):
-        blanck[x, y] = 255, 255, 255
-
-        if schema == "corner4":
-            x -= 1; y-= 1
-            blanck[x+1, y] = 255, 255, 255
-
-        if schema == "corner7":
-            x += 1; y-= 1
-            blanck[x, y-1] = 255, 255, 255
-
-        if schema == "corner5":
-            x += 1; y+= 1
-            blanck[x, y+1] = 255, 255, 255
-
-        if schema == "corner6":
-            x -= 1; y+= 1
-            blanck[x, y+1] = 255, 255, 255
-
-        if schema == "lign horrizontale1":y += 1;
-        if schema == "lign horrizontale2":y -= 1;
-        if schema == "lign verticale1":x -= 1;
-        if schema == "lign verticale2":x += 1;
-
-
-    return x, y
-
-def to_zone(schema, x, y, pts_other1, pts_other2, blanck):
-
-
-    cv2.line(blanck, (pts_other2, pts_other1), (y, x), (255, 255, 255), 1)
-
-    copy1 = cv2.resize(blanck, (800, 400))
-    show_picture("copy1", copy1, 0, "")
-
-
-blanck = blanck_picture(img)
-for pict in range(len(oki_picture)):
-    
-    print(oki_picture[pict])
-    print(liste[pict])
-
-    form1 = open_picture(oki_picture[pict][0])
-    form1 = cv2.cvtColor(form1, cv2.COLOR_BGR2GRAY)
-
-    form2 = open_picture(oki_picture[pict][1])
-    form2 = cv2.cvtColor(form2, cv2.COLOR_BGR2GRAY)
-
-
-    for i in range(len(oki_picture[pict])):
-
-        if i == 0:
-            form1 = form1
-            form2 = form2
-        else:
-            form1 = form2
-            form2 = form1
-
-        for x in range(form1.shape[0]):
-            for y in range(form1.shape[1]):
-                if form1[x, y] > 100:
-                    blanck[x, y] = 255, 255, 255
-
-        liste_w = []
-        for x in range(form1.shape[0]):
-            for y in range(form1.shape[1]):
-                if form1[x, y] > 100:
-                    liste_w.append([x, y])
-
-
-        if i == 0:
-            zone = draw_shema(liste[pict][1][0], liste[pict][0],
-                                liste[pict][1][1], liste[pict][1][2], blanck)
-
-
-            print(liste[pict])
-            for el in liste_w:
-                if el[0] > zone[0]-2 and el[0] < zone[0] + 2:
-                    print(abs((el[0] + el[1]) - (zone[0] + zone[1])))
-                    if abs((el[0] + el[1]) - (zone[0] + zone[1])) < 8:
-                        #blanck[el[0], el[1]] = 0, 0, 255 demo^^
-                        to_zone(liste[pict][0], liste[pict][1][1], liste[pict][1][2],
-                                el[0], el[1], blanck)
-
-
-                elif el[1] > zone[1]-2 and el[1] < zone[1] + 2:
-                    print(abs((el[0] + el[1]) - (zone[0] + zone[1])))
-                    if abs((el[0] + el[1]) - (zone[0] + zone[1])) < 8:
-                        #blanck[el[0], el[1]] = 0, 0, 255
-                        to_zone(liste[pict][0], liste[pict][1][1], liste[pict][1][2],
-                                el[0], el[1], blanck)
-
-            print(zone)
-
-            copy1 = cv2.resize(blanck, (800, 400))
-            show_picture("copy1", copy1, 0, "")
-
-    print("")
-
-R = cv2.RETR_TREE
-P = cv2.CHAIN_APPROX_NONE
-
-blanck1 = blanck_picture(img)
-cv2.imwrite("final.png", blanck)
-gray = cv2.cvtColor(blanck, cv2.COLOR_BGR2GRAY)
-
-
-contours, _ = cv2.findContours(gray, R, P)
-for cnt in contours:
-    cv2.drawContours(blanck1, [cnt], -1, (255,255,255), 2)
-    cv2.fillPoly(blanck1, pts =[cnt], color=(255, 255, 255))
-
-copy1 = cv2.resize(blanck1, (800, 800))
-show_picture("copy1", copy1, 0, "")
-
-
-
-
+#drawing_main(r"C:\Users\jeanbaptiste\Desktop\chaipas\images\lign_v1.jpg", oki_picture, a)
 
 
 
