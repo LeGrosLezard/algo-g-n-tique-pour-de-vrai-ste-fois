@@ -16,18 +16,18 @@ from starter.operation import blanck_picture
 from starter.operation import find_first_points
 from starter.operation import incrementation
 
-from connected_function import treat_mini
-from connected_function import end_condition
-from connected_function import drawing
-from connected_function import raising
-from connected_function import schema_dico
-from connected_function import add_list_next_last
-from connected_function import road_test
+from reconstruction.connected_function import treat_mini
+from reconstruction.connected_function import end_condition
+from reconstruction.connected_function import drawing
+from reconstruction.connected_function import raising
+from reconstruction.connected_function import schema_dico
+from reconstruction.connected_function import add_list_next_last
+from reconstruction.connected_function import road_test
 
 
 def corner4(width, height, blanck, gray,
             oki_picture, x, y, dico_picture, nb):
-    
+
     listex = [x+1,        x,        x+1,  x-1]
     listey = [y,          y+1,      y-1,  y+1]
 
@@ -51,6 +51,7 @@ def lign_vertical(width, height, blanck, gray,
             road_test(listex, listey, width, height, blanck, gray,
                       oki_picture, 'lign verticale2', -1, 0, x, y,
                       dico_picture, nb, 0, 0)
+
 
 def corner7(width, height, blanck, gray,
               oki_picture, x, y, dico_picture, nb):
@@ -77,6 +78,7 @@ def lign_horizontal(width, height, blanck, gray,
                       oki_picture, 'lign horrizontale2', 0, 1, x, y,
                       dico_picture, nb, 0, 0)
 
+
 def corner5(width, height, blanck, gray,
             oki_picture, x, y, dico_picture, nb):
 
@@ -85,7 +87,6 @@ def corner5(width, height, blanck, gray,
 
     road_test(listex, listey, width, height, blanck, gray,
               oki_picture, "corner5", -1, -1, x, y, dico_picture, nb, 0, 1)
-
 
 
 def corner6(width, height, blanck, gray,
@@ -103,7 +104,7 @@ def corner6(width, height, blanck, gray,
 def main_connected(original, picture, minini):
     schema = ['corner4', 'lign verticale', 'corner7', 'lign horrizontale', 'corner5', 'corner6']
 
-    img = open_picture("ici.png")
+    img = open_picture(original)
     copy = img.copy()
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blanck = blanck_picture(img)
@@ -196,4 +197,4 @@ picture = ['../images/blanck/6blanck.jpg', '../images/blanck/2blanck.jpg', '../i
 
 
 
-main_connected("ici.png", picture, minini)
+#main_connected("ici.png", picture, minini)
