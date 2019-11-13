@@ -5,7 +5,6 @@
 
 
 
-
 faire la doc
 
 <br><br><br><br>
@@ -54,7 +53,7 @@ faire un snake contour sur une image non bruité
 - permet de faire les liaisons entre les points en essaynt des schémas jusqu'a rencontre avec l'autre forme mais ca...
 
 
-
+<h1>5 - draw</h1>
 
 
 
